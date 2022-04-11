@@ -143,30 +143,63 @@ int	check_qut(char	**str)
 	return (1);
 }
 
+int	check_next_qu(char *str, char c, int i)
+{
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 char	*remove_qu(char *str)
 {
 	int		i;
 	int		k;
 	int		j;
+	char	u;
 	char	*tmp;
 
 	k = 0;
 	j = 0;
 	i = 0;
-	tmp = malloc (ft_strlen(tmp) - 1);
+	u = 0;
+	tmp = malloc (ft_strlen(str) - 1);
 	while (str[i])
 	{
-		if (str[i] == 39 || str[i] == 34)
-			k++;
-		else if (k < 2 && str[i] != 39 && str[i] != 34)
+		// printf ("%s\n", str);
+		// printf ("%s\n", tmp);
+		if ((str[i] == 39 || str[i] == 34))
 		{
-			tmp[j] = str[i];
-			j++;
+			if (u && str[i] == u)
+			{
+				k++;
+			}
+			else if (!u && check_next_qu(str, str[i], i + 1))
+			{
+				u = str[i];
+				k++;
+			}
 		}
-		else if (k >= 2)
+		if (k < 2)
 		{
-			tmp[j] = str[i];
-			j++;
+			if (!u)
+			{
+				tmp[j] = str[i];
+				j++;
+			}
+			else if (u && str[i] != u)
+			{
+				tmp[j] = str[i];
+				j++;
+			} 
+		}
+		if (k >= 2)
+		{
+			k = 0;
+			u = 0;
 		}
 		i++;
 	}
@@ -174,16 +207,13 @@ char	*remove_qu(char *str)
 	return (tmp);
 }
 
-char	**edit_qu(char ***s, char **str)
+char	**edit_qu(char **str)
 {
 	int		i;
 	int		j;
 	char	r;
+	char	*tmp;
 
-	// i = -1;
-	// while (*s[++i])
-	// 	free (*s[i]);
-	// free (**s);
 	i = 0;
 	while (str[i])
 	{
@@ -195,9 +225,11 @@ char	**edit_qu(char ***s, char **str)
 				r = str[i][j];
 			else if (r && str[i][j] == r)
 			{
+				tmp = cpy(tmp, str[i]);
+				free (str[i]);
+				str[i] = remove_qu(tmp);
+				free (tmp);
 				r = 0;
-				j = 0;
-				str[i] = remove_qu(str[i]);
 			}
 			j++;
 		}
@@ -236,31 +268,34 @@ char	**get_command()
 		if (tmp[i] == ' ')
 		{
 			if (!r)
+			{
 				ret[k++] = get_arg(tmp, i, t);
-			t = i;
+			}
+				t = i;
 		}
 		i++;
 	}
 	if (i - t - 1 > 0)
-		ret[k] = get_arg(tmp, i, t);
-	ret[k + 1] = NULL;
+		ret[k++] = get_arg(tmp, i, t);
+	ret[k] = NULL;
 	k = 0;
-	ret = edit_qu(&ret, ret);
-	while (ret[k])
-	{
-		printf ("%s\n", ret[k]);
-		k++;
-	}
-	if (!check_qut(ret))
-	{
-		printf("error\n");
-		ret[0] = NULL;
-		return (ret);
-	}
+	// while (ret[k])
+	// {
+	// 	printf ("%s\n", ret[k]);
+	// 	k++;
+	// }
+	ret = edit_qu(ret);
+	// if (!check_qut(ret))
+	// {
+	// 	printf("error\n");
+	// 	ret[0] = NULL;
+	// 	return (ret);
+	// }
+	free (tmp);
 	return (ret);
 }
 
-int	main(int ac, char **av, char **env)
+ int	main(int ac, char **av, char **env)
 {
 	t_main	i;
 	int		r;
@@ -272,17 +307,19 @@ int	main(int ac, char **av, char **env)
 
 	fd = get_history();
 	pr = get_command();
+	add_history(pr[0]);
+	write (fd, pr[0], ft_strlen(pr[0]));
 	// if (!pr[0])
 	// 	return (0);
-	r = 0;
+	// r = 0;
 	// while (pr[r])
 	// {
 	// 	printf ("%s\n", pr[r]);
 	// 	r++;
 	// }
 	// add_history(command);
-	// path = get_path(env, pr[0]);
 	path = get_path(env, pr[0]);
+	// path = get_path(env, pr[0]);
 	// printf ("%s\n", path);
 	// pr = malloc (sizeof (char*) * 4);
 	// pr[2] = """-l";
@@ -291,16 +328,17 @@ int	main(int ac, char **av, char **env)
 	// pr[1] = "-a";
 	// pr[0] = "ls";
 	// pr[1] = NULL;
-	execve(path, pr, NULL);
+	// execve(path, pr, NULL);
 	// write (fd, command, ft_strlen(command));
 	// write (fd, "\n", 1);
 	// pr = get_path(env, command);
 	// r = -1;
 	// while (pr[++r])
 	// 	printf ("%s\n", pr[r]);
-	// r = -1;
-	// while (pr[++r])
-	// 	free (pr[r]);
-	// free (pr);
+	r = -1;
+	free (path);
+	while (pr[++r])
+		free (pr[r]);
+	free (pr);
 	// free (command);
 }

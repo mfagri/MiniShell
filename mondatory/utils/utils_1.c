@@ -20,6 +20,7 @@ char	*get_path(char **env, char *command)
 	int		i;
 	char	**ret;
 	char	*path;
+	char	*tmp;
 
 	i = 0;
 	if (env)
@@ -36,16 +37,27 @@ char	*get_path(char **env, char *command)
 	i = -1;
 	while (ret[++i])
 	{
-		ret[i] = ft_strjoin(ret[i], "/");
-		ret[i] = ft_strjoin(ret[i], command);
+		tmp = cpy(tmp, ret[i]);
+		free (ret[i]);
+		ret[i] = ft_strjoin(tmp, "/");
+		tmp = cpy(tmp, ret[i]);
+		free (ret[i]);
+		ret[i] = ft_strjoin(tmp, command);
 	}
 	i = -1;
 	while (ret[++i])
 		if (!access(ret[i], F_OK))
 			break ;
 	free (path);
-	printf ("%s\n", ret[i]);
-	return (ret[i]);
+	path = cpy(path, ret[i]);
+	i = 0;
+	while (ret[i])
+	{
+		free (ret[i]);
+		i++;
+	}
+	free (ret);
+	return (path);
 }
 
 int	get_history()

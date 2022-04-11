@@ -19,7 +19,7 @@ typedef struct s_main
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
-char	*cpy(char *dest, const char *src);
+char	*cpy(char *dest, char *src);
 int		cpy_next_line(char **all, int fd);
 int		check_next_ln(char *all);
 char	*ft_strjoin(char *s1, char *s2);

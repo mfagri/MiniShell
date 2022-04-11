@@ -21,21 +21,17 @@ static size_t	lenp(const char *src)
 	return (i);
 }
 
-char	*cpy(char *dest, const char *src)
+char	*cpy(char *dest, char *src)
 {
 	size_t	i;
-	size_t	r;
 
 	i = 0;
-	r = lenp(src);
+	dest = malloc (sizeof (char) * (ft_strlen(src) + 1));
 	while (src[i])
 	{
 		dest[i] = src[i];
 		i++;
 	}
 	dest[i] = '\0';
-	i = 0;
-	while (src[i] != '\0')
-		i++;
-	return (i);
+	return (dest);
 }
