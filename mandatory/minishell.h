@@ -30,5 +30,8 @@ char	*ft_return(char *all, int i);
 char	*edit_all(char *all, int i, int k);
 int		get_history();
 char	*get_path(char **env, char *command);
+int		ft_isalnum(int c);
+int		ft_isdigit(int c);
+char	*ft_itoa(int j);
 
 #endif
