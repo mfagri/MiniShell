@@ -242,7 +242,7 @@ char	*get_var(char *str, char **env, int j)
 	}
 	tmp[i] = '\0';
 	k = i + 1;
-	while (str[i] != 34)
+	while (str[i] != 34 && str[i])
 	{
 		i++;
 		j++;
