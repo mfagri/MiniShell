@@ -131,9 +131,7 @@ char	*remove_qu(char *str)
 		if ((str[i] == 39 || str[i] == 34))
 		{
 			if (u && str[i] == u)
-			{
 				k++;
-			}
 			else if (!u && check_next_qu(str, str[i], i + 1))
 			{
 				u = str[i];
@@ -142,16 +140,11 @@ char	*remove_qu(char *str)
 		}
 		if (k < 2)
 		{
-			if (!u)
+			if (!u || (u && str[i] != u))
 			{
 				tmp[j] = str[i];
 				j++;
 			}
-			else if (u && str[i] != u)
-			{
-				tmp[j] = str[i];
-				j++;
-			} 
 		}
 		if (k >= 2)
 		{
@@ -186,7 +179,7 @@ char	**edit_qu(char **str)
 				free (str[i]);
 				str[i] = remove_qu(tmp);
 				free (tmp);
-				r = 0;
+				break ;
 			}
 			j++;
 		}
@@ -286,16 +279,18 @@ char	**edit_var(char **ret, char **env)
 	int		k;
 
 	i = 0;
-	k = 0;
+	k = 1;
 	while (ret[i])
 	{
 		j = 0;
 		while (ret[i][j])
 		{
-			if (k && ret[i][j] == 34)
+			if (k && ret[i][j] == 39)
 				k = 0;
-			if (ret[i][j] == 34 && check_next_qu(ret[i], 34, j) && !k)
+			else if (!k && ret[i][j] == 39)
 				k = 1;
+			if (ret[i][j] == 34 && check_next_qu(ret[i], 34, j) && !k)
+				k = 0;
 			if (k && ret[i][j] == '$')
 			{
 				ret[i] = get_var(ret[i], env, j);
