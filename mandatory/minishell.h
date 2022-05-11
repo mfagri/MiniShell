@@ -10,6 +10,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <signal.h>
 
 typedef struct s_main
 {
@@ -33,5 +34,7 @@ char	*get_path(char **env, char *command);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
 char	*ft_itoa(int j);
+void ft(int signum);
+void	exec(int fd, char **env);
 
 #endif

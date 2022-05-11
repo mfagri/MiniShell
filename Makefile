@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 19:42:03 by aaitoual          #+#    #+#              #
-#    Updated: 2022/03/21 19:42:07 by aaitoual         ###   ########.fr        #
+#    Updated: 2022/05/11 16:08:28 by mfagri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-CC = cc
-FLAGS = -Wall -Wextra -Werror
+CC = cc 
+FLAGS = -Wall -Wextra -Werror 
+LFLAGS	=	-I /Users/mfagri/.brew/opt/readline/include
 AR = ar rcs
 OBJ = ./mandatory/obj
 
@@ -22,15 +23,15 @@ FILE =  ./mandatory/minishell.c ./mandatory/utils/ft_split.c ./mandatory/utils/f
 
 FILE1 = $(FILE:.c=.o)
 
-LIB = ./mandatory/minishell.h \
+LIB = ./mandatory/minishell.h 
 
 all: $(NAME)
 
 $(NAME): $(FILE1) $(LIB)
-	@$(CC) $(FILE1) -o $@ -lreadline
+	@$(CC) $(FILE1) $(LFLAGS) -o $@  -lreadline -L /Users/mfagri/.brew/opt/readline/lib
 
 %.o : %.c
-	@$(CC) -o $@  -c $^
+	@$(CC) $(LFLAGS) -o $@  -c $^
 
 clean:
 	@rm -f $(FILE1) $(FILE1_BONUS)

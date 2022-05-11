@@ -1,40 +1,5 @@
 # include "minishell.h"
 
-
-		// if (tmp)
-		// {
-		// 	while (tmp[i])
-		// 	{
-		// 		printf ("%c\n", tmp[i]);
-		// 		if (!k && ((tmp[i] < '0' && tmp[i] != '-' && tmp[i] != '$' && tmp[i] != ' ') || ((tmp[i] > '9' && tmp[i] < 'A') && tmp[i] != '>'
-		// 			&& tmp[i] != '<') || (tmp[i] > 'Z' && tmp[i] < 'a') || (tmp[i] > 'z')))
-		// 		{
-		// 			if (tmp[i] == 39 || tmp[i] == 34)
-		// 			{
-		// 				r = tmp[i];
-		// 				k = 1;
-		// 			}
-		// 			else
-		// 			{
-		// 				printf ("syntax error\n");
-		// 				break ;
-		// 			}
-		// 		}
-		// 		else if (k)
-		// 		{
-		// 			if (tmp[i] == r)
-		// 				k = 0;
-		// 		}
-		// 		i++;
-		// 	}
-		// 	if (!tmp[i] && k)
-		// 		printf ("syntax error\n");
-		// 	else if (!tmp[i] && !k)
-		// 	{
-		// 		ft_s
-		// 	}
-		// }
-
 char	*get_first(char	*str)
 {
 	int		i;
@@ -351,7 +316,64 @@ char	**get_command(char **env, int fd)
 	return (ret);
 }
 
- int	main(int ac, char **av, char **env)
+void	exec(int fd, char **env)
+{
+	int		r;
+	int		k;
+	char	**pr;
+	char	*command;
+	// char	**paths;
+	char	*path;
+	path = malloc (1);
+
+	pr = get_command(env, fd);
+	// if(pr == NULL)
+	// {
+	// 	write(2,"exit\n",5);
+	// 	exit(0);
+	// }
+		free (path);
+		if (pr)
+		{
+			path = get_path(env, pr[0]);
+		// if (!path)
+		// {
+		// 	printf ("minishell=> %s: command not found\n", pr[0]);
+		// }
+		r = fork();
+		if (!r)
+		{
+			execve(path, pr, NULL);
+			exit(0);
+		}
+		else
+			waitpid(r, NULL, 0);
+		r = -1;
+		while (pr[++r])
+			free (pr[r]);
+		free (pr);
+	}
+	else
+	{
+		rl_replace_line("", -1);
+		write (1, "exit\n", 5);
+		rl_on_new_line();
+		exit (0);
+	}
+}
+
+void ft(int signum)
+{
+	if(signum == SIGINT)
+	{
+		rl_replace_line("", 0);
+		write(2,"\n",1);
+		write (2, "minishell=>", 11);
+	}
+	return ;
+}
+
+int	main(int ac, char **av, char **env)
 {
 	t_main	i;
 	int		r;
@@ -365,47 +387,11 @@ char	**get_command(char **env, int fd)
 	fd = get_history();
 	path = malloc (1);
 	k = 2;
+	signal(SIGINT, ft);
 	while (k)
 	{
-		pr = get_command(env, fd);
-		free (path);
-		path = get_path(env, pr[0]);
-		if (!path)
-			printf ("minishell=> %s: command not found\n", pr[0]);
-		r = fork();
-		if (!r)
-			execve(path, pr, NULL);
-		else
-			waitpid(r, NULL, 0);
-		r = -1;
-		while (pr[++r])
-			free (pr[r]);
-		free (pr);
+		exec(fd, env);
 	}
-	// if (!pr[0])
-	// 	return (0);
-	// r = 0;
-	// while (pr[r])
-	// {
-	// 	printf ("%s\n", pr[r]);
-	// 	r++;
-	// }
-	// add_history(command);
-	// path = get_path(env, pr[0]);
-	// printf ("%s\n", path);
-	// pr = malloc (sizeof (char*) * 4);
-	// pr[2] = """-l";
-	// pr[3] = NULL;
-	// pr[0] = "ls";
-	// pr[1] = "-a";
-	// pr[0] = "ls";
-	// pr[1] = NULL;
-	// write (fd, command, ft_strlen(command));
-	// write (fd, "\n", 1);
-	// pr = get_path(env, command);
-	// r = -1;
-	// while (pr[++r])
-	// 	printf ("%s\n", pr[r]);
 	r = -1;
 	free (path);
 	while (pr[++r])
