@@ -1,5 +1,20 @@
 # include "minishell.h"
 
+int l;
+struct termios	remove_ctlc(void)
+{
+	//int fd;
+	//fd = open("file2",O_CREAT | O_RDWR,777);
+	struct termios	terminal;
+	struct termios	terminal2;
+
+	tcgetattr(0, &terminal);
+	terminal2 = terminal;
+	terminal.c_lflag &= ~(ECHOCTL);
+	tcsetattr(0, TCSANOW | TCSAFLUSH, &terminal);
+	//tcsetattr(fd, TCSANOW | TCSAFLUSH, &terminal);
+	return (terminal2);
+}
 char	*get_first(char	*str)
 {
 	int		i;
@@ -316,7 +331,7 @@ char	**get_command(char **env, int fd)
 	return (ret);
 }
 
-void	exec(int fd, char **env)
+int	exec(int fd, char **env, struct termios terminal2)
 {
 	int		r;
 	int		k;
@@ -327,27 +342,28 @@ void	exec(int fd, char **env)
 	path = malloc (1);
 
 	pr = get_command(env, fd);
-	// if(pr == NULL)
-	// {
-	// 	write(2,"exit\n",5);
-	// 	exit(0);
-	// }
-		free (path);
-		if (pr)
+	free (path);
+	if (pr)
+	{
+		path = get_path(env, pr[0]);
+		if (!path)
 		{
-			path = get_path(env, pr[0]);
-		// if (!path)
-		// {
-		// 	printf ("minishell=> %s: command not found\n", pr[0]);
-		// }
+			printf ("minishell=> %s: command not found\n", pr[0]);
+		}
 		r = fork();
+		l = r;
 		if (!r)
 		{
+			tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
+			// sleep (10);
 			execve(path, pr, NULL);
-			exit(0);
 		}
 		else
+		{
 			waitpid(r, NULL, 0);
+			remove_ctlc();
+			//sleep(10);
+		}
 		r = -1;
 		while (pr[++r])
 			free (pr[r]);
@@ -355,47 +371,68 @@ void	exec(int fd, char **env)
 	}
 	else
 	{
-		rl_replace_line("", -1);
+		// rl_replace_line("", 0);
 		write (1, "exit\n", 5);
-		rl_on_new_line();
-		exit (0);
+		return (0);
 	}
+	return (1);
 }
 
 void ft(int signum)
 {
 	if(signum == SIGINT)
 	{
-		rl_replace_line("", 0);
-		write(2,"\n",1);
-		write (2, "minishell=>", 11);
+		write(1,"\n test",6);	
+        rl_on_new_line();
+        rl_replace_line("", 0);
+        rl_redisplay();
 	}
-	return ;
+	//return ;
 }
+
+// void ft2(int signum)
+// {
+// 	printf("yoo2\n");
+// 	if(signum == SIGINT)
+// 	{
+// 		write(1,"\n",1);	
+// 		// write (1, "minishell=>", 11);
+// 		// rl_replace_line("", 0);
+//         //printf("\n");
+//         rl_on_new_line();
+//         rl_replace_line("", 0);
+//         rl_redisplay();
+// 		// terminal2 = remove_ctlc();
+// 		// tcsetattr(0, TCSANOW | TCSAFLUSH, &terminal2);
+// 	}
+// 	//return ;
+// }
 
 int	main(int ac, char **av, char **env)
 {
 	t_main	i;
 	int		r;
-	int		k;
+	int k;
 	char	**pr;
 	char	*command;
-	// char	**paths;
 	char	*path;
 	int		fd;
+	struct termios terminal2;
 
-	fd = get_history();
+	l = 1;
 	path = malloc (1);
-	k = 2;
+	fd = get_history();
+	terminal2 = remove_ctlc();
 	signal(SIGINT, ft);
+	r = 1;
+	//waitpid(l, NULL, 0);
+	k = 1;
 	while (k)
+		k = exec(fd, env, terminal2);
+	if(k == 0)
 	{
-		exec(fd, env);
+		tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
+		exit(0);
 	}
-	r = -1;
 	free (path);
-	while (pr[++r])
-		free (pr[r]);
-	free (pr);
-	// free (command);
 }

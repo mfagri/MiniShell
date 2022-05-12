@@ -7,6 +7,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
@@ -34,7 +35,7 @@ char	*get_path(char **env, char *command);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
 char	*ft_itoa(int j);
-void ft(int signum);
-void	exec(int fd, char **env);
+void	ft(int signum);
+int	exec(int fd, char **env, struct termios terminal2);
 
 #endif
