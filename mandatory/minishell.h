@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <termios.h>
+# include <term.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
@@ -16,7 +17,10 @@
 typedef struct s_main
 {
 	int	i;
+	int l;
 }	t_main;
+
+t_main g_globle;
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
@@ -35,7 +39,8 @@ char	*get_path(char **env, char *command);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
 char	*ft_itoa(int j);
-void	ft(int signum);
+void	ft_sig(int signum);
 int	exec(int fd, char **env, struct termios terminal2);
+int get_glo(int i);
 
 #endif

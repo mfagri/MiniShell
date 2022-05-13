@@ -296,6 +296,7 @@ char	**get_command(char **env, int fd)
 	i = 0;
 	t = -1;
 	r = 0;
+	
 	tmp = readline("minishell=>");
 	if (!tmp)
 		return (NULL);
@@ -349,17 +350,21 @@ int	exec(int fd, char **env, struct termios terminal2)
 		if (!path)
 		{
 			printf ("minishell=> %s: command not found\n", pr[0]);
+			get_glo(0);
 		}
-		r = fork();
-		l = r;
+		r = fork();	
 		if (!r)
 		{
+			//g_globle.i = 0;
 			tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
 			// sleep (10);
 			execve(path, pr, NULL);
+			exit(0);
 		}
 		else
 		{
+			//g_globle.i = 1;
+			get_glo(1);
 			waitpid(r, NULL, 0);
 			remove_ctlc();
 			//sleep(10);
@@ -371,24 +376,14 @@ int	exec(int fd, char **env, struct termios terminal2)
 	}
 	else
 	{
-		// rl_replace_line("", 0);
+		//printf("\bexit\n");
 		write (1, "exit\n", 5);
 		return (0);
 	}
 	return (1);
 }
 
-void ft(int signum)
-{
-	if(signum == SIGINT)
-	{
-		write(1,"\n test",6);	
-        rl_on_new_line();
-        rl_replace_line("", 0);
-        rl_redisplay();
-	}
-	//return ;
-}
+
 
 // void ft2(int signum)
 // {
@@ -423,12 +418,17 @@ int	main(int ac, char **av, char **env)
 	path = malloc (1);
 	fd = get_history();
 	terminal2 = remove_ctlc();
-	signal(SIGINT, ft);
+	signal(SIGINT, ft_sig);
+	signal(SIGQUIT,ft_sig);
 	r = 1;
 	//waitpid(l, NULL, 0);
 	k = 1;
 	while (k)
+	{
+		//g_globle.i = 0;
+		get_glo(0);
 		k = exec(fd, env, terminal2);
+	}
 	if(k == 0)
 	{
 		tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
