@@ -3,7 +3,7 @@
 
 int main()
 {
-    char test[200];
+    char test[200000];
 
     getcwd(test, sizeof(test));
     printf ("%s\n", test);

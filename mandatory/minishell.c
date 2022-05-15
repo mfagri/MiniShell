@@ -1,6 +1,10 @@
 # include "minishell.h"
 
-int l;
+// int ft_ftget()
+// {
+// 	printf("ewferghrgt45\n");
+// 	return (1);
+// }
 struct termios	remove_ctlc(void)
 {
 	//int fd;
@@ -299,7 +303,13 @@ char	**get_command(char **env, int fd)
 	
 	tmp = readline("minishell=>");
 	if (!tmp)
+	{
+		//readline("");
+		// rl_on_new_line();
+    	// rl_replace_line("", 0);
+		// rl_redisplay();
 		return (NULL);
+	}
 	add_history(tmp);
 	write (fd, tmp, ft_strlen(tmp));
 	write (fd, "\n", 1);
@@ -357,8 +367,16 @@ int	exec(int fd, char **env, struct termios terminal2)
 		{
 			//g_globle.i = 0;
 			tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
-			// sleep (10);
-			execve(path, pr, NULL);
+			// if(strcmp("echo",pr[0]) == 0)
+			// {
+			// 	ft_echo(pr);
+			// }
+			// else if(strcmp("pwd",pr[0]) == 0)
+			// 	ft_pwd();
+			// else if(strcmp("cd",pr[0]) == 0)
+			// 	ft_cd(pr);
+			// else
+				execve(path, pr, NULL);
 			exit(0);
 		}
 		else
@@ -376,8 +394,9 @@ int	exec(int fd, char **env, struct termios terminal2)
 	}
 	else
 	{
+		tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
+		get_tt();
 		//printf("\bexit\n");
-		write (1, "exit\n", 5);
 		return (0);
 	}
 	return (1);
@@ -414,7 +433,6 @@ int	main(int ac, char **av, char **env)
 	int		fd;
 	struct termios terminal2;
 
-	l = 1;
 	path = malloc (1);
 	fd = get_history();
 	terminal2 = remove_ctlc();
@@ -425,6 +443,7 @@ int	main(int ac, char **av, char **env)
 	k = 1;
 	while (k)
 	{
+		//free(buf);
 		//g_globle.i = 0;
 		get_glo(0);
 		k = exec(fd, env, terminal2);

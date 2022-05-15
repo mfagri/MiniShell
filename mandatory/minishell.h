@@ -2,7 +2,7 @@
 # define MINISHELL_H
 
 # define BUFFER_SIZE 1
-# define HISTORY_PATH "/Users/aaitoual/.minishell_history"
+# define HISTORY_PATH "/Users/mfagri/.minishell_history"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -12,6 +12,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+#include <curses.h>
 # include <signal.h>
 
 typedef struct s_main
@@ -42,5 +43,8 @@ char	*ft_itoa(int j);
 void	ft_sig(int signum);
 int	exec(int fd, char **env, struct termios terminal2);
 int get_glo(int i);
-
+void get_tt(void);
+int ft_echo(char **pr);
+void ft_pwd();
+void ft_cd(char **pr);
 #endif
