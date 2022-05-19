@@ -6,12 +6,13 @@ char	*remove_path(char *str)
 	char	*tmp;
 	
 	i = 5;
-	tmp = malloc (strlen(str) + 1);
+	tmp = malloc (strlen(str) - 4);
 	while (str[i])
 	{
 		tmp[i - 5] = str[i];
 		i++;
 	}
+	tmp[i - 5] = '\0';
 	return (tmp);
 }
 
@@ -23,6 +24,7 @@ char	*get_path(char **env, char *command)
 	char	*tmp;
 
 	i = 0;
+	puts ("pooo1");
 	if (env)
 		while (env[i])
 		{
@@ -32,6 +34,8 @@ char	*get_path(char **env, char *command)
 		}
 	else
 		return (NULL);
+	puts ("pooo2");
+	printf ("%s\n", env[i]);
 	path = remove_path(env[i]);
 	ret = ft_split(path, ':');
 	i = -1;

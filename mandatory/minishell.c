@@ -299,31 +299,55 @@ char	**edit_var(char **ret, char **env)
 char	*sep(char *str)
 {
 	char	*ret;
+	char	q;
 	int		i;
 	int		k;
+	int		j;
 
 	i = 0;
 	k = 0;
+	j = 1;
 	while (str[i])
 	{
 		k++;
-		if ((str[i] == '>' && str[i + 1] != '>') || (str[i] == '<' && str[i + 1] != '<'))
+		if (str[i] == 34 || str[i] == 39)
+		{
+			if (j)
+			{
+				q = str[i];
+				j = 0;
+			}
+			else
+			j = 1;
+		}		
+		if (((str[i] == '>' && str[i + 1] != '>') || (str[i] == '<' && str[i + 1] != '<')) && j)
 			k++;
-		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+		if (((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<')) && j)
 		{
 			k++;
 			i++;
 		}
-		if (str[i] == '|')
+		if (str[i] == '|' && j)
 			k++;
 		i++;
 	}
 	ret = malloc (sizeof (char) * (k));
 	i = 0;
 	k = 0;
+	j = 1;
 	while (str[i])
 	{
-		if ((str[i] == '>' && str[i + 1] != '>') || (str[i] == '<' && str[i + 1] != '<') || str[i] == '|')
+		if (str[i] == 34 || str[i] == 39)
+		{
+			if (j)
+			{
+				q = str[i];
+				j = 0;
+			}
+			else
+			j = 1;
+		}		
+		if (((str[i] == '>' && str[i + 1] != '>') || (str[i] == '<' && str[i + 1] != '<') || str[i] == '|') && j)
 		{
 			ret[k++] = ' ';
 			ret[k] = str[i];
@@ -331,7 +355,7 @@ char	*sep(char *str)
 			ret[k++] = ' ';
 			i++;
 		}
-		if ((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<'))
+		if (((str[i] == '>' && str[i + 1] == '>') || (str[i] == '<' && str[i + 1] == '<')) && j)
 		{
 			ret[k++] = ' ';
 			ret[k] = str[i];
@@ -412,14 +436,18 @@ char	**get_command(char **env, int fd)
 			t = i;
 			i++;
 		}
+		if (!tmp[i])
+			break ;
 		i++;
 	}
-	if (i - t - 1 > 0)
-		ret[k++] = get_arg(tmp, i, t);
-	ret[k] = NULL;
 	// k = -1;
-	// while (ret[++k])
-	// 	printf ("%s\n", ret[k]);
+	// while (tmp[++k])
+	// 	printf ("%c-\n", tmp[k]);
+	if (i - t - 1 > 0 && tmp[i - 1] != ' ')
+	{
+		ret[k++] = get_arg(tmp, i, t);
+	}
+	ret[k] = NULL;
 	ret = edit_var(ret, env);
 	ret = edit_qu(ret);
 	free (tmp);
@@ -463,7 +491,7 @@ char	***split_pr(char **pr)
 			k++;
 		i++;
 	}
-	ret = malloc (sizeof (char **) * (k + 1));
+	ret = malloc (sizeof (char **) * (k + 2));
 	i = 0;
 	k = 0;
 	while (pr[i])
@@ -479,11 +507,87 @@ char	***split_pr(char **pr)
 	ret[k] = NULL;
 	return (ret);
 }
-void	child_exec(char ***splited, char *path, int t, struct termios terminal2)
+void	child_exec(char ***splited, char *path, int t, struct termios terminal2, char **env)
 {
 	tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
-	execve(path, splited[t], NULL);
+	execve(path, splited[t], env);
 	exit(0);
+}
+
+int	remove_path_2(char *str)
+{
+	if (str[0] == '/' || str[0] == '.')
+		return (1);
+	return (0);
+}
+
+char	*remove_pwd(char **env, int i)
+{
+	char	*ret;
+	int		k;
+
+	k = 3;
+	ret = malloc (sizeof(char) * (ft_strlen(env[i]) - 2));
+	while(env[i][++k])
+	{
+		ret[k - 4] = env[i][k];
+	}
+	ret[k - 4] = '\0';
+	return (ret);
+}
+
+char	*get_new_path(char **env, char *cmd)
+{
+	char	*ret;
+	char	*tmp;
+	int		i;
+	int		k;
+	int		j;
+
+	i = 0;
+	k = -1;
+	while (env[i])
+	{
+		if (!ft_strncmp(env[i], "PWD=", 4))
+			break ;
+		i++;
+	}
+	tmp = remove_pwd(env, i);
+	i = 0;
+	j = 0;
+	ret = malloc (sizeof (char) * (ft_strlen(cmd) + ft_strlen(tmp) + 1));
+	while (cmd[i])
+	{
+		if (i == 0 && cmd[i] == '.' && cmd[i + 1] == '/')
+		{
+			while (tmp[++k])
+			{
+				ret[j] = tmp[k];
+				j++;
+			}
+			i++;
+		}
+		if (i == 0 && cmd[i] == '.' && cmd[i + 1] == '.' && cmd[i + 2] == '/')
+		{
+			while (tmp[++k])
+			{
+				ret[j] = tmp[k];
+				j++;
+			}
+			while (ret[--j] != '/')
+				ret[j] = '\0';
+			j++;
+			i = i + 2;
+		}
+		if (cmd[i])
+			ret[j++] = cmd[i];
+		i++;
+	}
+	ret[j] = '\0';
+	if (!access(ret, F_OK))
+		return (ret) ;
+	free (ret);
+	return (NULL);
 }
 
 int	exec(int fd, char **env, struct termios terminal2)
@@ -508,6 +612,13 @@ int	exec(int fd, char **env, struct termios terminal2)
 	pi = 1;
 	stdin = dup(0);
 	stdout = dup(1);
+	r = -1;
+	// while (pr[++r])
+	// {
+	// 	printf ("%s\n", pr[r]);
+	// 	free (pr[r]);
+	// }
+	// puts ("yooo");
 	if (!splited)
 	{
 		write (1, "\033[1A\033[11Cexit\n", 14);
@@ -515,10 +626,17 @@ int	exec(int fd, char **env, struct termios terminal2)
 	}
 	while (splited[t])
 	{
+		// sleep (1);
 		if (splited[pi])
 			pipe(fdd);
 		free (path);
 		path = get_path(env, splited[t][0]);
+		// printf ("%s\n", path);
+		if (remove_path_2(splited[t][0]))
+		{
+			free (path);
+			path = get_new_path(env, splited[t][0]);
+		}
 		if (!path)
 		{
 			printf ("minishell=> %s: command not found\n", splited[t][0]);
@@ -535,7 +653,7 @@ int	exec(int fd, char **env, struct termios terminal2)
 			}
 			else
 				dup2(stdout, 1);
-			child_exec(splited, path, t, terminal2);
+			child_exec(splited, path, t, terminal2, env);
 		}
 		else
 		{
@@ -555,9 +673,6 @@ int	exec(int fd, char **env, struct termios terminal2)
 		t++;
 		pi++;
 	}
-	r = -1;
-	while (pr[++r])
-		free (pr[r]);
 	free (pr);
 	r = 0;
 	t = 0;

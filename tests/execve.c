@@ -4,6 +4,42 @@
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+int	ft_strlen(char *c)
+{
+	int	i;
+
+	i = 0;
+	while (c && c[i] != '\0')
+		i++;
+	return (i);
+}
+
+static size_t	lenp(const char *src)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i])
+		i++;
+	return (i);
+}
+
+char	*cpy(char *dest, char *src)
+{
+	size_t	i;
+
+	i = 0;
+	dest = malloc (sizeof (char) * (ft_strlen(src) + 1));
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
 static int	check(char *src, char c)
 {
 	int	i;
@@ -153,40 +189,49 @@ int	main(int ac, char **av, char **env)
 	char	*tmp;
 	int		fd;
 
-	while(1)
-	{
-		command = readline("minitest->");
-		add_history(command);
-		i = 0;
-		while (env[i])
-		{
-			if (!strncmp(env[i], "PATH", 4))
-				break;
-			i++;
-		}
-		tmp = remove_path(env[i]);
-		env2 = ft_split(tmp, ':');
-		comd = ft_split(command, ' ');
-		i = 0;
-		while (env2[i])
-		{
-			env2[i] = ft_strjoin(env2[i], "/");
-			env2[i] = ft_strjoin(env2[i], comd[0]);
-			i++;
-		}
+	// while(1)
+	// {
+		// command = readline("minitest->");
+		// add_history(command);
+		// i = 0;
+		// while (env[i])
+		// {
+		// 	if (!strncmp(env[i], "PATH", 4))
+		// 		break;
+		// 	i++;
+		// }
+		// tmp = remove_path(env[i]);
+		// env2 = ft_split(tmp, ':');
+		// comd = ft_split(command, ' ');
 		// i = 0;
 		// while (env2[i])
-		// 	printf ("%s\n", env2[i++]);
-		i = 0;
-		while (env2[i])
-		{
-			if (!access(env2[i], F_OK))
-				break ;
-			i++;
-		}
-		printf ("---------------------%s\n", env2[i]);
+		// {
+		// 	env2[i] = ft_strjoin(env2[i], "/");
+		// 	env2[i] = ft_strjoin(env2[i], comd[0]);
+		// 	i++;
+		// }
+		// // i = 0;
+		// // while (env2[i])
+		// // 	printf ("%s\n", env2[i++]);
+		// i = 0;
+		// while (env2[i])
+		// {
+		// 	if (!access(env2[i], F_OK))
+		// 		break ;
+		// 	i++;
+		// }
+		// printf ("---------------------%s\n", env2[i]);
+	// }
+		tmp = cpy (tmp, "/Users/aaitoual/Desktop/push/minishell");
+		comd = malloc (sizeof (char *) * 2);
+		comd[0] = cpy(comd[0], "minishell");
+		comd[1] = NULL;
 		fd = fork();
 		if (!fd)
-			execve(env2[i], comd, NULL);
-	}
+		{
+			printf ("%s\n", comd[0]);
+			execve(tmp, comd, NULL);
+		}
+		else
+			waitpid(fd, NULL, 0);
 }
