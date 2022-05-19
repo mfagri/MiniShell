@@ -24,7 +24,6 @@ char	*get_path(char **env, char *command)
 	char	*tmp;
 
 	i = 0;
-	puts ("pooo1");
 	if (env)
 		while (env[i])
 		{
@@ -34,8 +33,6 @@ char	*get_path(char **env, char *command)
 		}
 	else
 		return (NULL);
-	puts ("pooo2");
-	printf ("%s\n", env[i]);
 	path = remove_path(env[i]);
 	ret = ft_split(path, ':');
 	i = -1;

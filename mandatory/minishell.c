@@ -71,6 +71,7 @@ char	*get_arg(char *str, int i, int t)
 {
 	int		j;
 	int		r;
+	char	q;
 	char	*ret;
 	
 	j = t;
@@ -81,12 +82,18 @@ char	*get_arg(char *str, int i, int t)
 			r++;
 	}
 	ret = malloc (sizeof(char) * (r + 1));
-	// printf ("%d\n", r);
 	r = 0;
 	t = j;
 	while (++j <= i)
 	{
-		if (str[j] != ' ')
+		if (str[j] == 34 || str[j] == 39)
+		{
+			if (q && str[j] == q)
+				q = '\0';
+			else
+				q = str[j];
+		}
+		if (str[j] != ' ' || q)
 		{
 			ret[r] = str[j];
 			r++;
@@ -312,7 +319,7 @@ char	*sep(char *str)
 		k++;
 		if (str[i] == 34 || str[i] == 39)
 		{
-			if (j)
+			if (j && q == str[i])
 			{
 				q = str[i];
 				j = 0;
@@ -408,45 +415,58 @@ char	**get_command(char **env, int fd)
 	k = 0;
 	i = 0;
 	t = -1;
-	r = 0;
+	r = '\0';
 	
 	tmp = readline("minishell=>");
 	if (!tmp)
 		return (NULL);
 	add_history(tmp);
-	write (fd, tmp, ft_strlen(tmp));
 	write (fd, "\n", 1);
+	write (fd, tmp, ft_strlen(tmp));
 	ret = malloc (sizeof(char*) * (get_spaces(tmp) + 1));
 	tmp2 = cpy(tmp2, tmp);
 	free (tmp);
 	tmp = sep(tmp2);
 	free (tmp2);
+	i = -1;
+	i = 0;
 	while (tmp[i])
 	{
 		if (tmp[i] == 34 || tmp[i] == 39)
 		{
+			
 			if (r && tmp[i] == r)
-				r = 0;
+				r = '\0';
 			else
 				r = tmp[i];
 		}
-		if ((tmp[i] == ' ' && tmp[i + 1] != ' '))
+		if ((tmp[i] == ' ' && tmp[i + 1] != ' ' && tmp[i + 1]))
 		{
-			ret[k++] = get_arg(tmp, i, t);
-			t = i;
-			i++;
+			if (!r)
+			{
+				ret[k++] = get_arg(tmp, i, t);
+				t = i;
+				i++;
+				if (tmp[i] == 34 || tmp[i] == 39)
+				{
+					if (r && tmp[i] == r)
+						r = '\0';
+					else
+						r = tmp[i];
+				}
+			}
 		}
 		if (!tmp[i])
 			break ;
 		i++;
 	}
-	// k = -1;
-	// while (tmp[++k])
-	// 	printf ("%c-\n", tmp[k]);
-	if (i - t - 1 > 0 && tmp[i - 1] != ' ')
+	if (i - t - 1 > 0 && tmp[i - 1] != ' ' && tmp[t + 1])
 	{
 		ret[k++] = get_arg(tmp, i, t);
 	}
+	k = -1;
+	// while (ret[++k])
+	// 	printf ("%s-\n", ret[k]);
 	ret[k] = NULL;
 	ret = edit_var(ret, env);
 	ret = edit_qu(ret);
@@ -477,33 +497,67 @@ char	***split_pr(char **pr)
 {
 	int		i;
 	int		t;
+	int		j;
 	int		k;
+	char	q;
 	char	***ret;
 
 	i = 0;
 	k = 0;
-	t = 0;
+	t = 1;
 	if (!pr)
 		return (NULL);
 	while (pr[i])
 	{
-		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))))
+		j = 0;
+		while (pr[i][j])
+		{
+			if (pr[i][j] == 34 || pr[i][j] == 39)
+			{
+				if (!t && q == pr[i][j])
+				{
+					q = pr[i][j];
+					t = 0;
+				}
+				else
+					t = 1;
+			}
+			j++;
+		}
+		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && t && (ft_strncmp(pr[i + 1], "|", ft_strlen(pr[i + 1]))))
 			k++;
 		i++;
 	}
 	ret = malloc (sizeof (char **) * (k + 2));
 	i = 0;
 	k = 0;
+	t = 1;
 	while (pr[i])
 	{
-		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))))
+		j = 0;
+		while (pr[i][j])
+		{
+			if (pr[i][j] == 34 || pr[i][j] == 39)
+			{
+				if (!t && q == pr[i][j])
+				{
+					q = pr[i][j];
+					t = 0;
+				}
+				else
+					t = 1;
+			}
+			j++;
+		}
+		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && t && (ft_strncmp(pr[i + 1], "|", ft_strlen(pr[i + 1]))))
 		{
 			ret[k] = get_ret(pr, i);
 			k++;
 		}
 		i++;
 	}
-	ret[k++] = get_ret(pr, i);
+	if (ft_strncmp(pr[i - 1], "|", ft_strlen(pr[i - 1])))
+		ret[k++] = get_ret(pr, i);
 	ret[k] = NULL;
 	return (ret);
 }
@@ -590,6 +644,26 @@ char	*get_new_path(char **env, char *cmd)
 	return (NULL);
 }
 
+int	check_splited(char ***str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (!(ft_strncmp(str[i][j], "|", ft_strlen(str[i][j]))))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	exec(int fd, char **env, struct termios terminal2)
 {
 	int		r;
@@ -607,23 +681,25 @@ int	exec(int fd, char **env, struct termios terminal2)
 
 	path = malloc (1);
 	pr = get_command(env, fd);
+	if (!pr)
+	{
+		write (1, "\033[1A\033[11Cexit\n", 14);
+		return (0);
+	}
 	splited = split_pr(pr);
 	t = 0;
 	pi = 1;
 	stdin = dup(0);
 	stdout = dup(1);
 	r = -1;
-	// while (pr[++r])
-	// {
-	// 	printf ("%s\n", pr[r]);
-	// 	free (pr[r]);
-	// }
-	// puts ("yooo");
-	if (!splited)
+	while (pr[++r])
+		free (pr[r]);
+	if (!check_splited(splited))
 	{
-		write (1, "\033[1A\033[11Cexit\n", 14);
-		return (0);
+		printf ("%s\n", "syntax error");
+		return (1);
 	}
+	puts ("yooo");
 	while (splited[t])
 	{
 		// sleep (1);
@@ -641,6 +717,7 @@ int	exec(int fd, char **env, struct termios terminal2)
 		{
 			printf ("minishell=> %s: command not found\n", splited[t][0]);
 			get_glo(0);
+			break ;
 		}
 		r = fork();	
 		if (!r)
@@ -655,7 +732,7 @@ int	exec(int fd, char **env, struct termios terminal2)
 				dup2(stdout, 1);
 			child_exec(splited, path, t, terminal2, env);
 		}
-		else
+		else if (!splited[pi])
 		{
 			get_glo(1);
 			waitpid(r, NULL, 0);
