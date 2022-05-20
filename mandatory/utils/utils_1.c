@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/20 06:39:48 by aaitoual          #+#    #+#             */
+/*   Updated: 2022/05/20 06:39:50 by aaitoual         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"../minishell.h"
 
 char	*remove_path(char *str)
 {
 	int		i;
 	char	*tmp;
-	
+
 	i = 5;
 	tmp = malloc (strlen(str) - 4);
 	while (str[i])
@@ -16,23 +28,17 @@ char	*remove_path(char *str)
 	return (tmp);
 }
 
-char	*get_path(char **env, char *command)
+char	**get_path_2(char **env, char *command)
 {
 	int		i;
 	char	**ret;
 	char	*path;
 	char	*tmp;
 
-	i = 0;
-	if (env)
-		while (env[i])
-		{
-			if (!strncmp(env[i], "PATH=", 5))
-				break ;
-			i++;
-		}
-	else
-		return (NULL);
+	i = -1;
+	while (env[++i])
+		if (!strncmp(env[i], "PATH=", 5))
+			break ;
 	path = remove_path(env[i]);
 	ret = ft_split(path, ':');
 	i = -1;
@@ -45,11 +51,21 @@ char	*get_path(char **env, char *command)
 		free (ret[i]);
 		ret[i] = ft_strjoin(tmp, command);
 	}
+	return (ret);
+}
+
+char	*get_path(char **env, char *command)
+{
+	int		i;
+	char	**ret;
+	char	*path;
+	char	*tmp;
+
+	ret = get_path_2(env, command);
 	i = -1;
 	while (ret[++i])
 		if (!access(ret[i], F_OK))
 			break ;
-	free (path);
 	if (!ret[i])
 		path = NULL;
 	else
@@ -64,7 +80,7 @@ char	*get_path(char **env, char *command)
 	return (path);
 }
 
-int	get_history()
+int	get_history(void)
 {
 	int		i;
 	char	*tmp;

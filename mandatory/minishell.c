@@ -1,162 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
+/*   Updated: 2022/05/20 09:40:17 by aaitoual         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "minishell.h"
 
-int l;
-struct termios	remove_ctlc(void)
-{
-	//int fd;
-	//fd = open("file2",O_CREAT | O_RDWR,777);
-	struct termios	terminal;
-	struct termios	terminal2;
-
-	tcgetattr(0, &terminal);
-	terminal2 = terminal;
-	terminal.c_lflag &= ~(ECHOCTL);
-	tcsetattr(0, TCSANOW | TCSAFLUSH, &terminal);
-	//tcsetattr(fd, TCSANOW | TCSAFLUSH, &terminal);
-	return (terminal2);
-}
-char	*get_first(char	*str)
-{
-	int		i;
-	char	*ret;
-
-	i = 0;
-	while (str && str[i] && str[i] != ' ')
-		i++;
-	ret = malloc (sizeof (char) * (i + 1));
-	i = 0;
-	while (str && str[i] && str[i] != ' ')
-	{
-		ret[i] = str[i];
-		i++;
-	}
-	return (ret);
-}
-
-int	get_spaces(char *str)
-{
-	int		i;
-	int		k;
-	int		j;
-	char	qu;
-
-	j = 0;
-	i = 0;
-	k = 1;
-	qu = 0;
-	while (str[i])
-	{
-		if (((str[i] == ' ' && i != 0 && str[i + 1] && str[i + 1] != 39 && str[i + 1] != 34)
-			&& (str[i + 1] != '>' || str[i + 1] != '<' || str[i + 1] != '|')) && k)
-			j++;
-		if (k && (str[i] == '>' || str[i] == '<' || str[i] == '|'))
-			j = j + 2;
-		if ((str[i] == 39 || str[i] == 34) && k)
-		{
-			k = 0;
-			qu = str[i];
-		}
-		i++;
-		if (!k && str[i] == qu)
-		{
-			j++;
-			i++;
-			k = 1;
-		}
-	}
-	return (j + 1);
-}
-
-char	*get_arg(char *str, int i, int t)
-{
-	int		j;
-	int		r;
-	char	q;
-	char	*ret;
-	
-	j = t;
-	r = 0;
-	while (++t <= i)
-	{
-		if (str[t] != ' ')
-			r++;
-	}
-	ret = malloc (sizeof(char) * (r + 1));
-	r = 0;
-	t = j;
-	while (++j <= i)
-	{
-		if (str[j] == 34 || str[j] == 39)
-		{
-			if (q && str[j] == q)
-				q = '\0';
-			else
-				q = str[j];
-		}
-		if (str[j] != ' ' || q)
-		{
-			ret[r] = str[j];
-			r++;
-		}
-	}
-	ret[r] = '\0';
-	return (ret);
-}
-
-int	check_next_qu(char *str, char c, int i)
-{
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	*remove_qu(char *str)
-{
-	int		i;
-	int		k;
-	int		j;
-	char	u;
-	char	*tmp;
-
-	k = 0;
-	j = 0;
-	i = 0;
-	u = 0;
-	tmp = malloc (ft_strlen(str) - 1);
-	while (str[i])
-	{
-		if ((str[i] == 39 || str[i] == 34))
-		{
-			if (u && str[i] == u)
-				k++;
-			else if (!u && check_next_qu(str, str[i], i + 1))
-			{
-				u = str[i];
-				k++;
-			}
-		}
-		if (k < 2)
-		{
-			if (!u || (u && str[i] != u))
-			{
-				tmp[j] = str[i];
-				j++;
-			}
-		}
-		if (k >= 2)
-		{
-			k = 0;
-			u = 0;
-		}
-		i++;
-	}
-	tmp[j] = '\0';
-	return (tmp);
-}
 
 char	**edit_qu(char **str)
 {
@@ -273,8 +128,6 @@ char	*get_var(char *str, char **env, int j)
 
 char	**edit_var(char **ret, char **env)
 {
-	char	*tmp;
-	char	*var;
 	int		i;
 	int		j;
 	int		k;
@@ -293,9 +146,7 @@ char	**edit_var(char **ret, char **env)
 			if (ret[i][j] == 34 && check_next_qu(ret[i], 34, j) && !k)
 				k = 0;
 			if (k && ret[i][j] == '$')
-			{
 				ret[i] = get_var(ret[i], env, j);
-			}
 			j++;
 		}
 		i++;
@@ -432,14 +283,7 @@ char	**get_command(char **env, int fd)
 	i = 0;
 	while (tmp[i])
 	{
-		if (tmp[i] == 34 || tmp[i] == 39)
-		{
-			
-			if (r && tmp[i] == r)
-				r = '\0';
-			else
-				r = tmp[i];
-		}
+		r = get_q_1(tmp, i, r);
 		if ((tmp[i] == ' ' && tmp[i + 1] != ' ' && tmp[i + 1]))
 		{
 			if (!r)
@@ -460,107 +304,19 @@ char	**get_command(char **env, int fd)
 			break ;
 		i++;
 	}
-	if (i - t - 1 > 0 && tmp[i - 1] != ' ' && tmp[t + 1])
-	{
+	if (i - t - 1 > 0 && tmp[t + 1])
 		ret[k++] = get_arg(tmp, i, t);
-	}
+	ret[k] = NULL;
 	k = -1;
 	// while (ret[++k])
 	// 	printf ("%s-\n", ret[k]);
-	ret[k] = NULL;
+	// puts ("yoooo");
 	ret = edit_var(ret, env);
 	ret = edit_qu(ret);
 	free (tmp);
 	return (ret);
 }
 
-char	**get_ret(char **pr, int i)
-{
-	static int	j = -1;
-	int			k;
-	char		**ret;
-
-	ret = malloc (sizeof (char *) * (i - j + 1));
-	k = 0;
-	while (++j < i && pr[j])
-	{
-		ret[k] = cpy (ret[k], pr[j]);
-		k++;
-	}
-	ret[k] = NULL;
-	if (!pr[j])
-		j = -1;
-	return (ret);
-}
-
-char	***split_pr(char **pr)
-{
-	int		i;
-	int		t;
-	int		j;
-	int		k;
-	char	q;
-	char	***ret;
-
-	i = 0;
-	k = 0;
-	t = 1;
-	if (!pr)
-		return (NULL);
-	while (pr[i])
-	{
-		j = 0;
-		while (pr[i][j])
-		{
-			if (pr[i][j] == 34 || pr[i][j] == 39)
-			{
-				if (!t && q == pr[i][j])
-				{
-					q = pr[i][j];
-					t = 0;
-				}
-				else
-					t = 1;
-			}
-			j++;
-		}
-		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && t && (ft_strncmp(pr[i + 1], "|", ft_strlen(pr[i + 1]))))
-			k++;
-		i++;
-	}
-	ret = malloc (sizeof (char **) * (k + 2));
-	i = 0;
-	k = 0;
-	t = 1;
-	while (pr[i])
-	{
-		j = 0;
-		while (pr[i][j])
-		{
-			if (pr[i][j] == 34 || pr[i][j] == 39)
-			{
-				if (!t && q == pr[i][j])
-				{
-					q = pr[i][j];
-					t = 0;
-				}
-				else
-					t = 1;
-			}
-			j++;
-		}
-		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && t && (ft_strncmp(pr[i + 1], "|", ft_strlen(pr[i + 1]))))
-		{
-			ret[k] = get_ret(pr, i);
-			k++;
-		}
-		i++;
-	}
-	if (ft_strncmp(pr[i - 1], "|", ft_strlen(pr[i - 1])))
-		ret[k++] = get_ret(pr, i);
-	ret[k] = NULL;
-	return (ret);
-}
 void	child_exec(char ***splited, char *path, int t, struct termios terminal2, char **env)
 {
 	tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
@@ -686,7 +442,7 @@ int	exec(int fd, char **env, struct termios terminal2)
 		write (1, "\033[1A\033[11Cexit\n", 14);
 		return (0);
 	}
-	splited = split_pr(pr);
+	splited = split_pr(pr, 0, 0, '\0');
 	t = 0;
 	pi = 1;
 	stdin = dup(0);
@@ -699,7 +455,6 @@ int	exec(int fd, char **env, struct termios terminal2)
 		printf ("%s\n", "syntax error");
 		return (1);
 	}
-	puts ("yooo");
 	while (splited[t])
 	{
 		// sleep (1);
@@ -841,7 +596,6 @@ int	main(int ac, char **av, char **env)
 	int		fd;
 	struct termios terminal2;
 
-	l = 1;
 	path = malloc (1);
 	fd = get_history();
 	terminal2 = remove_ctlc();
