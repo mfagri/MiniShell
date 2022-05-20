@@ -52,9 +52,13 @@ char			**get_ret(char **pr, int i);
 char			get_q(char **pr, int i, int j, char q);
 struct termios	remove_ctlc(void);
 char			get_q_1(char *pr, int i, char q);
-char			*remove_qu(char *str);
+char			*remove_qu(char *str, int i, int j);
 int				check_next_qu(char *str, char c, int i);
 char			*get_arg(char *str, int i, int t);
 int				get_spaces(char *str);
+char			*get_var(char *str, char **env, int j);
+char  			*get_var_utils_1(char *str, int *j, int *k);
+char			**edit_var(char **ret, char **env);
+char			**edit_qu(char **str);
 
 #endif

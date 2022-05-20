@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quotations.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/20 13:54:55 by aaitoual          #+#    #+#             */
+/*   Updated: 2022/05/20 13:54:55 by aaitoual         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	check_next_qu(char *str, char c, int i)
@@ -26,17 +38,13 @@ char	remove_qu_utils_1(char *str, int *k, int i, char u)
 	return (u);
 }
 
-char	*remove_qu(char *str)
+char	*remove_qu(char *str, int i, int j)
 {
-	int		i;
 	int		k;
-	int		j;
 	char	u;
 	char	*tmp;
 
 	k = 0;
-	j = 0;
-	i = -1;
 	u = '\0';
 	tmp = malloc (ft_strlen(str) - 1);
 	while (str[++i])
@@ -55,4 +63,33 @@ char	*remove_qu(char *str)
 	}
 	tmp[j] = '\0';
 	return (tmp);
+}
+
+char	**edit_qu(char **str)
+{
+	int		i;
+	int		j;
+	char	r;
+	char	*tmp;
+
+	i = -1;
+	while (str[++i])
+	{
+		j = -1;
+		r = 0;
+		while (str[i][++j])
+		{
+			if ((str[i][j] == 34 || str[i][j] == 39) && !r)
+				r = str[i][j];
+			else if (r && str[i][j] == r)
+			{
+				tmp = cpy(tmp, str[i]);
+				free (str[i]);
+				str[i] = remove_qu(tmp, -1, 0);
+				free (tmp);
+				break ;
+			}
+		}
+	}
+	return (str);
 }
