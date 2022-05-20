@@ -99,10 +99,7 @@ char	***split_pr(char **pr, int i, int k, char q)
 			q = get_q(pr, i, j, q);
 		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && !q
 			&& (ft_strncmp(pr[i + 1], "|", ft_strlen(pr[i + 1]))))
-		{
-			ret[k] = get_ret(pr, i);
-			k++;
-		}
+			ret[k++] = get_ret(pr, i);
 		i++;
 	}
 	if (ft_strncmp(pr[i - 1], "|", ft_strlen(pr[i - 1])))

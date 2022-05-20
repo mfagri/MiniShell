@@ -60,5 +60,7 @@ char			*get_var(char *str, char **env, int j);
 char  			*get_var_utils_1(char *str, int *j, int *k);
 char			**edit_var(char **ret, char **env);
 char			**edit_qu(char **str);
-
+char			*sep(char *str, int i, int k);
+char			*get_new_path(char **env, char *cmd);
+char			*remove_pwd(char **env, int i);
 #endif
