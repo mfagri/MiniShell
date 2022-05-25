@@ -41,17 +41,10 @@ int	get_size(char **pr, int i, int j, char q)
 		j = 0;
 		while (pr[i][j])
 		{
-			if (pr[i][j] == 34 || pr[i][j] == 39)
-			{
-				if (q && q == pr[i][j])
-					q = '\0';
-				else if (!q)
-					q = pr[i][j];
-			}
+			q = get_q(pr, i, j, q);
 			j++;
 		}
-		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && !q
-			&& (ft_strncmp(pr[i + 1], "|", ft_strlen(pr[i + 1]))))
+		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && !q)
 			k++;
 		i++;
 	}
@@ -97,8 +90,7 @@ char	***split_pr(char **pr, int i, int k, char q)
 		j = -1;
 		while (pr[i][++j])
 			q = get_q(pr, i, j, q);
-		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && !q
-			&& (ft_strncmp(pr[i + 1], "|", ft_strlen(pr[i + 1]))))
+		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && !q)
 			ret[k++] = get_ret(pr, i);
 		i++;
 	}

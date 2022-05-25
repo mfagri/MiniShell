@@ -61,6 +61,8 @@ char	*get_path(char **env, char *command)
 	char	*path;
 	char	*tmp;
 
+	if (!access(command, F_OK))
+		return (command);
 	ret = get_path_2(env, command);
 	i = -1;
 	while (ret[++i])

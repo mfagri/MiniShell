@@ -21,13 +21,13 @@ static size_t	lenp(const char *src)
 	return (i);
 }
 
-char	*cpy(char *dest, char *src)
+char	*cpy(char *tmp, char *src)
 {
-	size_t	i;
-
+	int		i;
+	char	*dest;
 	i = 0;
-	dest = malloc (sizeof (char) * (ft_strlen(src) + 1));
-	while (src[i])
+	dest = malloc (sizeof (char) * (ft_strlen(src) + 2));
+	while (src && src[i])
 	{
 		dest[i] = src[i];
 		i++;

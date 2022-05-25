@@ -24,18 +24,18 @@ char	*get_allocation(char *str)
 	k = 0;
 	j = 1;
 	q = '\0';
-	while (str[++i])
+	while (str && str[++i])
 	{
 		k++;
 		q = get_q_1(str, i, q);
 		if (!q && ((str[i] == '>' && str[i + 1] != '>')
 				|| (str[i] == '<' && str[i + 1] != '<')))
-			k++;
+			k = k + 2;
 		if (!q && ((str[i] == '>' && str[i + 1] == '>')
 				|| (str[i] == '<' && str[i + 1] == '<')) && i++)
-			k++;
+			k = k + 2;
 		if (str[i] == '|' && j)
-			k++;
+			k = k + 2;
 	}
 	ret = malloc (sizeof (char) * (k));
 	return (ret);

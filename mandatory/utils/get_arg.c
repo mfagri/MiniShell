@@ -26,10 +26,7 @@ int	get_spaces(char *str)
 	while (str[i])
 	{
 		qu = get_q_1(str, i, qu);
-		if (!qu && ((str[i] == ' ' && i != 0 && str[i + 1]
-					&& str[i + 1] != 39 && str[i + 1] != 34)
-				&& (str[i + 1] != '>' || str[i + 1] != '<'
-					|| str[i + 1] != '|')))
+		if (!qu && ((str[i] == ' ' && i != 0) && (str[i + 1] != '>' && str[i + 1] != '<' && str[i + 1] != '|')))
 			j++;
 		if (!qu && (str[i] == '>' || str[i] == '<' || str[i] == '|'))
 			j = j + 2;
@@ -56,15 +53,17 @@ char	*get_arg_2(char *str, int t, int i)
 	return (ret);
 }
 
-char	*get_arg(char *str, int i, int t)
+char	*get_arg(char *tmp, int i, int t)
 {
 	int		r;
+	char	*str;
 	char	q;
 	char	*ret;
 
-	ret = get_arg_2(str, t, i);
+	str = cpy (str, tmp);
 	r = 0;
 	q = '\0';
+	ret = get_arg_2(str, t, i);
 	while (++t <= i)
 	{
 		q = get_q_1(str, t, q);
