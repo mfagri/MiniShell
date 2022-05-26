@@ -35,6 +35,7 @@ char	***get_command(char **env, int fd)
 	int		k;
 	char	r;
 	int		t;
+	t_arg	ll;
 
 	k = 0;
 	i = 0;
@@ -61,8 +62,7 @@ char	***get_command(char **env, int fd)
 	tmp = sep(tmp2, 0, 0);
 	free (tmp2);
 	i = -1;
-	i = 0;
-	while (tmp[i])
+	while (tmp[++i])
 	{
 		r = get_q_1(tmp, i, r);
 		if ((tmp[i] == ' ' && tmp[i + 1] != ' ' && tmp[i + 1]))
@@ -78,11 +78,10 @@ char	***get_command(char **env, int fd)
 		}
 		if (!tmp[i])
 			break ;
-		i++;
 	}
 	if (i - t - 1 > 0 && tmp[t + 1])
-		ret[k] = get_arg(tmp, i, t);
-	ret[++k] = NULL;
+		ret[k++] = get_arg(tmp, i, t);
+	ret[k] = NULL;
 	i = -1;
 	ret = edit_var(ret, env);
 	if (!check_pr(ret))
@@ -91,7 +90,7 @@ char	***get_command(char **env, int fd)
 		return (get_command(env, fd));
 	}
 	splited = split_pr(ret, 0, 0, '\0');
-	edit_qu(splited);
+	edit_qu(splited, -1, 0, ll);
 	k = -1;
 	free (tmp);
 	return (splited);
@@ -133,9 +132,16 @@ int	check_pr(char **str)
 	char	q;
 	int		u;
 
-	i = -1;
+	i = 0;
 	u = 0;
 	q = '\0';
+	if (str[0][0] == ' ')
+		i = 1;
+	if ((str[i][0] == '|' || str[i][0] == '>' || str[i][0] == '<'))
+		return (0);
+	i = -1;
+	while (str[++i])
+		printf ("%s\n", str[i]);
 	while (str[++i])
 	{
 		j = -1;
@@ -189,7 +195,7 @@ int	check_pr(char **str)
 		j = -1;
 		while (str[i][++j])
 		{
-			if ((str[i][j] == '<' && str[i][j + 1] != '<'  && str[i][j + 1] != '<') || (str[i][j] == '>' && str[i][j + 1] == '>'  && str[i][j + 1] != '>'))
+			if ((str[i][j] == '<' && str[i][j + 1] == '<'  && str[i][j + 2] != '<') || (str[i][j] == '>' && str[i][j + 1] == '>'  && str[i][j + 2] != '>'))
 			{
 				if (u)
 					return (0);
@@ -200,10 +206,12 @@ int	check_pr(char **str)
 				u = 0;
 		}
 	}
+	if (u)
+		return (0);
 	return (1);
 }
 
-int	check_redi(char ***splited, int t)
+int	check_redi(char ***splited, int t, int stdin, int *fdd)
 {
 	int		i;
 	int		j;
@@ -213,6 +221,8 @@ int	check_redi(char ***splited, int t)
 	int		*fd;
 
 	fd = malloc (sizeof (int) * 2);
+	fd[0] = -2;
+	fd[1] = -2;
 	i = -1;
 	while (splited[t][++i])
 	{
@@ -230,19 +240,20 @@ int	check_redi(char ***splited, int t)
 		}
 		if (!(ft_strcmp("<<", splited[t][i])))
 		{
-			pipe (fd);
-			str = readline(">");
+			if (fd[0] == -2)
+				pipe (fd);
+			str = readline("> ");
 			while (ft_strcmp(str, splited[t][i + 1]))
 			{
 				write (fd[1], str, ft_strlen(str));
 				write (fd[1], "\n", 1);
+				// write (fdd[1], str, ft_strlen(str));
+				// write (fdd[1], "\n", 1);
 				free (str);
-				str = readline(">");
+				str = readline("> ");
 			}
 			free (str);
 			dup2 (fd[0], 0);
-			close (fd[0]);
-			close (fd[1]);
 		}
 		if (!(ft_strcmp("<", splited[t][i])))
 		{
@@ -284,30 +295,68 @@ int	check_redi(char ***splited, int t)
 	splited[t] = tmp;
 	i = -1;
 	k = -1;
+	if (fd[0] != -2 || fd[1] != -2)
+	{
+		close (fd[1]);
+		close (fd[0]);
+	}
 	return (1);
 }
 
-int check_command(char **env, char *path, char ***splited, int t, int *fdd, int stdout, int fd)
+int	check_command_utils(char ***splited, int t, char **env, int fd)
 {
-	if (fd)
+	if (!(ft_strcmp(splited[t][0], "pwd")))
 	{
-		if(!(strcmp(splited[t][0], "export")))
-			ft_export(env,splited[t]);
-		else if(!(strcmp(splited[t][0],"unset")))
-			ft_unset(splited[t],env);
-		else if(!(ft_strcmp(splited[t][0],"echo")))
-			ft_echo(splited[t]);
-		else if(!(ft_strcmp(splited[t][0],"pwd")))
-			ft_pwd(splited[t]);
-		else if(!(ft_strcmp(splited[t][0],"cd")))
+		if (fd)
+			ft_pwd();
+		else
+			exit (0);
+	}
+	else if (!(ft_strcmp(splited[t][0], "cd")))
+	{
+		if (fd)
 			ft_cd(splited[t],env);
-		else if(!(ft_strcmp(splited[t][0],"env")))
+		else
+			exit (0);
+	}
+	else if (!(ft_strcmp(splited[t][0], "env")))
+	{
+		if (fd)
 			ft_print_env(env);
 		else
-			return (1);
-		return (0);
+			exit (0);
 	}
-	return (1);
+	else
+		return (1);
+	return (0);
+}
+
+int check_command(char **env, char ***splited, int t, int fd)
+{
+	if (!(strcmp(splited[t][0], "export")))
+	{
+		if (fd)
+			ft_export(env, splited[t]);
+		else
+			exit (0);
+	}
+	else if (!(strcmp(splited[t][0], "unset")))
+	{
+		if (fd)
+			ft_unset(splited[t],env);
+		else
+			exit (0);
+	}
+	else if (!(ft_strcmp(splited[t][0], "echo")))
+	{
+		if (fd)
+			ft_echo(splited[t]);
+		else
+			exit (0);
+	}
+	else
+		return (check_command_utils(splited, t, env, fd));
+	return (0);
 }
 
 int	exec(int fd, char **env, struct termios terminal2)
@@ -326,6 +375,7 @@ int	exec(int fd, char **env, struct termios terminal2)
 	char	***splited;
 	char	*command;
 	char	*path;
+	t_arg	hh;
 
 	path = malloc (1);
 	splited = get_command(env, fd);
@@ -341,6 +391,15 @@ int	exec(int fd, char **env, struct termios terminal2)
 	while (splited[++t])
 		k++;
 	r = malloc (sizeof(int) * (k + 1));
+	k = -1;
+	// puts ("hooooo");
+	// while (splited[++k])
+	// {
+	// 	t = -1;
+	// 	while (splited[k][++t])
+	// 		printf ("%s\n", splited[k][t]);
+	// }
+	// puts ("yooooo");
 	t = 0;
 	while (splited[t])
 	{
@@ -355,13 +414,12 @@ int	exec(int fd, char **env, struct termios terminal2)
 			get_glo(0);
 			if (!splited[pi])
 				break ;
-			k = 0;
 		}
 		r[t] = fork();
-		if (check_command(env, path, splited, t, fdd, stdout, r[t]) && !r[t])
+		if (check_command(env, splited, t, r[t]) && !r[t])
 		{
-			if (!k)
-				exit (0);
+			if (!check_redi(splited, t, stdin, fdd))
+				return (1);
 			if (splited[pi])
 			{
 				dup2(fdd[1], 1);
@@ -370,12 +428,13 @@ int	exec(int fd, char **env, struct termios terminal2)
 			}
 			else
 			{
-				// dup2(stdin, 0);
 				dup2(stdout, 1);
+				close (stdout);
+				close (stdin);
 			}
-			if (!check_redi(splited, t))
-				return (1);
 			k = -1;
+			hh.stdout = stdout;
+			hh.k = t;
 			child_exec(splited, path, t, terminal2, env);
 		}
 		else if (!splited[pi])
@@ -389,7 +448,6 @@ int	exec(int fd, char **env, struct termios terminal2)
 			dup2(fdd[0], 0);
 			close(fdd[0]);
 			close(fdd[1]);
-			dup2(stdout, 1);
 		}
 		else
 			dup2(stdin, 0);
@@ -418,7 +476,6 @@ int	exec(int fd, char **env, struct termios terminal2)
 	close (stdout);
 	close (stdin);
 	k = -1;
-	// sleep(3);
 	return (1);
 }
 
@@ -460,7 +517,6 @@ char	*ft_strrchr(char *s, int c)
 
 int	main(int ac, char **av, char **env)
 {
-	t_main	i;
 	int		r;
 	int k;
 	char	**pr;

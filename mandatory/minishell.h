@@ -15,13 +15,12 @@
 #include <curses.h>
 # include <signal.h>
 
-typedef struct s_main
+typedef struct s_arg
 {
-	int	i;
-	int l;
-}	t_main;
-
-t_main g_globle;
+	char	r;
+	int		k;
+	int		stdout;
+}	t_arg;
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			**ft_split(char const *s, char c);
@@ -57,15 +56,14 @@ int				get_spaces(char *str);
 char			*get_var(char *str, char **env, int j);
 char  			*get_var_utils_1(char *str, int *j, int *k);
 char			**edit_var(char **ret, char **env);
-char			***edit_qu(char ***str);
+void			edit_qu(char ***str, int i, int j, t_arg k);
 char			*sep(char *str, int i, int k);
-char			*get_new_path(char **env, char *cmd);
 char			*remove_pwd(char **env, int i);
 int				check_pr(char **str);
 int				ft_strcmp(const char *s1, const char *s2);
 void			get_tt(void);
 void			ft_echo(char **pr);
-void 			ft_pwd();
+void 			ft_pwd(void);
 void 			ft_cd(char **arg,char **env);
 void			 ft_print_env(char **env);
 void			ft_export(char **env,char **arg);
@@ -73,4 +71,19 @@ void 			ft_unset(char **arg,char **env);
 int				ft_isalpha(int c);
 void			ft_putstr_fd(char *s, int fd);
 char			*ft_strrchr(char *s, int c);
+void			remove_from_env(char *arg, char **env, int l);
+char			**ft_sort_env(char **env);
+void			check_arg_export(char *arg, char **env);
+void			add_to_env(char *arg, char **env);
+void			add_to_env_norm(char *name, char *value, char *f, char **env);
+void			set_new_norm(char **env, char *name, char *f);
+void			set_new(char *arg, char **env);
+char			*final_srt_add(char *value, char *name);
+void			ft_print_export_error(char *arg);
+void			ft_print_export(char **t, int i, int k);
+int				ft_isalpha(int c);
+int				ft_do_nothing(char *arg);
+char			*final_srt(char *arg, char *name, int i);
+void			ft_export(char **env, char **arg);
+
 #endif

@@ -26,7 +26,9 @@ int	get_spaces(char *str)
 	while (str[i])
 	{
 		qu = get_q_1(str, i, qu);
-		if (!qu && ((str[i] == ' ' && i != 0) && (str[i + 1] != '>' && str[i + 1] != '<' && str[i + 1] != '|')))
+		if (!qu && ((str[i] == ' ' && i != 0)
+				&& (str[i + 1] != '>'
+					&& str[i + 1] != '<' && str[i + 1] != '|')))
 			j++;
 		if (!qu && (str[i] == '>' || str[i] == '<' || str[i] == '|'))
 			j = j + 2;

@@ -25,6 +25,7 @@ char	*cpy(char *tmp, char *src)
 {
 	int		i;
 	char	*dest;
+
 	i = 0;
 	dest = malloc (sizeof (char) * (ft_strlen(src) + 2));
 	while (src && src[i])

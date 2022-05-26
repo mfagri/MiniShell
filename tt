@@ -1,0 +1,10 @@
+total 88
+drwxr-xr-x   9 aaitoual  candidate    306 May 26 15:07 .
+drwx------  23 aaitoual  candidate    782 May 25 19:04 ..
+drwxr-xr-x  13 aaitoual  candidate    442 May 25 19:49 .git
+drwxr-xr-x   3 aaitoual  candidate    102 May 17 10:50 .vscode
+-rw-r--r--   1 aaitoual  candidate   2108 May 25 23:06 Makefile
+drwxr-xr-x   9 aaitoual  candidate    306 May 26 15:07 mandatory
+-rwxr-xr-x   1 aaitoual  candidate  38244 May 26 15:07 minishell
+drwxr-xr-x  15 aaitoual  candidate    510 May 25 19:46 tests
+-rwxr-xr-x   1 aaitoual  candidate      0 May 26 15:07 tt

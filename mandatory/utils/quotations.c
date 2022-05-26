@@ -65,36 +65,31 @@ char	*remove_qu(char *str, int i, int j)
 	return (tmp);
 }
 
-char	***edit_qu(char ***str)
+void	edit_qu(char ***str, int i, int j, t_arg k)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	r;
 	char	*tmp;
 
 	i = -1;
 	while (str[++i])
 	{
-		k = -1;
-		while (str[i][++k])
+		k.k = -1;
+		while (str[i][++k.k])
 		{
 			j = -1;
-			r = 0;
-			while (str[i][k][++j])
+			k.r = '\0';
+			while (str[i][k.k][++j])
 			{
-				if ((str[i][k][j] == 34 || str[i][k][j] == 39) && !r)
-					r = str[i][k][j];
-				else if (r && str[i][k][j] == r)
+				if ((str[i][k.k][j] == 34 || str[i][k.k][j] == 39) && !k.r)
+					k.r = str[i][k.k][j];
+				else if (k.r && str[i][k.k][j] == k.r)
 				{
-					tmp = cpy(tmp, str[i][k]);
-					free (str[i][k]);
-					str[i][k] = remove_qu(tmp, -1, 0);
+					tmp = cpy(tmp, str[i][k.k]);
+					free (str[i][k.k]);
+					str[i][k.k] = remove_qu(tmp, -1, 0);
 					free (tmp);
 					break ;
 				}
 			}
 		}
 	}
-	return (str);
 }

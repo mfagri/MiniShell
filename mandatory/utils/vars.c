@@ -84,7 +84,7 @@ char	*get_var(char *str, char **env, int j)
 	ret = ft_strjoin(ret, get_var_2(tmp2, env, 0, -1));
 	free (tmp2);
 	i = k;
-	tmp2 = malloc(ft_strlen(str) - k - 1);
+	tmp2 = malloc(ft_strlen(str) - k);
 	i = 0;
 	while (str[k])
 		tmp2[i++] = str[k++];

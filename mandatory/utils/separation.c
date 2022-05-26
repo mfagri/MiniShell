@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-char	*get_allocation(char *str)
+int	get_allocation(char *str)
 {
 	char	*ret;
 	char	q;
@@ -37,8 +37,7 @@ char	*get_allocation(char *str)
 		if (str[i] == '|' && j)
 			k = k + 2;
 	}
-	ret = malloc (sizeof (char) * (k));
-	return (ret);
+	return (k);
 }
 
 char	*sep(char *str, int i, int k)
@@ -46,7 +45,7 @@ char	*sep(char *str, int i, int k)
 	char	*ret;
 	char	q;
 
-	ret = get_allocation(str);
+	ret = malloc (sizeof (char) * get_allocation(str));
 	q = '\0';
 	while (str[i])
 	{

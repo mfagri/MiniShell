@@ -21,8 +21,8 @@ FILE =  ./mandatory/minishell.c ./mandatory/utils/ft_split.c ./mandatory/utils/f
 		./mandatory/utils/get_next_line.c ./mandatory/utils/ft_strlen.c ./mandatory/utils/ft_strjoin.c ./mandatory/utils/utils_1.c \
 		./mandatory/utils/ft_strlcpy.c ./mandatory/utils/ft_isdigit.c ./mandatory/utils/ft_isalnum.c ./mandatory/utils/ft_itoa.c\
 		./mandatory/utils/handler.c ./mandatory/utils/utils_2.c ./mandatory/utils/quotations.c ./mandatory/utils/get_arg.c \
-		./mandatory/utils/vars.c ./mandatory/utils/separation.c ./mandatory/utils/path.c ./mandatory/utils/ft_export.c \
-		./mandatory/utils/builtins.c \
+		./mandatory/utils/vars.c ./mandatory/utils/separation.c ./mandatory/utils/ft_export.c \
+		./mandatory/utils/builtins.c ./mandatory/utils/builtins_utils.c ./mandatory/utils/ft_export_utils_1.c ./mandatory/utils/ft_export_utils_2.c\
 
 FILE1 = $(FILE:.c=.o)
 
