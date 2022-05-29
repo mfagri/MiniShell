@@ -22,6 +22,13 @@ typedef struct s_arg
 	int		stdout;
 }	t_arg;
 
+typedef struct	s_spl
+{
+	char	***b_var;
+	char	***a_var;
+}	t_spl;
+
+// void			get_old_var(char *tmp, char *str, int i);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			**ft_split(char const *s, char c);
 char			*ft_strjoin(char *s1, char *s2);

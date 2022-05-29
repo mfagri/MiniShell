@@ -62,6 +62,8 @@ char	*sep(char *str, int i, int k)
 		{
 			ret[k++] = ' ';
 			ret[k++] = str[i++];
+			ret[k++] = str[i++];
+			ret[k++] = ' ';
 		}
 		ret[k++] = str[i++];
 	}

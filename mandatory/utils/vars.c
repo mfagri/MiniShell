@@ -64,6 +64,29 @@ char	*get_var_utils_1(char *str, int *j, int *k)
 	return (ret);
 }
 
+// void	get_old_var(char *tmp, char *str, int i)
+// {
+// 	int			k;
+// 	int			j;
+// 	static int	p;
+
+// 	k = -1;
+// 	if (!i)
+// 	{
+// 		while (str[++k])
+// 			if (str[k] == '|')
+// 				j++;
+// 		g_glo.after_here_doc = malloc (sizeof (char *) * (j + 1));
+// 		p = 0;
+// 	}
+// 	else
+// 	{
+// 		g_glo.after_here_doc[p] = cpy(g_glo.after_here_doc[p], "$");
+// 		g_glo.after_here_doc[p] = ft_strjoin(g_glo.after_here_doc[p], tmp);
+// 		p++;
+// 	}
+// }
+
 char	*get_var(char *str, char **env, int j)
 {
 	char	*ret;
@@ -83,7 +106,6 @@ char	*get_var(char *str, char **env, int j)
 	tmp2[k] = '\0';
 	ret = ft_strjoin(ret, get_var_2(tmp2, env, 0, -1));
 	free (tmp2);
-	i = k;
 	tmp2 = malloc(ft_strlen(str) - k);
 	i = 0;
 	while (str[k])
@@ -116,5 +138,6 @@ char	**edit_var(char **ret, char **env)
 				ret[i] = get_var(ret[i], env, j);
 		}
 	}
+	i = -1;
 	return (ret);
 }

@@ -12,7 +12,6 @@
 
 # include "minishell.h"
 
-
 int	get_t(char *tmp, int t)
 {
 	while (tmp[++t])
@@ -23,7 +22,47 @@ int	get_t(char *tmp, int t)
 	return (t);
 }
 
-char	***get_command(char **env, int fd)
+void	edit_ret(char **str)
+{
+	int	i;
+	int	j;
+	int	k;
+	char	*tmp;
+
+	i = -1;
+	j = -1;
+	k = 0;
+	while (str[++i])
+	{
+		if (!str[i][0])
+			i++;
+		if (!str[i])
+			break ;
+		tmp = cpy (tmp, str[i]);
+		free (str[k]);
+		str[k] = cpy (str[k], tmp);
+		k++;
+	}
+	str[k] = NULL;
+}
+
+char **cpy_2(char **str)
+{
+	int		i;
+	int		j;
+	char	**ret;
+	
+	i = -1;
+	while (str[++i])
+		i = i;
+	ret = malloc (sizeof (char *) * (i + 1));
+	i = -1;
+	while (str[++i])
+		ret[i] = cpy(ret[i], str[i]);
+	return (ret);
+}
+
+t_spl	get_command(char **env, int fd)
 {
 	char	*command;
 	char	*tmp;
@@ -31,6 +70,8 @@ char	***get_command(char **env, int fd)
 	char	*tmp2;
 	char	***splited;
 	char	**ret;
+	char	**ret2;
+	t_spl	comm;
 	int		i;
 	int		k;
 	char	r;
@@ -81,19 +122,29 @@ char	***get_command(char **env, int fd)
 	}
 	if (i - t - 1 > 0 && tmp[t + 1])
 		ret[k++] = get_arg(tmp, i, t);
-	ret[k] = NULL;
 	i = -1;
-	ret = edit_var(ret, env);
+	ret[k] = NULL;
 	if (!check_pr(ret))
 	{
 		printf ("%s\n", "syntax error");
 		return (get_command(env, fd));
 	}
+	ret2 = cpy_2(ret);
+	ret = edit_var(ret, env);
+	edit_ret(ret);
+	k = -1;
+	// while (ret[++k])
+	// 	printf ("**%s\n", ret[k]);
+	i = -1;
 	splited = split_pr(ret, 0, 0, '\0');
 	edit_qu(splited, -1, 0, ll);
 	k = -1;
 	free (tmp);
-	return (splited);
+	comm.a_var = splited;
+	edit_ret(ret2);
+	comm.b_var = split_pr(ret2, 0, 0, '\0');
+	edit_qu(comm.b_var, -1, 0, ll);
+	return (comm);
 }
 
 void	child_exec(char ***splited, char *path, int t, struct termios terminal2, char **env)
@@ -132,6 +183,9 @@ int	check_pr(char **str)
 	char	q;
 	int		u;
 
+	i = -1;
+	// while (str[++i])
+	// 	printf ("-%s\n", str[i]);
 	i = 0;
 	u = 0;
 	q = '\0';
@@ -141,13 +195,11 @@ int	check_pr(char **str)
 		return (0);
 	i = -1;
 	while (str[++i])
-		printf ("%s\n", str[i]);
-	while (str[++i])
 	{
 		j = -1;
 		while (str[i][++j])
 			q = get_q(str, i, j, q);
-		if (!(ft_strncmp(str[i], "|", ft_strlen(str[i]))) && !q)
+		if (!(ft_strncmp(str[i], "|", 1)) && !q)
 		{
 			if (str[i + 1])
 			{
@@ -211,12 +263,45 @@ int	check_pr(char **str)
 	return (1);
 }
 
-int	check_redi(char ***splited, int t, int stdin, int *fdd)
+// int	check_doll(char *str)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	while (str[++i])
+// 		if (str[i] == '$')
+// 			return (0);
+// 	return (1);
+// }
+
+int	check_next(t_spl *comm, int t, int i)
+{
+	int	k;
+	char ***splited = comm->a_var;
+	char ***before = comm->b_var;
+
+	k = 0;
+	while (before[t][i] && ft_strcmp(before[t][i], "|"))
+	{
+		// printf ("before = %s\n", before[t][i]);
+		// printf ("after = %s\n", splited[t][i]);
+		if (!splited[t][i])
+			return (0);
+		if (ft_strcmp(splited[t][i], before[t][i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 {
 	int		i;
 	int		j;
 	int		k;
 	char	**tmp;
+	char	***splited = comm->a_var;
+	char	***before = comm->b_var;
 	char	*str;
 	int		*fd;
 
@@ -228,7 +313,18 @@ int	check_redi(char ***splited, int t, int stdin, int *fdd)
 	{
 		if (!(ft_strcmp(">", splited[t][i])))
 		{
-			k = open (splited[t][i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			if (splited[t][i + 1])
+			{
+				k = open (splited[t][i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+				if (k == -1)
+					printf ("minishell: %s: No such file or directory\n", splited[t][i + 1]);
+				return (0);
+			}
+			else
+			{
+				printf ("minishell: %s: ambiguous redirect\n", before[t][i + 1]);
+				return (0);
+			}
 			dup2 (k, 1);
 			close (k);
 		}
@@ -242,8 +338,10 @@ int	check_redi(char ***splited, int t, int stdin, int *fdd)
 		{
 			if (fd[0] == -2)
 				pipe (fd);
+			// printf ("--%s\n", before[t][i + 1]);
+			// printf ("--%s\n", splited[t][i + 1]);
 			str = readline("> ");
-			while (ft_strcmp(str, splited[t][i + 1]))
+			while (ft_strcmp(str, before[t][i + 1]))
 			{
 				write (fd[1], str, ft_strlen(str));
 				write (fd[1], "\n", 1);
@@ -277,9 +375,13 @@ int	check_redi(char ***splited, int t, int stdin, int *fdd)
 	{
 		if (!(ft_strcmp(">", splited[t][i]))
 			|| !(ft_strcmp("<", splited[t][i]))
-			|| !(ft_strcmp("<<", splited[t][i]))
 			|| !(ft_strcmp(">>", splited[t][i])))
 			i++;
+		else if (!(ft_strcmp("<<", splited[t][i])))
+		{
+			if (!check_next(comm, t, i + 1))
+				i++;
+		}
 		else
 		{
 			tmp[k] = cpy(tmp[k], splited[t][i]);
@@ -375,10 +477,12 @@ int	exec(int fd, char **env, struct termios terminal2)
 	char	***splited;
 	char	*command;
 	char	*path;
+	t_spl	comm;
 	t_arg	hh;
 
 	path = malloc (1);
-	splited = get_command(env, fd);
+	comm = get_command(env, fd);
+	splited = comm.a_var;
 	pi = 1;
 	stdin = dup(0);
 	stdout = dup(1);
@@ -392,14 +496,6 @@ int	exec(int fd, char **env, struct termios terminal2)
 		k++;
 	r = malloc (sizeof(int) * (k + 1));
 	k = -1;
-	// puts ("hooooo");
-	// while (splited[++k])
-	// {
-	// 	t = -1;
-	// 	while (splited[k][++t])
-	// 		printf ("%s\n", splited[k][t]);
-	// }
-	// puts ("yooooo");
 	t = 0;
 	while (splited[t])
 	{
@@ -418,8 +514,14 @@ int	exec(int fd, char **env, struct termios terminal2)
 		r[t] = fork();
 		if (check_command(env, splited, t, r[t]) && !r[t])
 		{
-			if (!check_redi(splited, t, stdin, fdd))
-				return (1);
+			k = check_redi(&comm, t, stdin, fdd);
+			// if (!k)
+			// {
+			// 	dup2(stdout, 1);
+			// 	dup2(stdin, 0);
+			// 	// close (stdout);
+			// 	// close (stdin);
+			// }
 			if (splited[pi])
 			{
 				dup2(fdd[1], 1);
@@ -429,13 +531,13 @@ int	exec(int fd, char **env, struct termios terminal2)
 			else
 			{
 				dup2(stdout, 1);
-				close (stdout);
-				close (stdin);
+				// close (stdout);
+				// close (stdin);
 			}
-			k = -1;
 			hh.stdout = stdout;
 			hh.k = t;
-			child_exec(splited, path, t, terminal2, env);
+			if (k)
+				child_exec(splited, path, t, terminal2, env);
 		}
 		else if (!splited[pi])
 		{
