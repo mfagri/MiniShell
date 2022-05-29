@@ -45,7 +45,7 @@ char	*sep(char *str, int i, int k)
 	char	*ret;
 	char	q;
 
-	ret = malloc (sizeof (char) * get_allocation(str));
+	ret = malloc (sizeof (char) * (get_allocation(str) + 2));
 	q = '\0';
 	while (str[i])
 	{

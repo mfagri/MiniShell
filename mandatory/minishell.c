@@ -59,6 +59,7 @@ char **cpy_2(char **str)
 	i = -1;
 	while (str[++i])
 		ret[i] = cpy(ret[i], str[i]);
+	ret[i] = NULL;
 	return (ret);
 }
 
@@ -556,9 +557,10 @@ int	exec(int fd, char **env, struct termios terminal2)
 		t++;
 		pi++;
 	}
-	while (--t != -1)
-		waitpid(r[t], NULL, 0);
 	r[t] = '\0';
+	while (--t != -1)
+		waitpid(r[t], &pi, 0);
+	printf ("return %d\n", pi);
 	k = 0;
 	t = 0;
 	while (splited[k])
