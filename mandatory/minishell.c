@@ -12,7 +12,14 @@
 
 # include "minishell.h"
 
-int	heyy = 1;
+int	get_glo_2(int i, int j)
+{
+	static int	yo;
+
+	if (i)
+		yo = j;
+	return (yo);
+}
 
 int	get_t(char *tmp, int t)
 {
@@ -65,7 +72,7 @@ char **cpy_2(char **str)
 	return (ret);
 }
 
-t_spl	get_command(char **env, int fd, int *statu)
+t_spl	get_command(char **env, int fd)
 {
 	char	*command;
 	char	*tmp;
@@ -93,7 +100,7 @@ t_spl	get_command(char **env, int fd, int *statu)
 		exit (0);
 	}
 	if (!ft_strncmp("(null)", tmp, ft_strlen(tmp)))
-		return (get_command(env, fd, statu));
+		return (get_command(env, fd));
 	add_history(tmp);
 	if (tmp)
 	{
@@ -130,11 +137,11 @@ t_spl	get_command(char **env, int fd, int *statu)
 	if (!check_pr(ret))
 	{
 		printf ("%s\n", "syntax error");
-		(*statu) = 258;
-		return (get_command(env, fd, statu));
+		get_glo_2(1, 258);
+		return (get_command(env, fd));
 	}
 	ret2 = cpy_2(ret);
-	ret = edit_var(ret, env, (*statu));
+	ret = edit_var(ret, env);
 	edit_ret(ret);
 	k = -1;
 	// while (ret[++k])
@@ -413,7 +420,7 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 	return (1);
 }
 
-int	check_command_utils(char **splited, int statu, char **env, int fd)
+int	check_command_utils(char **splited, char **env, int fd)
 {
 	if (!(ft_strcmp(splited[0], "pwd")))
 	{
@@ -439,7 +446,7 @@ int	check_command_utils(char **splited, int statu, char **env, int fd)
 	else if (!(ft_strcmp(splited[0], "exit")))
 	{
 		if (fd)
-			ft_exit(splited, env, statu);
+			ft_exit(splited, env);
 		else
 			exit (0);
 	}
@@ -448,7 +455,7 @@ int	check_command_utils(char **splited, int statu, char **env, int fd)
 	return (0);
 }
 
-int check_command(char **env, char **splited, int t, int fd)
+int check_command(char **env, char **splited, int fd)
 {
 	if (!(strcmp(splited[0], "export")))
 	{
@@ -472,11 +479,11 @@ int check_command(char **env, char **splited, int t, int fd)
 			exit (0);
 	}
 	else
-		return (check_command_utils(splited, t, env, fd));
+		return (check_command_utils(splited, env, fd));
 	return (0);
 }
 
-int	exec(int fd, char **env, struct termios terminal2, int statu)
+int	exec(int fd, char **env, struct termios terminal2)
 {
 	int		*r;
 	int		k;
@@ -497,7 +504,7 @@ int	exec(int fd, char **env, struct termios terminal2, int statu)
 	int		ret;
 
 	path = malloc (1);
-	comm = get_command(env, fd, &statu);
+	comm = get_command(env, fd);
 	splited = comm.a_var;
 	pi = 1;
 	stdin = dup(0);
@@ -532,7 +539,7 @@ int	exec(int fd, char **env, struct termios terminal2, int statu)
 		// 	}
 		// }
 		r[t] = fork();
-		if (check_command(env, splited[t], statu, r[t]) && !r[t])
+		if (check_command(env, splited[t], r[t]) && !r[t])
 		{
 			k = check_redi(&comm, t, stdin, fdd);
 			// if (!k)
@@ -556,7 +563,6 @@ int	exec(int fd, char **env, struct termios terminal2, int statu)
 			}
 			hh.stdout = stdout;
 			hh.k = t;
-			heyy = 0;
 			if (k)
 				child_exec(splited, path, t, terminal2, env);
 		}
@@ -580,12 +586,14 @@ int	exec(int fd, char **env, struct termios terminal2, int statu)
 	r[t] = '\0';
 	while (--t != -1)
 		waitpid(r[t], &pi, 0);
+	// printf ("--%d\n", pi);
 	if (WIFSIGNALED(pi))
-		pi = pi + 128;
+		get_glo_2(1, pi + 128);
+	else if (WEXITSTATUS(pi))
+		get_glo_2(1, pi / 128 / 2);
 	if (pi >= 25600)
-		pi = (pi * 100) / 25600;
+		get_glo_2(1, (pi * 100) / 25600);
 	// printf ("----%d\n", pi);
-	// else if (WEXITSTATUS(pi))
 	// 	pi = pi + 128;
 	k = 0;
 	t = 0;
@@ -606,7 +614,7 @@ int	exec(int fd, char **env, struct termios terminal2, int statu)
 	close (stdout);
 	close (stdin);
 	k = -1;
-	return (pi);
+	return (1);
 }
 
 void	get_env(char **env)
@@ -660,8 +668,7 @@ int	main(int ac, char **av, char **env)
 	get_env(env);
 	terminal2 = remove_ctlc();
 	signal(SIGINT, ft_sig);
-	if (heyy)
-		signal(SIGQUIT,ft_sig);
+	signal(SIGQUIT,ft_sig);
 	r = 1;
 	//waitpid(l, NULL, 0);
 	k = 0;
@@ -669,7 +676,7 @@ int	main(int ac, char **av, char **env)
 	{
 		//g_globle.i = 0;
 		get_glo(0);
-		k = exec(fd, env, terminal2, k);
+		k = exec(fd, env, terminal2);
 	}
 	if(k == 0)
 	{

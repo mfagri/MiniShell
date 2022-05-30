@@ -88,7 +88,7 @@ char	*get_var_utils_1(char *str, int *j, int *k)
 // 	}
 // }
 
-char	*get_var(char *str, char **env, int j, int statu)
+char	*get_var(char *str, char **env, int j)
 {
 	char	*ret;
 	char	*tmp2;
@@ -106,7 +106,7 @@ char	*get_var(char *str, char **env, int j, int statu)
 	}
 	tmp2[i] = '\0';
 	if (!strcmp(tmp2, "?"))
-		ret = ft_strjoin(ret, ft_itoa(statu));
+		ret = ft_strjoin(ret, ft_itoa(get_glo_2(0, 0)));
 	else if (!tmp2[0])
 		ret = ft_strjoin(ret, "$");
 	else
@@ -122,7 +122,7 @@ char	*get_var(char *str, char **env, int j, int statu)
 	return (ret);
 }
 
-char	**edit_var(char **ret, char **env, int statu)
+char	**edit_var(char **ret, char **env)
 {
 	int		i;
 	int		j;
@@ -142,7 +142,7 @@ char	**edit_var(char **ret, char **env, int statu)
 			if (ret[i][j] == 34 && check_next_qu(ret[i], 34, j) && !k)
 				k = 0;
 			if (k && ret[i][j] == '$')
-				ret[i] = get_var(ret[i], env, j, statu);
+				ret[i] = get_var(ret[i], env, j);
 		}
 	}
 	i = -1;

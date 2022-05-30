@@ -203,12 +203,12 @@ void	ft_cd(char **arg, char **env)
 	free(newpath);
 }
 
-void	ft_exit(char **arg, char **env, int statu)
+void	ft_exit(char **arg, char **env)
 {
 	int	i;
 	int	t;
 
-	t = statu;
+	t = get_glo_2(0, 0);
 	i = 0;
 	while (arg[i])
 		i++;
@@ -216,9 +216,12 @@ void	ft_exit(char **arg, char **env, int statu)
 	if (i > 2)
 		printf("minishell: exit: too many arguments\n");
 	if (arg[1] && i <= 2)
+	{
 		t = atoi(arg[1]);
+		get_glo_2(1, t);
+	}
 	i = 0;
 	while (env[i++])
 		free(env[i]);
-	exit(t);
+	exit (t);
 }
