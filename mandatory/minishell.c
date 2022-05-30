@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/30 14:59:15 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/05/30 20:53:39 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char **cpy_2(char **str)
 	return (ret);
 }
 
-t_spl	get_command(char **env, int fd, int statu)
+t_spl	get_command(char **env, int fd, int *statu)
 {
 	char	*command;
 	char	*tmp;
@@ -130,11 +130,11 @@ t_spl	get_command(char **env, int fd, int statu)
 	if (!check_pr(ret))
 	{
 		printf ("%s\n", "syntax error");
-		statu = 258;
+		(*statu) = 258;
 		return (get_command(env, fd, statu));
 	}
 	ret2 = cpy_2(ret);
-	ret = edit_var(ret, env, statu);
+	ret = edit_var(ret, env, (*statu));
 	edit_ret(ret);
 	k = -1;
 	// while (ret[++k])
@@ -153,7 +153,6 @@ t_spl	get_command(char **env, int fd, int statu)
 
 void	child_exec(char ***splited, char *path, int t, struct termios terminal2, char **env)
 {
-	// puts ("childe");
 	if (!path)
 		exit (127);
 	// if (path && access(path, F_OK | X_OK))
@@ -414,33 +413,33 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 	return (1);
 }
 
-int	check_command_utils(char ***splited, int t, char **env, int fd)
+int	check_command_utils(char **splited, int statu, char **env, int fd)
 {
-	if (!(ft_strcmp(splited[t][0], "pwd")))
+	if (!(ft_strcmp(splited[0], "pwd")))
 	{
 		if (fd)
-			ft_pwd(splited[t]);
+			ft_pwd(splited);
 		else
 			exit (0);
 	}
-	else if (!(ft_strcmp(splited[t][0], "cd")))
+	else if (!(ft_strcmp(splited[0], "cd")))
 	{
 		if (fd)
-			ft_cd(splited[t],env);
+			ft_cd(splited, env);
 		else
 			exit (0);
 	}
-	else if (!(ft_strcmp(splited[t][0], "env")))
+	else if (!(ft_strcmp(splited[0], "env")))
 	{
 		if (fd)
 			ft_print_env(env);
 		else
 			exit (0);
 	}
-	else if (!(ft_strcmp(splited[t][0], "exit")))
+	else if (!(ft_strcmp(splited[0], "exit")))
 	{
 		if (fd)
-			ft_exit(splited[t],env);
+			ft_exit(splited, env, statu);
 		else
 			exit (0);
 	}
@@ -449,26 +448,26 @@ int	check_command_utils(char ***splited, int t, char **env, int fd)
 	return (0);
 }
 
-int check_command(char **env, char ***splited, int t, int fd)
+int check_command(char **env, char **splited, int t, int fd)
 {
-	if (!(strcmp(splited[t][0], "export")))
+	if (!(strcmp(splited[0], "export")))
 	{
 		if (fd)
-			ft_export(env, splited[t]);
+			ft_export(env, splited);
 		else
 			exit (0);
 	}
-	else if (!(strcmp(splited[t][0], "unset")))
+	else if (!(strcmp(splited[0], "unset")))
 	{
 		if (fd)
-			ft_unset(splited[t],env);
+			ft_unset(splited,env);
 		else
 			exit (0);
 	}
-	else if (!(ft_strcmp(splited[t][0], "echo")))
+	else if (!(ft_strcmp(splited[0], "echo")))
 	{
 		if (fd)
-			ft_echo(splited[t]);
+			ft_echo(splited);
 		else
 			exit (0);
 	}
@@ -498,7 +497,7 @@ int	exec(int fd, char **env, struct termios terminal2, int statu)
 	int		ret;
 
 	path = malloc (1);
-	comm = get_command(env, fd, statu);
+	comm = get_command(env, fd, &statu);
 	splited = comm.a_var;
 	pi = 1;
 	stdin = dup(0);
@@ -533,7 +532,7 @@ int	exec(int fd, char **env, struct termios terminal2, int statu)
 		// 	}
 		// }
 		r[t] = fork();
-		if (check_command(env, splited, t, r[t]) && !r[t])
+		if (check_command(env, splited[t], statu, r[t]) && !r[t])
 		{
 			k = check_redi(&comm, t, stdin, fdd);
 			// if (!k)

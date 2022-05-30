@@ -93,6 +93,6 @@ int				ft_isalpha(int c);
 int				ft_do_nothing(char *arg);
 char			*final_srt(char *arg, char *name, int i);
 void			ft_export(char **env, char **arg);
-void			ft_exit(char **arg,char **env);
+void			ft_exit(char **arg,char **env,int statu);
 
 #endif

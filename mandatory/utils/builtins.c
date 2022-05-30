@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 04:30:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/05/29 19:35:26 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/05/30 20:49:47 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	ft_pwd(char **arg)
 {
 	char	s[1024];
 
-	if(arg[1])
-		return(ft_putstr_fd("pwd: too many arguments\n",2));
+	if (arg[1])
+		return (ft_putstr_fd("pwd: too many arguments\n", 2));
 	getcwd(s, sizeof(s));
 	printf("%s\n", s);
 }
@@ -89,9 +89,9 @@ void	ft_unset(char **arg, char **env)
 		remove_from_env(arg[i], env, 0);
 }
 
-int ft_count_args(char **args)
+int	ft_count_args(char **args)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (args[i])
@@ -99,120 +99,126 @@ int ft_count_args(char **args)
 	return (i);
 }
 
-void ft_home(char **env)
+void	ft_home(char **env)
 {
-	int i;
-	char *path;
-	
+	int		i;
+	char	*path;
+
 	i = 0;
-	while(ft_strncmp(env[i],"HOME",ft_strlen("HOME")))
+	while (ft_strncmp(env[i], "HOME", ft_strlen("HOME")))
 		i++;
-	if(env[i][4] == '=')
+	if (env[i][4] == '=')
 	{
-		path = ft_strrchr(env[i],'=');
+		path = ft_strrchr(env[i], '=');
 		path++;
 	}
 	else
 		path = NULL;
-	if(chdir(path) == -1)
-		ft_putstr_fd("minishell: cd: HOME not set\n",2);
+	if (chdir(path) == -1)
+		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
 }
+
 void	ft_oldpwd(char **env)
 {
-	int i;
-	char *s;
-	
+	int		i;
+	char	*s;
+
 	i = -1;
-	while(env[++i])
-		if(!strncmp("OLDPWD",env[i],ft_strlen("OLDPWD")))
+	while (env[++i])
+	{
+		if (!strncmp("OLDPWD", env[i], ft_strlen("OLDPWD")))
 		{
-			ft_putstr_fd(&env[i][7],1);
-			write(1,"\n",1);
-			s = ft_strrchr(env[i],'=');
+			ft_putstr_fd(&env[i][7], 1);
+			write(1, "\n", 1);
+			s = ft_strrchr(env[i], '=');
 			s++;
-			if(chdir(s) == -1)
-				ft_putstr_fd("minishell: cd: OLDPWD not set\n",2);
+			if (chdir(s) == -1)
+				ft_putstr_fd("minishell: cd: OLDPWD not set\n", 2);
 			return ;
 		}
-	ft_putstr_fd("minishell: cd: OLDPWD not set\n",2);
+	}
+	ft_putstr_fd("minishell: cd: OLDPWD not set\n", 2);
 	return ;
 }
-char *ft_take_pwd_old(char p[])
+
+char	*ft_take_pwd_old(char p[])
 {
-	char pwd[1000000];
-	char *path;
-	
-	getcwd(pwd,sizeof(pwd));
+	char	pwd[1000000];
+	char	*path;
+
+	getcwd(pwd, sizeof(pwd));
 	path = malloc(1);
-	path[0] ='\0';
-	path = ft_strjoin(path,p);
-	path = ft_strjoin(path,pwd);
+	path[0] = '\0';
+	path = ft_strjoin(path, p);
+	path = ft_strjoin(path, pwd);
 	return (path);
 }
-void ft_cd_norm(char **env,char *path,char s[])
+
+void	ft_cd_norm(char **env, char *path, char s[])
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	j = 0;
-	while(env[++i])
+	while (env[++i])
 	{
-		if(!strncmp(s,env[i],ft_strlen(s)))
+		if (!strncmp(s, env[i], ft_strlen(s)))
 		{
 			j = 1;
-			env[i] = cpy(env[i],path);
+			env[i] = cpy(env[i], path);
 		}
 	}
-	if(j != 1)
+	if (j != 1)
 	{
-		env[i] = cpy(env[i],path);
+		env[i] = cpy(env[i], path);
 		i++;
 	}
 	env[i] = NULL;
 }
-void ft_cd(char **arg,char **env)
+
+void	ft_cd(char **arg, char **env)
 {
-	char *oldpath;
-	char *newpath;
+	char	*oldpath;
+	char	*newpath;
 
 	oldpath = ft_take_pwd_old("OLDPWD=");
-	if(!arg[1])
+	if (!arg[1])
 		ft_home(env);
 	else
 	{
-		if(!strncmp("-",arg[1],ft_strlen("-")))
+		if (!strncmp("-", arg[1], ft_strlen("-")))
 			ft_oldpwd(env);
 		else if (ft_count_args(arg) > 2)
-				return (ft_putstr_fd("minishell: cd: too many arguments\n", 2));
+			return (ft_putstr_fd("minishell: cd: too many arguments\n", 2));
 		else
-			if(chdir(arg[1]) == -1)
-				printf("minishell: cd: %s : No such file or directory\n",arg[1]);
+			if (chdir(arg[1]) == -1)
+				printf("minishell: cd: %s : No such file \
+					or directory\n", arg[1]);
 	}
 	newpath = ft_take_pwd_old("PWD=");
-	ft_cd_norm(env,oldpath,"OLDPWD");
-	ft_cd_norm(env,newpath,"PWD");
+	ft_cd_norm(env, oldpath, "OLDPWD");
+	ft_cd_norm(env, newpath, "PWD");
 	free(oldpath);
 	free(newpath);
 }
 
-void ft_exit(char **arg,char **env)
+void	ft_exit(char **arg, char **env, int statu)
 {
-	int i;
-	int t;
+	int	i;
+	int	t;
 
-	t = 0;
+	t = statu;
 	i = 0;
-	while(arg[i])
+	while (arg[i])
 		i++;
-	ft_putstr_fd("exit\n",1);
-	if(i > 2)
+	ft_putstr_fd("exit\n", 1);
+	if (i > 2)
 		printf("minishell: exit: too many arguments\n");
-	if(arg[1] && i <= 2)
+	if (arg[1] && i <= 2)
 		t = atoi(arg[1]);
 	i = 0;
-	while(env[i++])
+	while (env[i++])
 		free(env[i]);
 	exit(t);
-	
 }

@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/05/29 19:18:06 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/05/30 17:52:39 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ void	ft_export(char **env, char **arg)
 		while (arg[i])
 			check_arg_export(arg[i++], env);
 	i = 0;
-	while(t[i])
+	while (t[i])
 		free(t[i++]);
 }
