@@ -76,5 +76,6 @@ char	*get_arg(char *tmp, int i, int t)
 		}
 	}
 	ret[r] = '\0';
+	free (str);
 	return (ret);
 }

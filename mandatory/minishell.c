@@ -33,9 +33,9 @@ int	get_t(char *tmp, int t)
 
 void	edit_ret(char **str)
 {
-	int	i;
-	int	j;
-	int	k;
+	int		i;
+	int		j;
+	int		k;
 	char	*tmp;
 
 	i = -1;
@@ -53,6 +53,7 @@ void	edit_ret(char **str)
 		k++;
 	}
 	str[k] = NULL;
+	free (tmp);
 }
 
 char **cpy_2(char **str)
@@ -132,7 +133,7 @@ t_spl	get_command(char **env, int fd)
 	}
 	if (i - t - 1 > 0 && tmp[t + 1])
 		ret[k++] = get_arg(tmp, i, t);
-	i = -1;
+	free (tmp);
 	ret[k] = NULL;
 	if (!check_pr(ret))
 	{
@@ -143,17 +144,19 @@ t_spl	get_command(char **env, int fd)
 	ret2 = cpy_2(ret);
 	ret = edit_var(ret, env);
 	edit_ret(ret);
-	k = -1;
-	// while (ret[++k])
-	// 	printf ("**%s\n", ret[k]);
-	i = -1;
 	splited = split_pr(ret, 0, 0, '\0');
+	i = -1;
+	while (ret[++i])
+		free (ret[i]);
+	free (ret);
 	edit_qu(splited, -1, 0, ll);
-	k = -1;
-	free (tmp);
 	comm.a_var = splited;
 	edit_ret(ret2);
 	comm.b_var = split_pr(ret2, 0, 0, '\0');
+	i = -1;
+	while (ret2[++i])
+		free (ret2[i]);
+	free (ret2);
 	edit_qu(comm.b_var, -1, 0, ll);
 	return (comm);
 }
@@ -497,6 +500,7 @@ int	exec(int fd, char **env, struct termios terminal2)
 	char	**pr;
 	int		fdd[2];
 	char	***splited;
+	char	***before;
 	char	*command;
 	char	*path;
 	t_spl	comm;
@@ -506,97 +510,98 @@ int	exec(int fd, char **env, struct termios terminal2)
 	path = malloc (1);
 	comm = get_command(env, fd);
 	splited = comm.a_var;
-	pi = 1;
-	stdin = dup(0);
-	stdout = dup(1);
-	k = -1;
-	t = -1;
-	k = -1;
-	t = -1;
-	t = -1;
+	before = comm.b_var;
+	// pi = 1;
+	// stdin = dup(0);
+	// stdout = dup(1);
+	// k = -1;
+	// t = -1;
+	// k = -1;
+	// t = -1;
+	// t = -1;
+	// k = 0;
+	// while (splited[++t])
+	// 	k++;
+	// r = malloc (sizeof(int) * (k + 1));
+	// k = -1;
+	// t = 0;
+	// while (splited[t])
+	// {
+	// 	k = 1;
+	// 	if (splited[pi])
+	// 		pipe(fdd);
+	// 	free (path);
+	// 	path = get_path(env, splited[t][0]);
+	// 	// if (!path && ft_strcmp("export", splited[t][0]) && ft_strcmp("unset", splited[t][0]))
+	// 	// {
+	// 	// 	printf ("minishell: %s: command not found\n", splited[t][0]);
+	// 	// 	get_glo(0);
+	// 	// 	if (!splited[t + 1])
+	// 	// 	{
+	// 	// 		t = 0;
+	// 	// 		pi = 127;
+	// 	// 		break ;
+	// 	// 	}
+	// 	// }
+	// 	r[t] = fork();
+	// 	if (check_command(env, splited[t], r[t]) && !r[t])
+	// 	{
+	// 		k = check_redi(&comm, t, stdin, fdd);
+	// 		// if (!k)
+	// 		// {
+	// 		// 	dup2(stdout, 1);
+	// 		// 	dup2(stdin, 0);
+	// 		// 	// close (stdout);
+	// 		// 	// close (stdin);
+	// 		// }
+	// 		if (splited[pi])
+	// 		{
+	// 			dup2(fdd[1], 1);
+	// 			close(fdd[0]);
+	// 			close(fdd[1]);
+	// 		}
+	// 		else
+	// 		{
+	// 			dup2(stdout, 1);
+	// 			// close (stdout);
+	// 			// close (stdin);
+	// 		}
+	// 		hh.stdout = stdout;
+	// 		hh.k = t;
+	// 		if (k)
+	// 			child_exec(splited, path, t, terminal2, env);
+	// 	}
+	// 	else if (!splited[pi])
+	// 	{
+	// 		get_glo(1);
+	// 		remove_ctlc();
+	// 	}
+	// 	k = -1;
+	// 	if (splited[pi] && k)
+	// 	{
+	// 		dup2(fdd[0], 0);
+	// 		close(fdd[0]);
+	// 		close(fdd[1]);
+	// 	}
+	// 	else
+	// 		dup2(stdin, 0);
+	// 	t++;
+	// 	pi++;
+	// }
+	// r[t] = '\0';
+	// while (--t != -1)
+	// 	waitpid(r[t], &pi, 0);
+	// // printf ("--%d\n", pi);
+	// if (WIFSIGNALED(pi))
+	// 	get_glo_2(1, pi + 128);
+	// else if (WEXITSTATUS(pi))
+	// 	get_glo_2(1, pi / 128 / 2);
+	// if (pi >= 25600)
+	// 	get_glo_2(1, (pi * 100) / 25600);
+	// // printf ("----%d\n", pi);
+	// // 	pi = pi + 128;
 	k = 0;
-	while (splited[++t])
-		k++;
-	r = malloc (sizeof(int) * (k + 1));
-	k = -1;
-	t = 0;
-	while (splited[t])
-	{
-		k = 1;
-		if (splited[pi])
-			pipe(fdd);
-		free (path);
-		path = get_path(env, splited[t][0]);
-		// if (!path && ft_strcmp("export", splited[t][0]) && ft_strcmp("unset", splited[t][0]))
-		// {
-		// 	printf ("minishell: %s: command not found\n", splited[t][0]);
-		// 	get_glo(0);
-		// 	if (!splited[t + 1])
-		// 	{
-		// 		t = 0;
-		// 		pi = 127;
-		// 		break ;
-		// 	}
-		// }
-		r[t] = fork();
-		if (check_command(env, splited[t], r[t]) && !r[t])
-		{
-			k = check_redi(&comm, t, stdin, fdd);
-			// if (!k)
-			// {
-			// 	dup2(stdout, 1);
-			// 	dup2(stdin, 0);
-			// 	// close (stdout);
-			// 	// close (stdin);
-			// }
-			if (splited[pi])
-			{
-				dup2(fdd[1], 1);
-				close(fdd[0]);
-				close(fdd[1]);
-			}
-			else
-			{
-				dup2(stdout, 1);
-				// close (stdout);
-				// close (stdin);
-			}
-			hh.stdout = stdout;
-			hh.k = t;
-			if (k)
-				child_exec(splited, path, t, terminal2, env);
-		}
-		else if (!splited[pi])
-		{
-			get_glo(1);
-			remove_ctlc();
-		}
-		k = -1;
-		if (splited[pi] && k)
-		{
-			dup2(fdd[0], 0);
-			close(fdd[0]);
-			close(fdd[1]);
-		}
-		else
-			dup2(stdin, 0);
-		t++;
-		pi++;
-	}
-	r[t] = '\0';
-	while (--t != -1)
-		waitpid(r[t], &pi, 0);
-	// printf ("--%d\n", pi);
-	if (WIFSIGNALED(pi))
-		get_glo_2(1, pi + 128);
-	else if (WEXITSTATUS(pi))
-		get_glo_2(1, pi / 128 / 2);
-	if (pi >= 25600)
-		get_glo_2(1, (pi * 100) / 25600);
-	// printf ("----%d\n", pi);
-	// 	pi = pi + 128;
-	k = 0;
-	t = 0;
+	// t = 0;
 	while (splited[k])
 	{
 		t = 0;
@@ -609,20 +614,37 @@ int	exec(int fd, char **env, struct termios terminal2)
 		k++;
 	}
 	free (splited);
-	dup2(stdout, 1);
-	dup2(stdin, 0);
-	close (stdout);
-	close (stdin);
-	k = -1;
+	k = 0;
+	while (before[k])
+	{
+		t = 0;
+		while(before[k][t])
+		{
+			free (before[k][t]);
+			t++;
+		}
+		free (before[k]);
+		k++;
+	}
+	free (before);
+	// free (splited);
+	// dup2(stdout, 1);
+	// dup2(stdin, 0);
+	// close (stdout);
+	// close (stdin);
+	if (path)
+		free (path);
+	// k = -1;
 	return (1);
 }
 
 void	get_env(char **env)
 {
-	int i;
+	int		i;
 	char	*tmp;
-	int k;
-	char *t;
+	char	*tmp2;
+	int		k;
+	char	*t;
 
 	i = -1;
 	while(env[++i])
@@ -632,13 +654,16 @@ void	get_env(char **env)
 			tmp = cpy (tmp, "SHLVL=");
 			t = ft_strrchr(env[i], '=');
 			t++;
-			k = atoi(t);
-			k++;
-			tmp = ft_strjoin(tmp, ft_itoa(k));
+			t = ft_itoa(atoi(t) + 1);
+			tmp = ft_strjoin(tmp, t);
+			free (t);
 			env[i] = cpy (env[i], tmp);
+			free (tmp);
 		}
-		env[i] = cpy (env[i], env[i]);
+		else
+			env[i] = cpy (env[i], env[i]);
 	}
+	env[i] = NULL;
 }
 
 char	*ft_strrchr(char *s, int c)
@@ -669,19 +694,21 @@ int	main(int ac, char **av, char **env)
 	terminal2 = remove_ctlc();
 	signal(SIGINT, ft_sig);
 	signal(SIGQUIT,ft_sig);
-	r = 1;
-	//waitpid(l, NULL, 0);
-	k = 0;
-	while (k != -2)
-	{
-		//g_globle.i = 0;
-		get_glo(0);
-		k = exec(fd, env, terminal2);
-	}
-	if(k == 0)
-	{
-		tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
-		exit(0);
-	}
+	k = exec(fd, env, terminal2);
+	// k = 0;
+	// while (k != -2)
+	// {
+	// 	//g_globle.i = 0;
+	// 	get_glo(0);
+	// 	k = exec(fd, env, terminal2);
+	// }
+	// if(k == 0)
+	// {
+	// 	tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
+	// 	exit(0);
+	// }
+	r = -1;
+	while (env[++r])
+		free (env[r]);
 	free (path);
 }
