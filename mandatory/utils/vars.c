@@ -61,6 +61,7 @@ char	*get_var_utils_1(char *str, int *j, int *k)
 		(*j)++;
 	}
 	ret = cpy(ret, tmp);
+	free (tmp);
 	return (ret);
 }
 
@@ -87,7 +88,7 @@ char	*get_var_utils_1(char *str, int *j, int *k)
 // 	}
 // }
 
-char	*get_var(char *str, char **env, int j)
+char	*get_var(char *str, char **env, int j, int statu)
 {
 	char	*ret;
 	char	*tmp2;
@@ -95,27 +96,33 @@ char	*get_var(char *str, char **env, int j)
 	int		k;
 
 	ret = get_var_utils_1(str, &j, &k);
-	tmp2 = malloc (sizeof (char) * j);
+	tmp2 = malloc (sizeof (char) * (j + 1));
 	i = 0;
-	while (str[k] && (ft_isalnum(str[k]) || str[k] == '$'))
+	while (str[k] && (ft_isalnum(str[k]) || str[k] == '_' || str[k] == '?'))
 	{
 		tmp2[i++] = str[k++];
-		if (ft_isdigit(str[k - i]) || str[k - 1] == '$')
+		if (str[k + 1] == '?')
 			break ;
 	}
-	tmp2[k] = '\0';
-	ret = ft_strjoin(ret, get_var_2(tmp2, env, 0, -1));
+	tmp2[i] = '\0';
+	if (!strcmp(tmp2, "?"))
+		ret = ft_strjoin(ret, ft_itoa(statu));
+	else if (!tmp2[0])
+		ret = ft_strjoin(ret, "$");
+	else
+		ret = ft_strjoin(ret, get_var_2(tmp2, env, 0, -1));
 	free (tmp2);
-	tmp2 = malloc(ft_strlen(str) - k);
+	tmp2 = malloc(ft_strlen(str) - k + 1);
 	i = 0;
 	while (str[k])
 		tmp2[i++] = str[k++];
 	tmp2[i] = '\0';
 	ret = ft_strjoin(ret, tmp2);
+	free (tmp2);
 	return (ret);
 }
 
-char	**edit_var(char **ret, char **env)
+char	**edit_var(char **ret, char **env, int statu)
 {
 	int		i;
 	int		j;
@@ -135,7 +142,7 @@ char	**edit_var(char **ret, char **env)
 			if (ret[i][j] == 34 && check_next_qu(ret[i], 34, j) && !k)
 				k = 0;
 			if (k && ret[i][j] == '$')
-				ret[i] = get_var(ret[i], env, j);
+				ret[i] = get_var(ret[i], env, j, statu);
 		}
 	}
 	i = -1;

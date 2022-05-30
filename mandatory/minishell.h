@@ -14,6 +14,7 @@
 # include <fcntl.h>
 #include <curses.h>
 # include <signal.h>
+#include <sys/wait.h>
 
 typedef struct s_arg
 {
@@ -47,7 +48,7 @@ int				ft_isalnum(int c);
 int				ft_isdigit(int c);
 char			*ft_itoa(int j);
 void			ft_sig(int signum);
-int				exec(int fd, char **env, struct termios terminal2);
+int				exec(int fd, char **env, struct termios terminal2, int statu);
 int				get_glo(int i);
 void			get_tt(void);
 void			ft_pwd();
@@ -60,9 +61,9 @@ char			*remove_qu(char *str, int i, int j);
 int				check_next_qu(char *str, char c, int i);
 char			*get_arg(char *str, int i, int t);
 int				get_spaces(char *str);
-char			*get_var(char *str, char **env, int j);
+char			*get_var(char *str, char **env, int j, int statu);
 char  			*get_var_utils_1(char *str, int *j, int *k);
-char			**edit_var(char **ret, char **env);
+char			**edit_var(char **ret, char **env, int statu);
 void			edit_qu(char ***str, int i, int j, t_arg k);
 char			*sep(char *str, int i, int k);
 char			*remove_pwd(char **env, int i);

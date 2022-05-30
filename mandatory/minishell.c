@@ -12,6 +12,8 @@
 
 # include "minishell.h"
 
+int	heyy = 1;
+
 int	get_t(char *tmp, int t)
 {
 	while (tmp[++t])
@@ -63,7 +65,7 @@ char **cpy_2(char **str)
 	return (ret);
 }
 
-t_spl	get_command(char **env, int fd)
+t_spl	get_command(char **env, int fd, int statu)
 {
 	char	*command;
 	char	*tmp;
@@ -91,7 +93,7 @@ t_spl	get_command(char **env, int fd)
 		exit (0);
 	}
 	if (!ft_strncmp("(null)", tmp, ft_strlen(tmp)))
-		return (get_command(env, fd));
+		return (get_command(env, fd, statu));
 	add_history(tmp);
 	if (tmp)
 	{
@@ -128,10 +130,11 @@ t_spl	get_command(char **env, int fd)
 	if (!check_pr(ret))
 	{
 		printf ("%s\n", "syntax error");
-		return (get_command(env, fd));
+		statu = 258;
+		return (get_command(env, fd, statu));
 	}
 	ret2 = cpy_2(ret);
-	ret = edit_var(ret, env);
+	ret = edit_var(ret, env, statu);
 	edit_ret(ret);
 	k = -1;
 	// while (ret[++k])
@@ -150,9 +153,14 @@ t_spl	get_command(char **env, int fd)
 
 void	child_exec(char ***splited, char *path, int t, struct termios terminal2, char **env)
 {
+	// puts ("childe");
+	if (!path)
+		exit (127);
+	// if (path && access(path, F_OK | X_OK))
+	// 	exit (126);
 	tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
 	execve(path, splited[t], env);
-	exit(0);
+	exit (0);
 }
 
 int	remove_path_2(char *str)
@@ -462,7 +470,7 @@ int check_command(char **env, char ***splited, int t, int fd)
 	return (0);
 }
 
-int	exec(int fd, char **env, struct termios terminal2)
+int	exec(int fd, char **env, struct termios terminal2, int statu)
 {
 	int		*r;
 	int		k;
@@ -480,9 +488,10 @@ int	exec(int fd, char **env, struct termios terminal2)
 	char	*path;
 	t_spl	comm;
 	t_arg	hh;
+	int		ret;
 
 	path = malloc (1);
-	comm = get_command(env, fd);
+	comm = get_command(env, fd, statu);
 	splited = comm.a_var;
 	pi = 1;
 	stdin = dup(0);
@@ -505,13 +514,17 @@ int	exec(int fd, char **env, struct termios terminal2)
 			pipe(fdd);
 		free (path);
 		path = get_path(env, splited[t][0]);
-		if (!path && ft_strcmp("export", splited[t][0]) && ft_strcmp("unset", splited[t][0]))
-		{
-			printf ("minishell: %s: command not found\n", splited[t][0]);
-			get_glo(0);
-			if (!splited[pi])
-				break ;
-		}
+		// if (!path && ft_strcmp("export", splited[t][0]) && ft_strcmp("unset", splited[t][0]))
+		// {
+		// 	printf ("minishell: %s: command not found\n", splited[t][0]);
+		// 	get_glo(0);
+		// 	if (!splited[t + 1])
+		// 	{
+		// 		t = 0;
+		// 		pi = 127;
+		// 		break ;
+		// 	}
+		// }
 		r[t] = fork();
 		if (check_command(env, splited, t, r[t]) && !r[t])
 		{
@@ -537,6 +550,7 @@ int	exec(int fd, char **env, struct termios terminal2)
 			}
 			hh.stdout = stdout;
 			hh.k = t;
+			heyy = 0;
 			if (k)
 				child_exec(splited, path, t, terminal2, env);
 		}
@@ -560,7 +574,13 @@ int	exec(int fd, char **env, struct termios terminal2)
 	r[t] = '\0';
 	while (--t != -1)
 		waitpid(r[t], &pi, 0);
-	printf ("return %d\n", pi);
+	if (WIFSIGNALED(pi))
+		pi = pi + 128;
+	if (pi >= 25600)
+		pi = (pi * 100) / 25600;
+	// printf ("----%d\n", pi);
+	// else if (WEXITSTATUS(pi))
+	// 	pi = pi + 128;
 	k = 0;
 	t = 0;
 	while (splited[k])
@@ -580,7 +600,7 @@ int	exec(int fd, char **env, struct termios terminal2)
 	close (stdout);
 	close (stdin);
 	k = -1;
-	return (1);
+	return (pi);
 }
 
 void	get_env(char **env)
@@ -634,15 +654,16 @@ int	main(int ac, char **av, char **env)
 	get_env(env);
 	terminal2 = remove_ctlc();
 	signal(SIGINT, ft_sig);
-	signal(SIGQUIT,ft_sig);
+	if (heyy)
+		signal(SIGQUIT,ft_sig);
 	r = 1;
 	//waitpid(l, NULL, 0);
-	k = 1;
-	while (k)
+	k = 0;
+	while (k != -2)
 	{
 		//g_globle.i = 0;
 		get_glo(0);
-		k = exec(fd, env, terminal2);
+		k = exec(fd, env, terminal2, k);
 	}
 	if(k == 0)
 	{
