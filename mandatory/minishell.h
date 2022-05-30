@@ -2,7 +2,7 @@
 # define MINISHELL_H
 
 # define BUFFER_SIZE 1
-# define HISTORY_PATH "/Users/aaitoual/.minishell_history"
+# define HISTORY_PATH "/Users/mfagri/.minishell_history"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -71,7 +71,7 @@ int				check_pr(char **str);
 int				ft_strcmp(const char *s1, const char *s2);
 void			get_tt(void);
 void			ft_echo(char **pr);
-void 			ft_pwd(void);
+void			ft_pwd(char **arg);
 void 			ft_cd(char **arg,char **env);
 void			 ft_print_env(char **env);
 void			ft_export(char **env,char **arg);
@@ -93,5 +93,6 @@ int				ft_isalpha(int c);
 int				ft_do_nothing(char *arg);
 char			*final_srt(char *arg, char *name, int i);
 void			ft_export(char **env, char **arg);
+void			ft_exit(char **arg,char **env);
 
 #endif

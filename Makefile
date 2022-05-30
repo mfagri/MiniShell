@@ -6,14 +6,14 @@
 #    By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 19:42:03 by aaitoual          #+#    #+#              #
-#    Updated: 2022/05/11 16:08:28 by mfagri           ###   ########.fr        #
+#    Updated: 2022/05/30 14:56:33 by mfagri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc 
 FLAGS = -Wall -Wextra -Werror 
-LFLAGS	= -I/goinfre/$(USER)/.brew/opt/readline/include
+LFLAGS	= -I /Users/$(USER)/.brew/opt/readline/include
 AR = ar rcs
 OBJ = ./mandatory/obj
 
@@ -31,7 +31,7 @@ LIB = ./mandatory/minishell.h
 all: $(NAME)
 
 $(NAME): $(FILE1) $(LIB)
-	$(CC) $(FILE1) $(FLAGS) -o $@  -lreadline -L/goinfre/$(USER)/.brew/opt/readline/lib
+	$(CC) $(FILE1) $(FLAGS) -o $@  -lreadline -L/Users/$(USER)/.brew/opt/readline/lib
 
 %.o : %.c
 	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^

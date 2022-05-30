@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/20 09:40:17 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/05/30 14:59:15 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -419,7 +419,7 @@ int	check_command_utils(char ***splited, int t, char **env, int fd)
 	if (!(ft_strcmp(splited[t][0], "pwd")))
 	{
 		if (fd)
-			ft_pwd();
+			ft_pwd(splited[t]);
 		else
 			exit (0);
 	}
@@ -434,6 +434,13 @@ int	check_command_utils(char ***splited, int t, char **env, int fd)
 	{
 		if (fd)
 			ft_print_env(env);
+		else
+			exit (0);
+	}
+	else if (!(ft_strcmp(splited[t][0], "exit")))
+	{
+		if (fd)
+			ft_exit(splited[t],env);
 		else
 			exit (0);
 	}

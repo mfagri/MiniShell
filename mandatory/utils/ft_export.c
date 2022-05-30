@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/05/25 18:46:40 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/05/29 19:18:06 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ char	*final_srt(char *arg, char *name, int i)
 		f = ft_strjoin(f, "=");
 	if (value[0])
 		f = ft_strjoin(f, value);
+	free(value);
 	return (f);
 }
 
@@ -108,4 +109,7 @@ void	ft_export(char **env, char **arg)
 	else
 		while (arg[i])
 			check_arg_export(arg[i++], env);
+	i = 0;
+	while(t[i])
+		free(t[i++]);
 }

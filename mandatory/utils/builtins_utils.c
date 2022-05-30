@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/25 20:09:38 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/05/26 22:43:54 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	ft_cd(char **arg, char **env)
-{
-	int	i;
-
-	i = chdir(arg[1]);
-	printf("%d\n", i);
-}
 
 void	ft_print_env(char **env)
 {

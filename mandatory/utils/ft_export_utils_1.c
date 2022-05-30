@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:06 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/25 20:32:07 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/05/29 19:25:53 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	add_to_env_norm(char *name, char *value, char *f, char **env)
 		i++;
 	}
 	env[i] = NULL;
+	return(free(value), free(name), free(f));
 }
 
 void	add_to_env(char *arg, char **env)
@@ -96,7 +97,7 @@ void	check_arg_export(char *arg, char **env)
 	return ;
 }
 
-char	**ft_sort_env(char **env)
+char	** ft_sort_env(char **env)
 {
 	char	**t;
 	int		i;
