@@ -21,7 +21,7 @@ char	*get_var_2(char *str, char **env, int k, int i)
 	j = 0;
 	if (!ft_strncmp(str, "$", ft_strlen(str)))
 	{
-		ret = ft_itoa(k);
+		ret = ft_itoa(0);
 		return (ret);
 	}
 	tmp = cpy(tmp, str);
@@ -30,13 +30,17 @@ char	*get_var_2(char *str, char **env, int k, int i)
 		if (!ft_strncmp(env[i], str, ft_strlen(str)))
 			break ;
 	if (!env[i])
+	{
+		free (str);
 		return (NULL);
+	}
 	while (env[i][j++] != '=')
 		i = i;
 	ret = malloc (sizeof (char) * (ft_strlen(env[i]) - j + 1));
 	while (env[i][j])
 		ret[k++] = env[i][j++];
 	ret[k] = '\0';
+	free (str);
 	return (ret);
 }
 
@@ -55,7 +59,7 @@ char	*get_var_utils_1(char *str, int *j, int *k)
 	}
 	tmp[i] = '\0';
 	(*k) = i + 1;
-	while (str[i] != 34 && str[i])
+	while (str[i] && str[i] != 34)
 	{
 		i++;
 		(*j)++;
@@ -91,6 +95,7 @@ char	*get_var_utils_1(char *str, int *j, int *k)
 char	*get_var(char *str, char **env, int j)
 {
 	char	*ret;
+	char	*tmp;
 	char	*tmp2;
 	int		i;
 	int		k;
@@ -101,7 +106,7 @@ char	*get_var(char *str, char **env, int j)
 	while (str[k] && (ft_isalnum(str[k]) || str[k] == '_' || str[k] == '?'))
 	{
 		tmp2[i++] = str[k++];
-		if (str[k + 1] == '?')
+		if (str[k - 1] == '?')
 			break ;
 	}
 	tmp2[i] = '\0';
@@ -110,23 +115,28 @@ char	*get_var(char *str, char **env, int j)
 	else if (!tmp2[0])
 		ret = ft_strjoin(ret, "$");
 	else
-		ret = ft_strjoin(ret, get_var_2(tmp2, env, 0, -1));
+	{
+		tmp = get_var_2(tmp2, env, 0, -1);
+		ret = ft_strjoin(ret, tmp);
+		free (tmp);
+	}
 	free (tmp2);
-	tmp2 = malloc(ft_strlen(str) - k + 1);
-	i = 0;
-	while (str[k])
-		tmp2[i++] = str[k++];
-	tmp2[i] = '\0';
-	ret = ft_strjoin(ret, tmp2);
-	free (tmp2);
+	// tmp2 = malloc(ft_strlen(str) - k + 1);
+	// i = 0;
+	// while (str[k])
+	// 	tmp2[i++] = str[k++];
+	// tmp2[i] = '\0';
+	// ret = ft_strjoin(ret, tmp2);
+	// free (tmp2);
 	return (ret);
 }
 
-char	**edit_var(char **ret, char **env)
+void	edit_var(char **ret, char **env)
 {
 	int		i;
 	int		j;
 	int		k;
+	char	*tmp;	
 
 	i = -1;
 	k = 1;
@@ -142,9 +152,13 @@ char	**edit_var(char **ret, char **env)
 			if (ret[i][j] == 34 && check_next_qu(ret[i], 34, j) && !k)
 				k = 0;
 			if (k && ret[i][j] == '$')
-				ret[i] = get_var(ret[i], env, j);
+			{
+				tmp = cpy (tmp, ret[i]);
+				free (ret[i]);
+				ret[i] = get_var(tmp, env, j);
+				free (tmp);
+			}
 		}
 	}
-	i = -1;
-	return (ret);
+	ret[i] = NULL;
 }

@@ -31,17 +31,17 @@ int	get_glo(int i)
 	return (j);
 }
 
-struct termios	remove_ctlc(void)
-{
-	struct termios	terminal;
-	struct termios	terminal2;
+// struct termios	remove_ctlc(void)
+// {
+// 	struct termios	terminal;
+// 	struct termios	terminal2;
 
-	tcgetattr(0, &terminal);
-	terminal2 = terminal;
-	terminal.c_lflag &= ~(ECHOCTL);
-	tcsetattr(0, TCSANOW | TCSAFLUSH, &terminal);
-	return (terminal2);
-}
+// 	tcgetattr(0, &terminal);
+// 	terminal2 = terminal;
+// 	terminal.c_lflag &= ~(ECHOCTL);
+// 	tcsetattr(0, TCSANOW | TCSAFLUSH, &terminal);
+// 	return (terminal2);
+// }
 
 void	ft_sig(int signum)
 {
@@ -54,9 +54,9 @@ void	ft_sig(int signum)
 	}
 	else if (signum == SIGQUIT && !get_glo(2))
 	{
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
+		// rl_on_new_line();
+		// rl_replace_line("", 0);
+		// rl_redisplay();
 		return ;
 	}
 	else

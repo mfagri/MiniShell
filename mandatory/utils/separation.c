@@ -62,7 +62,9 @@ char	*sep(char *str, int i, int k)
 		{
 			ret[k++] = ' ';
 			ret[k++] = str[i++];
+			q = get_q_1(str, i, q);
 			ret[k++] = str[i++];
+			q = get_q_1(str, i, q);
 			ret[k++] = ' ';
 		}
 		ret[k++] = str[i++];

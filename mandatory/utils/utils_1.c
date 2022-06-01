@@ -66,7 +66,7 @@ char	*get_path(char **env, char *command)
 	ret = get_path_2(env, command);
 	i = -1;
 	while (ret[++i])
-		if (!access(ret[i], F_OK))
+		if (!access(ret[i], F_OK | X_OK))
 			break ;
 	if (!ret[i])
 		path = NULL;
