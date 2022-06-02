@@ -40,12 +40,10 @@ int	get_allocation(char *str)
 	return (k);
 }
 
-char	*sep(char *str, int i, int k)
+void	sep_utils(int i, int k, char *ret, char *str)
 {
-	char	*ret;
 	char	q;
 
-	ret = malloc (sizeof (char) * (get_allocation(str) + 2));
 	q = '\0';
 	while (str[i])
 	{
@@ -62,7 +60,6 @@ char	*sep(char *str, int i, int k)
 		{
 			ret[k++] = ' ';
 			ret[k++] = str[i++];
-			q = get_q_1(str, i, q);
 			ret[k++] = str[i++];
 			q = get_q_1(str, i, q);
 			ret[k++] = ' ';
@@ -70,5 +67,15 @@ char	*sep(char *str, int i, int k)
 		ret[k++] = str[i++];
 	}
 	ret[k] = '\0';
+}
+
+char	*sep(char *str, int i, int k)
+{
+	char	*ret;
+	char	q;
+
+	ret = malloc (sizeof (char) * (get_allocation(str) + 2));
+	q = '\0';
+	sep_utils(i, k, ret, str);
 	return (ret);
 }

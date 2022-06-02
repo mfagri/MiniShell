@@ -182,7 +182,6 @@ void	child_exec(char ***splited, char *path, int t, char **env)
 {
 	if (path && access(path, F_OK | X_OK))
 		exit (126);
-	// tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
 	if (execve(path, splited[t], env) == -1)
 	{
 		printf ("minishell: %s: command not found\n", splited[t][0]);
@@ -197,8 +196,6 @@ int	remove_path_2(char *str)
 		return (1);
 	return (0);
 }
-
- 
 
 char	*remove_pwd(char **env, int i)
 {
@@ -345,7 +342,7 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 	fd = malloc (sizeof (int) * 2);
 	fd[0] = -2;
 	fd[1] = -2;
-	i = -1;
+	// i = -1;
 	// while (splited[t][++i])
 	// {
 	// 	printf ("%s\n", splited[t][i]);
@@ -434,8 +431,6 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 					printf ("minishell: %s: Permission denied\n", splited[t][i + 1]);
 					return (0);
 				}
-				dup2 (k, 0);
-				close (k);
 			}
 			else
 			{
@@ -443,6 +438,11 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 				return (0);
 			}
 		}
+	}
+	if (k != -1)
+	{
+		dup2 (k, 0);
+		close (k);
 	}
 	i = -1;
 	k = -1;

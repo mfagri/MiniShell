@@ -56,3 +56,52 @@ void	remove_from_env(char *arg, char **env, int l)
 	if (l)
 		env[i - 1] = NULL;
 }
+
+void	ft_cd(char **arg, char **env)
+{
+	char	*oldpath;
+	char	*newpath;
+
+	oldpath = ft_take_pwd_old("OLDPWD=");
+	if (!arg[1])
+		ft_home(env);
+	else
+	{
+		if (!strncmp("-", arg[1], ft_strlen("-")))
+			ft_oldpwd(env);
+		else if (ft_count_args(arg) > 2)
+			return (ft_putstr_fd("minishell: cd: too many arguments\n", 2));
+		else
+			if (chdir(arg[1]) == -1)
+				printf("minishell: cd: %s : No such file \
+					or directory\n", arg[1]);
+	}
+	newpath = ft_take_pwd_old("PWD=");
+	ft_cd_norm(env, oldpath, "OLDPWD");
+	ft_cd_norm(env, newpath, "PWD");
+	free(oldpath);
+	free(newpath);
+}
+
+void	ft_exit(char **arg, char **env)
+{
+	int	i;
+	int	t;
+
+	t = get_glo_2(0, 0);
+	i = 0;
+	while (arg[i])
+		i++;
+	ft_putstr_fd("exit\n", 1);
+	if (i > 2)
+		printf("minishell: exit: too many arguments\n");
+	if (arg[1] && i <= 2)
+	{
+		t = atoi(arg[1]);
+		get_glo_2(1, t);
+	}
+	i = 0;
+	while (env[i++])
+		free(env[i]);
+	exit (t);
+}

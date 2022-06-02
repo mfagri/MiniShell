@@ -29,7 +29,18 @@ typedef struct	s_spl
 	char	***a_var;
 }	t_spl;
 
-// void			get_old_var(char *tmp, char *str, int i);
+void			ft_putstr_fd(char *s, int fd);
+void			ft_echo(char **pr);
+void			ft_pwd(char **arg);
+void			ft_cd(char **arg, char **env);
+void			ft_exit(char **arg, char **env);
+void			ft_home(char **env);
+void			ft_oldpwd(char **env);
+char			*ft_take_pwd_old(char p[]);
+void			ft_cd_norm(char **env, char *path, char s[]);
+void			ft_unset(char **arg, char **env);
+int				ft_count_args(char **args);
+int				ft_check_n(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			**ft_split(char const *s, char c);
 char			*ft_strjoin(char *s1, char *s2);
@@ -61,7 +72,7 @@ char			*remove_qu(char *str, int i, int j);
 int				check_next_qu(char *str, char c, int i);
 char			*get_arg(char *str, int i, int t);
 int				get_spaces(char *str);
-char			*get_var(char *str, char **env, int j);
+char			*get_var(char *str, char **env, int j, int i);
 char			*get_var_utils_1(char *str, int *j, int *k);
 void			edit_var(char **ret, char **env);
 void			edit_qu(char ***str, int i, int j, t_arg k);

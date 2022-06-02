@@ -12,6 +12,19 @@
 
 #include"../minishell.h"
 
+void	get_var_2_utils(char *env, int j, char **ret, int k)
+{
+	int	i;
+
+	i = 0;
+	while (env[j++] != '=')
+		i = i;
+	*ret = malloc (sizeof (char) * (ft_strlen(env) - j + 1));
+	while (env[j])
+		*(ret)[k++] = env[j++];
+	*(ret)[k] = '\0';
+}
+
 char	*get_var_2(char *str, char **env, int k, int i)
 {
 	int		j;
@@ -34,12 +47,7 @@ char	*get_var_2(char *str, char **env, int k, int i)
 		free (str);
 		return (NULL);
 	}
-	while (env[i][j++] != '=')
-		i = i;
-	ret = malloc (sizeof (char) * (ft_strlen(env[i]) - j + 1));
-	while (env[i][j])
-		ret[k++] = env[i][j++];
-	ret[k] = '\0';
+	get_var_2_utils(env[i], j, &ret, k);
 	free (str);
 	return (ret);
 }
@@ -69,46 +77,33 @@ char	*get_var_utils_1(char *str, int *j, int *k)
 	return (ret);
 }
 
-// void	get_old_var(char *tmp, char *str, int i)
-// {
-// 	int			k;
-// 	int			j;
-// 	static int	p;
+void	get_var_utils_2(char *str, char **ret, int k, char **tmp2)
+{
+	int	i;
 
-// 	k = -1;
-// 	if (!i)
-// 	{
-// 		while (str[++k])
-// 			if (str[k] == '|')
-// 				j++;
-// 		g_glo.after_here_doc = malloc (sizeof (char *) * (j + 1));
-// 		p = 0;
-// 	}
-// 	else
-// 	{
-// 		g_glo.after_here_doc[p] = cpy(g_glo.after_here_doc[p], "$");
-// 		g_glo.after_here_doc[p] = ft_strjoin(g_glo.after_here_doc[p], tmp);
-// 		p++;
-// 	}
-// }
+	i = 0;	
+	free (*tmp2);
+	*tmp2 = malloc(ft_strlen(str) - k + 1);
+	while (str[k])
+		*(tmp2)[i++] = str[k++];
+	*(tmp2)[i] = '\0';
+	*ret = ft_strjoin(*ret, *tmp2);
+	free (*tmp2);
+}
 
-char	*get_var(char *str, char **env, int j)
+char	*get_var(char *str, char **env, int j, int i)
 {
 	char	*ret;
 	char	*tmp;
 	char	*tmp2;
-	int		i;
 	int		k;
 
 	ret = get_var_utils_1(str, &j, &k);
 	tmp2 = malloc (sizeof (char) * (j + 1));
-	i = 0;
-	while (str[k] && (ft_isalnum(str[k]) || str[k] == '_' || str[k] == '?'))
-	{
+	while (str[k] && (ft_isalnum(str[k]) || str[k] == '_'))
 		tmp2[i++] = str[k++];
-		if (str[k - 1] == '?')
-			break ;
-	}
+	if (str[k] == '?')
+		tmp2[i++] = str[k++];
 	tmp2[i] = '\0';
 	if (!strcmp(tmp2, "?"))
 		ret = ft_strjoin(ret, ft_itoa(get_glo_2(0, 0)));
@@ -120,14 +115,7 @@ char	*get_var(char *str, char **env, int j)
 		ret = ft_strjoin(ret, tmp);
 		free (tmp);
 	}
-	free (tmp2);
-	// tmp2 = malloc(ft_strlen(str) - k + 1);
-	// i = 0;
-	// while (str[k])
-	// 	tmp2[i++] = str[k++];
-	// tmp2[i] = '\0';
-	// ret = ft_strjoin(ret, tmp2);
-	// free (tmp2);
+	get_var_utils_2(str, &ret, k, &tmp2);
 	return (ret);
 }
 
@@ -155,7 +143,7 @@ void	edit_var(char **ret, char **env)
 			{
 				tmp = cpy (tmp, ret[i]);
 				free (ret[i]);
-				ret[i] = get_var(tmp, env, j);
+				ret[i] = get_var(tmp, env, j, 0);
 				free (tmp);
 			}
 		}
