@@ -348,6 +348,7 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 	// 	printf ("%s\n", splited[t][i]);
 	// }
 	i = -1;
+	k = -1;
 	while (splited[t][++i])
 	{
 		if (!(ft_strcmp(">", splited[t][i])))
@@ -606,6 +607,7 @@ int	exec(int fd, char **env)
 		// 	}
 		// }
 		r[t] = fork();
+		k = check_redi(&comm, t, stdin, fdd);
 		if (check_command(env, splited[t], r[t]) && !r[t])
 		{
 			if (splited[t + 1])
@@ -614,30 +616,13 @@ int	exec(int fd, char **env)
 				close(fdd[0]);
 				close(fdd[1]);
 			}
-			k = check_redi(&comm, t, stdin, fdd);
 			path = get_path(env, splited[t][0]);
-			// if (!k)
-			// {
-			// 	dup2(stdout, 1);
-			// 	dup2(stdin, 0);
-			// 	// close (stdout);
-			// 	// close (stdin);
-			// }
-			// else
-			// {
-			// 	dup2(stdout, 1);
-			// 	// close (stdout);
-			// 	// close (stdin);
-			// }
 			if (k)
 				child_exec(splited, path, t, env);
 			exit (1);
 		}
-		if (!splited[t + 1])
-		{
-			get_glo(1);
-			// remove_ctlc();
-		}
+		dup2(stdin, 0);
+		dup2(stdout, 1);
 		k = -1;
 		if (splited[t + 1])
 		{
