@@ -1,17 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_pr.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/03 12:28:07 by aaitoual          #+#    #+#             */
+/*   Updated: 2022/06/03 12:28:08 by aaitoual         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-int	check_pr(char **str)
+int	check_pr_utils_1(char **str, char q, int i)
 {
-	int		i;
-	int		j;
-	char	q;
-	int		u;
+	int	j;
 
-	i = -1;
-	i = 0;
-	u = 0;
-	q = '\0';
-	if (str[0][0] == ' ')
+	if (str[0][0] == ' ' || !str[0][0])
 		i = 1;
 	if ((str[i][0] == '|' || str[i][0] == '>' || str[i][0] == '<'))
 		return (0);
@@ -32,8 +37,17 @@ int	check_pr(char **str)
 				return (0);
 		}
 	}
+	return (1);
+}
+
+int	check_pr_utils_2(char **str, char q)
+{
+	int	i;
+	int	j;
+
+	if (!check_pr_utils_1(str, q, 0))
+		return (0);
 	i = -1;
-	q = '\0';
 	while (str[++i])
 	{
 		j = -1;
@@ -42,45 +56,71 @@ int	check_pr(char **str)
 	}
 	if (q)
 		return (0);
-	i = -1;
-	u = 0;
-	i = - 1;
+	return (1);
+}
+
+int	check_pr_utils_4(char **str, int u, int i, int j)
+{
 	while (str[++i])
 	{
 		j = -1;
 		while (str[i][++j])
 		{
-			if ((str[i][j] == '<' && str[i][j + 1] != '<') || (str[i][j] == '>' && str[i][j + 1] != '>'))
-			{
-				if (u)
-					return (0);
-				else
-					u = 1;
-			}
-			if (str[i][j] != '|' && str[i][j] != '<' && str[i][j] != '>' && str[i][j] != '<' && str[i][j] && str[i][j] != ' ')
-				u = 0;
-		}
-	}
-	if (u)
-		return (0);
-	i = -1;
-	while (str[++i])
-	{
-		j = -1;
-		while (str[i][++j])
-		{
-			if ((str[i][j] == '<' && str[i][j + 1] == '<'  && str[i][j + 2] != '<') || (str[i][j] == '>' && str[i][j + 1] == '>'  && str[i][j + 2] != '>'))
+			if ((str[i][j] == '<' && str[i][j + 1] == '<'
+				&& str[i][j + 2] != '<') || (str[i][j] == '>'
+				&& str[i][j + 1] == '>' && str[i][j + 2] != '>'))
 			{
 				if (u)
 					return (0);
 				else if (!u)
 					u = 1;
 			}
-			if (str[i][j] != '|' && str[i][j] != '<' && str[i][j] != '>' && str[i][j] != '<' && str[i][j] && str[i][j] != ' ')
+			if (str[i][j] != '|' && str[i][j] != '<'
+				&& str[i][j] != '>' && str[i][j] != '<'
+				&& str[i][j] && str[i][j] != ' ')
 				u = 0;
 		}
 	}
 	if (u)
+		return (0);
+	return (1);
+}
+
+int	check_pr_utils_3(char **str, int u, int i, int j)
+{
+	while (str[++i])
+	{
+		j = -1;
+		while (str[i][++j])
+		{
+			if ((str[i][j] == '<' && str[i][j + 1] != '<')
+				|| (str[i][j] == '>' && str[i][j + 1] != '>'))
+			{
+				if (u)
+					return (0);
+				else
+					u = 1;
+			}
+			if (str[i][j] != '|' && str[i][j] != '<' && str[i][j] != '>'
+					&& str[i][j] != '<' && str[i][j] && str[i][j] != ' ')
+				u = 0;
+		}
+	}
+	if (u)
+		return (0);
+	return (1);
+}
+
+int	check_pr(char **str)
+{
+	int		i;
+	int		j;
+
+	if (!check_pr_utils_2(str, '\0'))
+		return (0);
+	if (!check_pr_utils_3(str, 0, -1, 0))
+		return (0);
+	if (!check_pr_utils_4(str, 0, -1, 0))
 		return (0);
 	return (1);
 }

@@ -12,6 +12,19 @@
 
 #include "../minishell.h"
 
+int	get_glo(int i)
+{
+	static int	j;
+
+	if (i == 0)
+		j = 0;
+	else if (i == 1)
+		j = 1;
+	else
+		return (j);
+	return (j);
+}
+
 void	ft_sig(int signum)
 {
 	if (signum == SIGINT && !get_glo(2))

@@ -77,7 +77,6 @@ void			edit_var(char **ret, char **env, int i, int k);
 void			edit_qu(char ***str, int i, int j, t_arg k);
 char			*sep(char *str, int i, int k);
 char			*remove_pwd(char **env, int i);
-int				check_pr(char **str);
 int				ft_strcmp(const char *s1, const char *s2);
 void			ft_echo(char **pr);
 void			ft_pwd(char **arg);
@@ -110,5 +109,5 @@ void			free_2(char **str);
 void			edit_ret(char **str);
 char			**cpy_2(char **str);
 t_spl			get_comm(int fd, char ***ret, char ***ret2, char **env);
-
+int				check_pr(char **str);
 #endif

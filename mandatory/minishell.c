@@ -118,7 +118,6 @@ char	*remove_pwd(char **env, int i)
 }
 
 
-
 // int	check_doll(char *str)
 // {
 // 	int	i;

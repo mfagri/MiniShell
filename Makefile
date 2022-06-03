@@ -24,6 +24,7 @@ FILE =  ./mandatory/minishell.c ./mandatory/utils/ft_split.c ./mandatory/utils/f
 		./mandatory/utils/vars.c ./mandatory/utils/separation.c ./mandatory/utils/ft_export.c \
 		./mandatory/utils/builtins.c ./mandatory/utils/builtins_utils.c ./mandatory/utils/ft_export_utils_1.c ./mandatory/utils/ft_export_utils_2.c\
 		./mandatory/utils/builtins_utils_2.c ./mandatory/utils/vars_utils.c ./mandatory/utils/get_command.c ./mandatory/utils/get_command_utils.c \
+		./mandatory/utils/check_pr.c \
 
 FILE1 = $(FILE:.c=.o)
 
