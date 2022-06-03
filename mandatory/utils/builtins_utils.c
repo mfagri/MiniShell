@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/03 16:22:55 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/03 21:53:59 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	ft_exit(char **arg, char **env)
 		i++;
 	ft_putstr_fd("exit\n", 1);
 	if (i > 2)
-		printf("minishell: exit: too many arguments\n");
+		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 	if (arg[1] && i <= 2)
 	{
 		t = atoi(arg[1]);

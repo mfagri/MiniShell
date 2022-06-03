@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 04:30:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/03 16:00:05 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/03 22:18:28 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	ft_echo(char **pr)
 	n_option = 0;
 	while (pr[i] && ft_check_n(pr[i], "-n") == 0)
 	{
-		if(pr[i][1] == 'n')
+		if (pr[i][1] == 'n')
 			n_option = 1;
-		if(pr[i][1] != 'n')
-			break;
+		if (pr[i][1] != 'n')
+			break ;
 		i++;
 	}
 	while (pr[i])
@@ -77,9 +77,9 @@ void	ft_pwd(char **arg)
 {
 	char	s[1024];
 
-	if (arg[1])
-		return (ft_putstr_fd("pwd: too many arguments\n", 2));
 	getcwd(s, sizeof(s));
+	if (!s)
+		return (perror("pwd"));
 	printf("%s\n", s);
 }
 
