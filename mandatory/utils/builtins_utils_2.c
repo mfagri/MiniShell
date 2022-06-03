@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 08:50:42 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/02 08:50:44 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/03 16:30:04 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	ft_cd_norm(char **env, char *path, char s[])
 		if (!strncmp(s, env[i], ft_strlen(s)))
 		{
 			j = 1;
+			free(env[i]);
 			env[i] = cpy(env[i], path);
 		}
 	}
@@ -98,4 +99,5 @@ void	ft_cd_norm(char **env, char *path, char s[])
 		i++;
 	}
 	env[i] = NULL;
+	free(path);
 }

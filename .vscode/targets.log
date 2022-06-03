@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Fri Jun  3 13:50:12 2022
+# Make data base, printed on Fri Jun  3 17:31:51 2022
 
 # Variables
 
@@ -40,11 +40,11 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 P9K_SSH = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000ccsr00336f/T/vscode-ipc-7116d351-69a9-4d30-a77f-30c775ea9b3a.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000ccsr00336f/T/vscode-ipc-eec44b90-27fe-4af4-b669-41b5f44dae44.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.qRH7S9Tycy/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.SPPsQ6kRnK/Render
 # environment
 PATH = /Users/mfagri/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/mfagri/goinfre/devtools/Android/sdk/tools/bin:/Users/mfagri/goinfre/devtools/Android/sdk/emulator:/Users/mfagri/goinfre/devtools/flutter/bin:/Users/mfagri/goinfre/devtools/gradle/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/mfagri/goinfre/devtools/jdk/Contents/Home/bin
 # environment
@@ -60,7 +60,7 @@ LIB = ./mandatory/minishell.h
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.iOximBxBDx/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.ast8QmyGdI/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -142,13 +142,15 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.2692
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000001.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0x18CCE:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -161,6 +163,8 @@ PAGER = less
 ANDROID_SDK_ROOT = /Users/mfagri/goinfre/devtools/Android/sdk
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 186a7
 # automatic
 ^F = $(notdir $^)
 # environment
@@ -178,9 +182,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 70367
+VSCODE_PID = 2414
 # variable set hash-table stats:
-# Load=84/1024=8%, Rehash=0, Collisions=5/113=4%
+# Load=86/1024=8%, Rehash=0, Collisions=5/115=4%
 
 # Pattern-specific Variable Values
 
@@ -208,7 +212,7 @@ VSCODE_PID = 70367
 mandatory/utils/check_pr.o: mandatory/utils/check_pr.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/check_pr'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 15:37:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -257,10 +261,10 @@ mandatory/utils/vars.c:
 mandatory/utils/handler.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-06-03 12:57:53
+ 
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
- 
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
@@ -311,7 +315,7 @@ mandatory/utils/ft_isalnum.c:
 mandatory/utils/ft_itoa.o: mandatory/utils/ft_itoa.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_itoa'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -323,7 +327,7 @@ mandatory/utils/ft_itoa.o: mandatory/utils/ft_itoa.c
 mandatory/utils/ft_strlen.o: mandatory/utils/ft_strlen.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_strlen'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -335,7 +339,7 @@ mandatory/utils/ft_strlen.o: mandatory/utils/ft_strlen.c
 mandatory/utils/ft_export_utils_1.o: mandatory/utils/ft_export_utils_1.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_export_utils_1'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 15:37:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -347,7 +351,7 @@ mandatory/utils/ft_export_utils_1.o: mandatory/utils/ft_export_utils_1.c
 mandatory/utils/ft_isdigit.o: mandatory/utils/ft_isdigit.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_isdigit'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -359,7 +363,7 @@ mandatory/utils/ft_isdigit.o: mandatory/utils/ft_isdigit.c
 mandatory/utils/builtins_utils.o: mandatory/utils/builtins_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/builtins_utils'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 16:30:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -386,7 +390,7 @@ Makefile:
 mandatory/utils/quotations.o: mandatory/utils/quotations.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/quotations'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -398,7 +402,7 @@ mandatory/utils/quotations.o: mandatory/utils/quotations.c
 mandatory/utils/get_command_utils.o: mandatory/utils/get_command_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/get_command_utils'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 15:37:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -419,7 +423,7 @@ mandatory/utils/get_next_line.c:
 mandatory/utils/ft_strjoin.o: mandatory/utils/ft_strjoin.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_strjoin'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -431,7 +435,7 @@ mandatory/utils/ft_strjoin.o: mandatory/utils/ft_strjoin.c
 mandatory/utils/ft_split.o: mandatory/utils/ft_split.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_split'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -452,7 +456,7 @@ mandatory/utils/check_pr.c:
 mandatory/utils/vars_utils.o: mandatory/utils/vars_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/vars_utils'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 15:37:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -464,7 +468,7 @@ mandatory/utils/vars_utils.o: mandatory/utils/vars_utils.c
 mandatory/utils/ft_export.o: mandatory/utils/ft_export.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_export'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -476,7 +480,7 @@ mandatory/utils/ft_export.o: mandatory/utils/ft_export.c
 mandatory/utils/ft_export_utils_2.o: mandatory/utils/ft_export_utils_2.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_export_utils_2'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 15:37:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -485,10 +489,10 @@ mandatory/utils/ft_export_utils_2.o: mandatory/utils/ft_export_utils_2.c
 	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
 	
 
+ 
 minishell: mandatory/minishell.o mandatory/utils/ft_split.o mandatory/utils/ft_strncmp.o mandatory/utils/get_next_line_utils.o mandatory/utils/get_next_line.o mandatory/utils/ft_strlen.o mandatory/utils/ft_strjoin.o mandatory/utils/utils_1.o mandatory/utils/ft_strlcpy.o mandatory/utils/ft_isdigit.o mandatory/utils/ft_isalnum.o mandatory/utils/ft_itoa.o mandatory/utils/handler.o mandatory/utils/utils_2.o mandatory/utils/quotations.o mandatory/utils/get_arg.o mandatory/utils/vars.o mandatory/utils/separation.o mandatory/utils/ft_export.o mandatory/utils/builtins.o mandatory/utils/builtins_utils.o mandatory/utils/ft_export_utils_1.o mandatory/utils/ft_export_utils_2.o mandatory/utils/builtins_utils_2.o mandatory/utils/vars_utils.o mandatory/utils/get_command.o mandatory/utils/get_command_utils.o mandatory/utils/check_pr.o mandatory/minishell.h
 #  Implicit rule search has not been done.
- 
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 16:30:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -508,7 +512,7 @@ fclean: clean
 mandatory/minishell.o: mandatory/minishell.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/minishell'
-#  Last modified 2022-06-03 13:06:00
+#  Last modified 2022-06-03 15:36:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -562,7 +566,7 @@ mandatory/utils/ft_isdigit.c:
 # Not a target:
 mandatory/utils/builtins_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-03 12:57:53
+#  Last modified 2022-06-03 16:22:55
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -571,7 +575,7 @@ mandatory/utils/builtins_utils.c:
 mandatory/utils/builtins.o: mandatory/utils/builtins.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/builtins'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 16:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -583,7 +587,7 @@ mandatory/utils/builtins.o: mandatory/utils/builtins.c
 mandatory/utils/builtins_utils_2.o: mandatory/utils/builtins_utils_2.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/builtins_utils_2'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 16:30:07
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -604,7 +608,7 @@ mandatory/utils/quotations.c:
 mandatory/utils/get_next_line_utils.o: mandatory/utils/get_next_line_utils.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/get_next_line_utils'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -616,7 +620,7 @@ mandatory/utils/get_next_line_utils.o: mandatory/utils/get_next_line_utils.c
 mandatory/utils/utils_1.o: mandatory/utils/utils_1.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/utils_1'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -642,7 +646,7 @@ re: fclean all
 mandatory/utils/get_command.o: mandatory/utils/get_command.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/get_command'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 15:37:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -680,7 +684,7 @@ mandatory/utils/ft_split.c:
 mandatory/utils/separation.o: mandatory/utils/separation.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/separation'
-#  Last modified 2022-06-03 13:06:02
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -710,7 +714,7 @@ mandatory/utils/ft_export.c:
 mandatory/utils/vars.o: mandatory/utils/vars.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/vars'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -722,7 +726,8 @@ mandatory/utils/vars.o: mandatory/utils/vars.c
 mandatory/utils/handler.o: mandatory/utils/handler.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/handler'
-#  Last modified 2022-06-03 13:06:01
+ 
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -734,7 +739,7 @@ mandatory/utils/handler.o: mandatory/utils/handler.c
 mandatory/utils/ft_strlcpy.o: mandatory/utils/ft_strlcpy.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_strlcpy'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -746,10 +751,9 @@ mandatory/utils/ft_strlcpy.o: mandatory/utils/ft_strlcpy.c
 mandatory/utils/get_arg.o: mandatory/utils/get_arg.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/get_arg'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
- 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 #  commands to execute (from `Makefile', line 39):
@@ -759,7 +763,7 @@ mandatory/utils/get_arg.o: mandatory/utils/get_arg.c
 mandatory/utils/ft_strncmp.o: mandatory/utils/ft_strncmp.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_strncmp'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -771,7 +775,7 @@ mandatory/utils/ft_strncmp.o: mandatory/utils/ft_strncmp.c
 mandatory/utils/utils_2.o: mandatory/utils/utils_2.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/utils_2'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -783,7 +787,7 @@ mandatory/utils/utils_2.o: mandatory/utils/utils_2.c
 mandatory/utils/ft_isalnum.o: mandatory/utils/ft_isalnum.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/ft_isalnum'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -813,7 +817,7 @@ mandatory/utils/ft_export_utils_2.c:
 # Not a target:
 mandatory/utils/builtins.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-03 12:57:53
+#  Last modified 2022-06-03 16:00:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -822,7 +826,7 @@ mandatory/utils/builtins.c:
 # Not a target:
 mandatory/utils/builtins_utils_2.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-03 12:57:53
+#  Last modified 2022-06-03 16:30:04
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -840,7 +844,7 @@ mandatory/utils/get_next_line_utils.c:
 mandatory/utils/get_next_line.o: mandatory/utils/get_next_line.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: `mandatory/utils/get_next_line'
-#  Last modified 2022-06-03 13:06:01
+#  Last modified 2022-06-03 15:36:59
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -880,6 +884,6 @@ mandatory/utils/utils_1.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Jun  3 13:50:12 2022
+# Finished Make data base on Fri Jun  3 17:31:51 2022
 
  

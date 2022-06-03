@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/26 22:43:54 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/03 16:22:55 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_cd(char **arg, char **env)
 		if (!strncmp("-", arg[1], ft_strlen("-")))
 			ft_oldpwd(env);
 		else if (ft_count_args(arg) > 2)
-			return (ft_putstr_fd("minishell: cd: too many arguments\n", 2));
+			return (ft_putstr_fd("minishell: cd: too many arguments\n", 2),free(oldpath));
 		else
 			if (chdir(arg[1]) == -1)
 				printf("minishell: cd: %s : No such file \
@@ -79,8 +79,6 @@ void	ft_cd(char **arg, char **env)
 	newpath = ft_take_pwd_old("PWD=");
 	ft_cd_norm(env, oldpath, "OLDPWD");
 	ft_cd_norm(env, newpath, "PWD");
-	free(oldpath);
-	free(newpath);
 }
 
 void	ft_exit(char **arg, char **env)

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 15:50:39 by aaitoual          #+#    #+#             */
-/*   Updated: 2021/11/11 19:38:07 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/03 18:21:13 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include"../minishell.h"
 
 static size_t	lenp(const char *src)

@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 04:30:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/05/30 20:49:47 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/03 16:00:05 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	ft_echo(char **pr)
 	n_option = 0;
 	while (pr[i] && ft_check_n(pr[i], "-n") == 0)
 	{
-		n_option = 1;
+		if(pr[i][1] == 'n')
+			n_option = 1;
+		if(pr[i][1] != 'n')
+			break;
 		i++;
 	}
 	while (pr[i])

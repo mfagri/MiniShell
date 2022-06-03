@@ -1,11 +1,13 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/mfagri/Desktop/MiniShell'
 cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/minishell.o  -c mandatory/minishell.c
+ 
 cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_split.o  -c mandatory/utils/ft_split.c
 cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_strncmp.o  -c mandatory/utils/ft_strncmp.c
 cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/get_next_line_utils.o  -c mandatory/utils/get_next_line_utils.c
 cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/get_next_line.o  -c mandatory/utils/get_next_line.c
 cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_strlen.o  -c mandatory/utils/ft_strlen.c
+ 
 cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_strjoin.o  -c mandatory/utils/ft_strjoin.c
 cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/utils_1.o  -c mandatory/utils/utils_1.c
 cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_strlcpy.o  -c mandatory/utils/ft_strlcpy.c
