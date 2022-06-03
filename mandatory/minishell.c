@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/03 19:59:13 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/03 20:50:19 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -435,7 +435,11 @@ int	exec(int fd, char **env)
 			pipe(fdd);
 		k = check_redi(&comm, t, stdin, fdd);
 		if (!splited[t][0])
+		{
+			dup2(stdin, 0);
+			dup2(stdout, 1);
 			break ;
+		}
 		r[t] = fork();
 		if (check_command(env, splited[t], r[t]) && !r[t])
 		{
