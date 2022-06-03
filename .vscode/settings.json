@@ -3,5 +3,6 @@
 		"term.h": "c",
 		"minishell.h": "c",
 		"tmp": "c"
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }

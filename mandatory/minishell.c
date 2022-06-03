@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/30 20:53:39 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/03 13:02:07 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -465,7 +465,10 @@ int	exec(int fd, char **env)
 	}
 	r[t] = '\0';
 	while (--t != -1)
+	{
+		get_glo(1);
 		waitpid(r[t], &k, 0);
+	}
 	if (WIFSIGNALED(k))
 		get_glo_2(1, k + 128);
 	else if (WEXITSTATUS(k))
@@ -531,29 +534,16 @@ char	*ft_strrchr(char *s, int c)
 
 int	main(int ac, char **av, char **env)
 {
-	int		r;
-	int k;
-	char	**pr;
-	char	*command;
 	int		fd;
-	//struct termios terminal2;
 
 	rl_catch_signals = 0;
 	fd = get_history();
 	get_env(env);
-	//terminal2 = remove_ctlc();
 	signal(SIGINT, ft_sig);
 	signal(SIGQUIT,ft_sig);
-	// k = exec(fd, env);
-	k = 0;
-	while (k != -2)
-		k = exec(fd, env);
-	// if(k == 0)
-	// {
-	// 	//tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
-	// 	exit(0);
-	// }
-	// r = -1;
-	// while (env[++r])
-	// 	free (env[r]);
+	while (1)
+	{
+		get_glo(0);
+		exec(fd, env);
+	}
 }
