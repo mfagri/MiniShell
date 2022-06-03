@@ -12,25 +12,6 @@
 
 #include "../minishell.h"
 
-void	get_tt(void)
-{
-	write (1, "\033[1A\033[11Cexit\n", 14);
-	exit (0);
-}
-
-int	get_glo(int i)
-{
-	static int	j;
-
-	if (i == 0)
-		j = 0;
-	else if (i == 1)
-		j = 1;
-	else
-		return (j);
-	return (j);
-}
-
 void	ft_sig(int signum)
 {
 	if (signum == SIGINT && !get_glo(2))

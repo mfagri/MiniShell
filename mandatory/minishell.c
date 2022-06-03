@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 int	get_glo_2(int i, int j)
 {
@@ -68,12 +68,12 @@ void	free_2(char **str)
 	free (str);
 }
 
-char **cpy_2(char **str)
+char	**cpy_2(char **str)
 {
 	int		i;
 	int		j;
 	char	**ret;
-	
+
 	i = -1;
 	while (str[++i])
 		i = i;
@@ -83,99 +83,6 @@ char **cpy_2(char **str)
 		ret[i] = cpy(ret[i], str[i]);
 	ret[i] = NULL;
 	return (ret);
-}
-
-t_spl	get_command(char **env, int fd)
-{
-	char	*command;
-	char	*tmp;
-	char	*tmp3;
-	char	*tmp2;
-	char	***splited;
-	char	**ret;
-	char	**ret2;
-	t_spl	comm;
-	int		i;
-	int		k;
-	char	r;
-	int		t;
-	t_arg	ll;
-
-	k = 0;
-	i = 0;
-	t = -1;
-	r = '\0';
-	
-	tmp = readline("minishell=>");
-	if (!tmp)
-	{
-		write (1, "\033[1A\033[11Cexit\n", 14);
-		free (tmp);
-		exit (0);
-	}
-	if (!ft_strncmp("(null)", tmp, ft_strlen(tmp)))
-	{
-		free (tmp);
-		return (get_command(env, fd));
-	}
-	add_history(tmp);
-	if (tmp)
-	{
-		write (fd, "\n", 1);
-		write (fd, tmp, ft_strlen(tmp));
-	}
-	ret = malloc (sizeof(char*) * (get_spaces(tmp) + 1));
-	tmp2 = cpy(tmp2, tmp);
-	free (tmp);
-	tmp = sep(tmp2, 0, 0);
-	free (tmp2);
-	i = -1;
-	while (tmp[++i])
-	{
-		r = get_q_1(tmp, i, r);
-		if ((tmp[i] == ' ' && tmp[i + 1] != ' ' && tmp[i + 1]))
-		{
-			if (!r)
-			{
-				ret[k] = get_arg(tmp, i, t);
-				k++;
-				t = i;
-				i++;
-				r = get_q_1(tmp, i, r);
-			}
-		}
-		if (!tmp[i])
-			break ;
-	}
-	if (i - t - 1 > 0 && tmp[t + 1])
-		ret[k++] = get_arg(tmp, i, t);
-	free (tmp);
-	ret[k] = NULL;
-	if (!check_pr(ret))
-	{
-		printf ("%s\n", "syntax error");
-		get_glo_2(1, 258);
-		free_2(ret);
-		return (get_command(env, fd));
-	}
-	ret2 = cpy_2(ret);
-	edit_var(ret, env);
-	edit_ret(ret);
-	if (!ret[0])
-	{
-		free_2 (ret);
-		free_2 (ret2);
-		return (get_command(env, fd));
-	}
-	splited = split_pr(ret, 0, 0, '\0');
-	free_2 (ret);
-	edit_qu(splited, -1, 0, ll);
-	comm.a_var = splited;
-	edit_ret(ret2);
-	comm.b_var = split_pr(ret2, 0, 0, '\0');
-	free_2 (ret2);
-	edit_qu(comm.b_var, -1, 0, ll);
-	return (comm);
 }
 
 void	child_exec(char ***splited, char *path, int t, char **env)
@@ -204,98 +111,13 @@ char	*remove_pwd(char **env, int i)
 
 	k = 3;
 	ret = malloc (sizeof(char) * (ft_strlen(env[i]) - 2));
-	while(env[i][++k])
-	{
+	while (env[i][++k])
 		ret[k - 4] = env[i][k];
-	}
 	ret[k - 4] = '\0';
 	return (ret);
 }
 
-int	check_pr(char **str)
-{
-	int		i;
-	int		j;
-	char	q;
-	int		u;
 
-	i = -1;
-	i = 0;
-	u = 0;
-	q = '\0';
-	if (str[0][0] == ' ')
-		i = 1;
-	if ((str[i][0] == '|' || str[i][0] == '>' || str[i][0] == '<'))
-		return (0);
-	i = -1;
-	while (str[++i])
-	{
-		j = -1;
-		while (str[i][++j])
-			q = get_q(str, i, j, q);
-		if (!(ft_strncmp(str[i], "|", 1)) && !q)
-		{
-			if (str[i + 1])
-			{
-				if (!(ft_strncmp(str[i + 1], "|", ft_strlen(str[i + 1]))))
-					return (0);
-			}
-			else
-				return (0);
-		}
-	}
-	i = -1;
-	q = '\0';
-	while (str[++i])
-	{
-		j = -1;
-		while (str[i][++j])
-			q = get_q(str, i, j, q);
-	}
-	if (q)
-		return (0);
-	i = -1;
-	u = 0;
-	i = - 1;
-	while (str[++i])
-	{
-		j = -1;
-		while (str[i][++j])
-		{
-			if ((str[i][j] == '<' && str[i][j + 1] != '<') || (str[i][j] == '>' && str[i][j + 1] != '>'))
-			{
-				if (u)
-					return (0);
-				else
-					u = 1;
-			}
-			if (str[i][j] != '|' && str[i][j] != '<' && str[i][j] != '>' && str[i][j] != '<' && str[i][j] && str[i][j] != ' ')
-				u = 0;
-		}
-	}
-	if (u)
-		return (0);
-	i = -1;
-	while (str[++i])
-	{
-		j = -1;
-		while (str[i][++j])
-		{
-			if ((str[i][j] == '<' && str[i][j + 1] == '<'  && str[i][j + 2] != '<') || (str[i][j] == '>' && str[i][j + 1] == '>'  && str[i][j + 2] != '>'))
-			{
-				if (u)
-					return (0);
-				else if (!u)
-					u = 1;
-			}
-			if (str[i][j] != '|' && str[i][j] != '<' && str[i][j] != '>' && str[i][j] != '<' && str[i][j] && str[i][j] != ' ')
-				u = 0;
-		}
-	}
-	if (u)
-		return (0);
-	return (1);
-}
 
 // int	check_doll(char *str)
 // {
@@ -332,21 +154,21 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 {
 	int		i;
 	int		j;
+	int		r = 0;
 	int		k;
 	char	**tmp;
 	char	***splited = comm->a_var;
 	char	***before = comm->b_var;
 	char	*str;
 	int		*fd;
+	int		std[2];
 
+
+	std[0] = dup(0);
+	std[1] = dup(1);
 	fd = malloc (sizeof (int) * 2);
 	fd[0] = -2;
 	fd[1] = -2;
-	// i = -1;
-	// while (splited[t][++i])
-	// {
-	// 	printf ("%s\n", splited[t][i]);
-	// }
 	i = -1;
 	k = -1;
 	while (splited[t][++i])
@@ -367,8 +189,8 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 				printf ("minishell: %s: ambiguous redirect\n", before[t][i + 1]);
 				return (0);
 			}
-			dup2 (k, 1);
-			close (k);
+			std[1] = k;
+			r = 1;
 		}
 		if (!(ft_strcmp(">>", splited[t][i])))
 		{
@@ -386,8 +208,8 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 				printf ("minishell: %s: ambiguous redirect\n", before[t][i + 1]);
 				return (0);
 			}
-			dup2 (k, 1);
-			close (k);
+			std[1] = k;
+			r = 1;
 		}
 		if (!(ft_strcmp("<<", splited[t][i])))
 		{
@@ -416,6 +238,7 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 				str = readline("> ");
 			}
 			free (str);
+			r = 2;
 		}
 		if (!(ft_strcmp("<", splited[t][i])))
 		{
@@ -438,12 +261,35 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 				printf ("minishell: %s: ambiguous redirect\n", before[t][i + 1]);
 				return (0);
 			}
+			std[0] = k;
+			r = 1;
 		}
 	}
-	if (k != -1)
+	if (r == 2)
 	{
-		dup2 (k, 0);
-		close (k);
+		dup2 (std[0], 0);
+		dup2 (std[1], 1);
+		close (std[0]);
+		close (std[1]);
+		if (fd[0] != -2 || fd[1] != -2)
+		{
+			dup2 (fd[0], 0);
+			close (fd[1]);
+			close (fd[0]);
+		}
+	}
+	else if (r == 1)
+	{
+		if (fd[0] != -2 || fd[1] != -2)
+		{
+			dup2 (fd[0], 0);
+			close (fd[1]);
+			close (fd[0]);
+		}
+		dup2 (std[0], 0);
+		dup2 (std[1], 1);
+		close (std[0]);
+		close (std[1]);
 	}
 	i = -1;
 	k = -1;
@@ -474,17 +320,11 @@ int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
 	i = -1;
 	while (splited[t][++i])
 		free (splited[t][i]);
+	free (splited[t]);
 	splited[t] = tmp;
 	i = -1;
 	k = -1;
-	if (fd[0] != -2 || fd[1] != -2)
-	{
-		dup2 (fd[0], 0);
-		close (fd[1]);
-		close (fd[0]);
-	}
 	free (fd);
-	// printf ("%s\n", splited[t][0]);
 	return (1);
 }
 
@@ -566,7 +406,6 @@ int	exec(int fd, char **env)
 	char	*path;
 	t_spl	comm;
 
-	path = malloc (1);
 	comm = get_command(env, fd);
 	splited = comm.a_var;
 	before = comm.b_var;
@@ -595,19 +434,10 @@ int	exec(int fd, char **env)
 		k = 1;
 		if (splited[t + 1])
 			pipe(fdd);
-		// if (!path && ft_strcmp("export", splited[t][0]) && ft_strcmp("unset", splited[t][0]))
-		// {
-		// 	printf ("minishell: %s: command not found\n", splited[t][0]);
-		// 	get_glo(0);
-		// 	if (!splited[t + 1])
-		// 	{
-		// 		t = 0;
-		// 		pi = 127;
-		// 		break ;
-		// 	}
-		// }
-		r[t] = fork();
 		k = check_redi(&comm, t, stdin, fdd);
+		if (!splited[t][0])
+			break ;
+		r[t] = fork();
 		if (check_command(env, splited[t], r[t]) && !r[t])
 		{
 			if (splited[t + 1])
@@ -706,32 +536,25 @@ int	main(int ac, char **av, char **env)
 	int k;
 	char	**pr;
 	char	*command;
-	char	*path;
 	int		fd;
 	//struct termios terminal2;
 
 	rl_catch_signals = 0;
-	path = malloc (1);
 	fd = get_history();
 	get_env(env);
 	//terminal2 = remove_ctlc();
 	signal(SIGINT, ft_sig);
 	signal(SIGQUIT,ft_sig);
-	// k = exec(fd, env, terminal2);
+	// k = exec(fd, env);
 	k = 0;
 	while (k != -2)
-	{
-		//g_globle.i = 0;
-		get_glo(0);
 		k = exec(fd, env);
-	}
-	if(k == 0)
-	{
-		//tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
-		exit(0);
-	}
-	r = -1;
-	while (env[++r])
-		free (env[r]);
-	free (path);
+	// if(k == 0)
+	// {
+	// 	//tcsetattr(STDIN_FILENO, TCSANOW, &terminal2);
+	// 	exit(0);
+	// }
+	// r = -1;
+	// while (env[++r])
+	// 	free (env[r]);
 }

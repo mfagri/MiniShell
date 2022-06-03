@@ -50,8 +50,6 @@ char	*ft_return(char *all, int i)
 		ret[k] = all[k];
 		k++;
 	}
-	if (all[k] == '\n')
-		ret[k++] = '\n';
 	ret[k] = '\0';
 	return (ret);
 }
