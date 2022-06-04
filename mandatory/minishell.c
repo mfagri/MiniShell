@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/03 20:50:19 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 17:07:08 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -496,45 +496,61 @@ int	exec(int fd, char **env)
 	return (1);
 }
 
-void	get_env(char **env)
-{
-	int		i;
-	char	*tmp;
-	char	*tmp2;
-	int		k;
-	char	*t;
-
-	i = -1;
-	while(env[++i])
-	{
-		if (!ft_strncmp("SHLVL=", env[i], 6))
-		{
-			tmp = cpy (tmp, "SHLVL=");
-			t = ft_strrchr(env[i], '=');
-			t++;
-			t = ft_itoa(atoi(t) + 1);
-			tmp = ft_strjoin(tmp, t);
-			free (t);
-			env[i] = cpy (env[i], tmp);
-			free (tmp);
-		}
-		else
-			env[i] = cpy (env[i], env[i]);
-	}
-	env[i] = NULL;
-}
-
-char	*ft_strrchr(char *s, int c)
+int	check_shlvl(char **env)
 {
 	int	i;
 
-	i = ft_strlen(s);
-	while (i && s[i] != (char)c)
-		i--;
-	if (s[i] == (char)c)
-		return (&((char *)s)[i]);
-	return (NULL);
+	i = 0;
+	while(env[i])
+	{
+		if (!ft_strncmp("SHLVL=", env[i], ft_strlen("SHLVL=")))
+			return (1);
+		i++;
+	}
+	return (0);
+	
 }
+void	shlvl_increment(char **env, int i)
+{
+	char	*tmp;
+	int		k;
+	char	*t;
+	char	*s;
+
+	tmp = cpy (tmp, "SHLVL=");
+	t = ft_strrchr(env[i], '=');
+	k = ft_atoi(++t) + 1;
+	s = ft_itoa(k);
+	tmp = ft_strjoin(tmp, s);
+	free(s);
+	env[i] = cpy (env[i], tmp);
+	free(tmp);
+}
+void	get_env(char **env)
+{
+	int	i;
+
+	i = -1;
+	if(check_shlvl(env))
+		while(env[++i])
+		{
+			if (!ft_strncmp("SHLVL=", env[i], 6))
+			{
+				shlvl_increment(env,i);
+				i++;
+			}
+			env[i] = cpy (env[i], env[i]);
+		}
+	else
+	{
+		while(env[++i])
+			env[i] = cpy (env[i], env[i]);
+		env[i] = cpy (env[i], "SHLVL=1");
+		env[i+1] = NULL;
+	}
+}
+
+
 
 int	main(int ac, char **av, char **env)
 {

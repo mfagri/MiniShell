@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 08:50:42 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/03 16:30:04 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 16:58:57 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_oldpwd(char **env)
 	i = -1;
 	while (env[++i])
 	{
-		if (!strncmp("OLDPWD", env[i], ft_strlen("OLDPWD")))
+		if (!ft_strncmp("OLDPWD", env[i], ft_strlen("OLDPWD")))
 		{
 			ft_putstr_fd(&env[i][7], 1);
 			write(1, "\n", 1);
@@ -86,7 +86,7 @@ void	ft_cd_norm(char **env, char *path, char s[])
 	j = 0;
 	while (env[++i])
 	{
-		if (!strncmp(s, env[i], ft_strlen(s)))
+		if (!ft_strncmp(s, env[i], ft_strlen(s)))
 		{
 			j = 1;
 			free(env[i]);

@@ -28,17 +28,17 @@ void	ft_sig(int signum)
 }
 
 "
-Ctl_c:	rl_on_new_lin();          	//Tell the update functions that we have moved onto a new (empty) line
+"Ctl_c":	rl_on_new_lin();          	//Tell the update functions that we have moved onto a new (empty) line
    		rl_replace_line("",0);      // Clears the current prompt
    		rl_redisplay();             // Redisplays the prompt"
 "
-Ctl_d:   just write(1,”\033[1A\033[11Cexite”,14);
+"Ctl_d":   just write(1,”\033[1A\033[11Cexite”,14);
 		 Results => (<prompt> exit) in the same line.
 	  	 \033: control the cursor.
 		 \033[{N}A: Move your cursor up N lines.
 		 \033[{N}C: Move the cursor forward N columns"
-
-"Ctl_\:	just return ;"
+"
+"Ctl_\":	just return ;"
 
 
 "The function “get_glo” is a function to simulate a global variable :
@@ -74,7 +74,7 @@ int	main(int ac, char **av, char **env)
   				  application's signal handler is called; use rl_cleanup_after_signal()
   				  to do that."
 
-Echo:
+""Echo""
 
 int	ft_check_n(const char *s1, const char *s2)
 {
@@ -139,7 +139,7 @@ void	ft_pwd(char **arg)
 	char	s[1024];
 
 	getcwd(s, sizeof(s));
-	if (!s)
+	if (!s[0])
 		return (ft_putstr_fd("pwd: not fond\n", 2));
 	printf("%s\n", s);
 }
@@ -147,3 +147,47 @@ void	ft_pwd(char **arg)
 "The fonction "getcwd()" function shall place an absolute pathname of the current working directory in the array pointed to by buf, and return buf.
 The pathname copied to the array shall contain no components that are symbolic links. The size argument is the size in bytes of the character array pointed to by the buf argument.
 If buf is a null pointer, the behavior of getcwd() is unspecified. "
+
+""ENV"":
+
+
+"Env(Environment) is used to either print environment variables.
+ It is also used to run a utility or command in a custom environment.
+ In practice, env has another common use.
+ It is often used by shell scripts to launch the correct interpreter.
+ In this usage, the environment is typically not changed
+ Env is a shell command for Unix and Unix-like operating systems.
+ It is used to either print a list of environment variables or run another 
+ utility in an altered environment without having to modify 
+ the currently existing environment."
+
+void	get_env(char **env)
+{
+	int		i;
+	char	*tmp;
+	char	*tmp2;
+	int		k;
+	char	*t;
+
+	i = -1;
+	while(env[++i])
+	{
+		if (!ft_strncmp("SHLVL=", env[i], 6))
+		{
+			tmp = cpy (tmp, "SHLVL=");
+			t = ft_strrchr(env[i], '=');
+			t++;
+			t = ft_itoa(atoi(t) + 1);
+			tmp = ft_strjoin(tmp, t);
+			free (t);
+			env[i] = cpy (env[i], tmp);
+			free (tmp);
+		}
+		else
+			env[i] = cpy (env[i], env[i]);
+	}
+	env[i] = NULL;
+}
+
+
+"If you run minishell inside minishell the variabele "SHLVL" must increment "{SHLVL+1}" and if you unset SHLVL from env and ween you run env command the "SHLVL" be SHLVL=1."

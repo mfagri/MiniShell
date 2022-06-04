@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:12 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/29 19:26:58 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 17:01:20 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_new_norm(char **env, char *name, char *f)
 		if (!ft_strncmp(env[i], name, ft_strlen(name)))
 		{
 			j = 123456;
-			if (strchr(f, '='))
+			if (ft_strchr(f, '='))
 				env[i] = cpy(env[i], f);
 		}
 	}

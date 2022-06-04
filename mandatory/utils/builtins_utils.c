@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/03 21:53:59 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 17:00:01 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_print_env(char **env)
 	i = 0;
 	while (env[i])
 	{
-		if (strchr(env[i], '='))
+		if (ft_strchr(env[i], '='))
 		{
 			ft_putstr_fd(env[i], 1);
 			write(1, "\n", 1);
@@ -34,7 +34,7 @@ void	remove_from_env(char *arg, char **env, int l)
 	int	j;
 
 	if (!(ft_isalpha(arg[0])) && arg[0] != '_'
-		&& strchr (arg, '=') && strchr (arg, '+'))
+		&& ft_strchr (arg, '=') && ft_strchr (arg, '+'))
 	{
 		ft_putstr_fd("minishell: unset: `", 2);
 		ft_putstr_fd(arg, 2);
@@ -67,7 +67,7 @@ void	ft_cd(char **arg, char **env)
 		ft_home(env);
 	else
 	{
-		if (!strncmp("-", arg[1], ft_strlen("-")))
+		if (!ft_strncmp("-", arg[1], ft_strlen("-")))
 			ft_oldpwd(env);
 		else if (ft_count_args(arg) > 2)
 			return (ft_putstr_fd("minishell: cd: too many arguments\n", 2),free(oldpath));
@@ -95,7 +95,7 @@ void	ft_exit(char **arg, char **env)
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 	if (arg[1] && i <= 2)
 	{
-		t = atoi(arg[1]);
+		t = ft_atoi(arg[1]);
 		get_glo_2(1, t);
 	}
 	i = 0;

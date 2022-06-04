@@ -110,4 +110,6 @@ void			edit_ret(char **str);
 char			**cpy_2(char **str);
 t_spl			get_comm(int fd, char ***ret, char ***ret2, char **env);
 int				check_pr(char **str);
+int				ft_atoi(const char *str);
+char			*ft_strchr(const char *s, int c);
 #endif

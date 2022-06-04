@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/03 20:50:34 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 17:01:41 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*final_srt(char *arg, char *name, int i)
 		value[j++] = arg[i++];
 	value[i] = '\0';
 	f = ft_strjoin(f, name);
-	if (strchr(arg, '='))
+	if (ft_strchr(arg, '='))
 		f = ft_strjoin(f, "=");
 	if (value[0])
 		f = ft_strjoin(f, value);

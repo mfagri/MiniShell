@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:06 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/03 18:29:37 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 17:01:05 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	add_to_env_norm(char *name, char *value, char *f, char **env)
 		if (!ft_strncmp(env[i], name, ft_strlen(name)))
 		{
 			j = 123456;
-			if (strchr(env[i], '='))
+			if (ft_strchr(env[i], '='))
 				env[i] = ft_strjoin(env[i], value);
 			else
 			{
@@ -91,7 +91,7 @@ void	check_arg_export(char *arg, char **env)
 		}
 		else if (arg[j] == '=')
 			set_new(arg, env);
-		else if (!(strchr(arg, '=')) && !(strchr(arg, '+')))
+		else if (!(strchr(arg, '=')) && !(ft_strchr(arg, '+')))
 			set_new(arg, env);
 	}
 	return ;

@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 04:30:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/03 22:18:28 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 12:56:39 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_pwd(char **arg)
 	char	s[1024];
 
 	getcwd(s, sizeof(s));
-	if (!s)
+	if (!s[0])
 		return (perror("pwd"));
 	printf("%s\n", s);
 }
