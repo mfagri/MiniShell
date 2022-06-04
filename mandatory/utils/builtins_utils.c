@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/04 17:00:01 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 18:53:35 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,16 @@ void	ft_exit(char **arg, char **env)
 	while (arg[i])
 		i++;
 	ft_putstr_fd("exit\n", 1);
-	if (i > 2)
+	if (i > 2 && !ft_isalpha(arg[1][0]))
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-	if (arg[1] && i <= 2)
+	if (i > 2 && ft_isalpha(arg[1][0]))
+		printf("minishell: exit: %s: numeric argument required\n", arg[1]);
+	if (arg[1])
 	{
-		t = ft_atoi(arg[1]);
+		if(ft_isalpha(arg[1][0]))
+			t = 255;
+		else if(!arg[2])
+			t = ft_atoi(arg[1]);
 		get_glo_2(1, t);
 	}
 	i = 0;

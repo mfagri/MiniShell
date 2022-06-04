@@ -112,4 +112,5 @@ t_spl			get_comm(int fd, char ***ret, char ***ret2, char **env);
 int				check_pr(char **str);
 int				ft_atoi(const char *str);
 char			*ft_strchr(const char *s, int c);
+void			ft_putstr_fd(char *s, int fd);
 #endif

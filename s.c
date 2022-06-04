@@ -161,33 +161,65 @@ If buf is a null pointer, the behavior of getcwd() is unspecified. "
  utility in an altered environment without having to modify 
  the currently existing environment."
 
-void	get_env(char **env)
+int	check_shlvl(char **env)
 {
-	int		i;
+	int	i;
+
+	i = 0;
+	while(env[i])
+	{
+		if (!ft_strncmp("SHLVL=", env[i], ft_strlen("SHLVL=")))
+			return (1);
+		i++;
+	}
+	return (0);
+	
+}
+void	shlvl_increment(char **env, int i)
+{
 	char	*tmp;
-	char	*tmp2;
 	int		k;
 	char	*t;
+	char	*s;
+
+	tmp = cpy (tmp, "SHLVL=");
+	t = ft_strrchr(env[i], '=');
+	k = ft_atoi(++t) + 1;
+	s = ft_itoa(k);
+	tmp = ft_strjoin(tmp, s);
+	free(s);
+	env[i] = cpy (env[i], tmp);
+	free(tmp);
+}
+void	get_env(char **env)
+{
+	int	i;
 
 	i = -1;
-	while(env[++i])
-	{
-		if (!ft_strncmp("SHLVL=", env[i], 6))
+	if(check_shlvl(env))
+		while(env[++i])
 		{
-			tmp = cpy (tmp, "SHLVL=");
-			t = ft_strrchr(env[i], '=');
-			t++;
-			t = ft_itoa(atoi(t) + 1);
-			tmp = ft_strjoin(tmp, t);
-			free (t);
-			env[i] = cpy (env[i], tmp);
-			free (tmp);
-		}
-		else
+			if (!ft_strncmp("SHLVL=", env[i], 6))
+			{
+				shlvl_increment(env,i);
+				i++;
+			}
 			env[i] = cpy (env[i], env[i]);
+		}
+	else
+	{
+		while(env[++i])
+			env[i] = cpy (env[i], env[i]);
+		env[i] = cpy (env[i], "SHLVL=1");
+		env[i+1] = NULL;
 	}
-	env[i] = NULL;
 }
 
 
-"If you run minishell inside minishell the variabele "SHLVL" must increment "{SHLVL+1}" and if you unset SHLVL from env and ween you run env command the "SHLVL" be SHLVL=1."
+"If you run minishell inside minishell the variabele "SHLVL" must increment "{SHLVL+1}",
+and if you unset SHLVL from env and ween you run env command the "SHLVL" be SHLVL=1."
+
+""exit""
+
+"arg[1] and arg [2] and arg[1] num" = bash: exit: too many arguments
+"arg[1] and arg [2] and arg[1] alpha" = bash: exit: y: numeric argument required
