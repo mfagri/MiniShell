@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/04 18:53:35 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 21:51:44 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,24 +80,28 @@ void	ft_cd(char **arg, char **env)
 	ft_cd_norm(env, oldpath, "OLDPWD");
 	ft_cd_norm(env, newpath, "PWD");
 }
-
 void	ft_exit(char **arg, char **env)
 {
 	int	i;
 	int	t;
+	int j;
 
 	t = get_glo_2(0, 0);
 	i = 0;
+	j = 0;
 	while (arg[i])
 		i++;
+	if(i >= 2)
+		if(arg[1][j] == '+' || arg[1][j] == '-')
+			j++;
 	ft_putstr_fd("exit\n", 1);
-	if (i > 2 && !ft_isalpha(arg[1][0]))
+	if (i > 2 && !ft_isalpha(arg[1][j]))
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-	if (i > 2 && ft_isalpha(arg[1][0]))
+	if (i >= 2 && ft_isalpha(arg[1][j]))
 		printf("minishell: exit: %s: numeric argument required\n", arg[1]);
 	if (arg[1])
 	{
-		if(ft_isalpha(arg[1][0]))
+		if(ft_isalpha(arg[1][j]))
 			t = 255;
 		else if(!arg[2])
 			t = ft_atoi(arg[1]);

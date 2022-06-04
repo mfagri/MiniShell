@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/04 17:07:08 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/04 19:11:07 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -508,8 +508,8 @@ int	check_shlvl(char **env)
 		i++;
 	}
 	return (0);
-	
 }
+
 void	shlvl_increment(char **env, int i)
 {
 	char	*tmp;
@@ -522,10 +522,11 @@ void	shlvl_increment(char **env, int i)
 	k = ft_atoi(++t) + 1;
 	s = ft_itoa(k);
 	tmp = ft_strjoin(tmp, s);
-	free(s);
+	free (s);
 	env[i] = cpy (env[i], tmp);
-	free(tmp);
+	free (tmp);
 }
+
 void	get_env(char **env)
 {
 	int	i;
