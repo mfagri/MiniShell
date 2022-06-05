@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/04 19:11:07 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/05 16:49:09 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,7 +283,10 @@ int	exec(int fd, char **env)
 	}
 	r[t] = '\0';
 	while (--t != -1)
+	{
+		get_glo(1);
 		waitpid(r[t], &k, 0);
+	}
 	dup2(stdin, 0);
 	dup2(stdout, 0);
 	// if (WIFSIGNALED(k))
