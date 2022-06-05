@@ -29,6 +29,8 @@ typedef struct	s_spl
 	char	***a_var;
 }	t_spl;
 
+int				get_fd_utils_1(t_spl *comm, t_arg tt, int **std, int **fd);
+char			**get_ret(char **pr, int i, int *j);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_echo(char **pr);
 void			ft_pwd(char **arg);
@@ -63,7 +65,6 @@ int				exec(int fd, char **env);
 int				get_glo(int i);
 void			ft_pwd();
 char			***split_pr(char **pr, int i, int k, char q);
-char			**get_ret(char **pr, int i);
 char			get_q(char **pr, int i, int j, char q);
 struct termios	remove_ctlc(void);
 char			get_q_1(char *pr, int i, char q);
@@ -113,4 +114,7 @@ int				check_pr(char **str);
 int				ft_atoi(const char *str);
 char			*ft_strchr(const char *s, int c);
 void			ft_putstr_fd(char *s, int fd);
+int				check_redi(t_spl *comm, int t, int stdin, int *fdd);
+int				check_next(t_spl *comm, int t, int i);
+
 #endif

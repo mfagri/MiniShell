@@ -12,22 +12,21 @@
 
 #include"../minishell.h"
 
-char	**get_ret(char **pr, int i)
+char	**get_ret(char **pr, int i, int *j)
 {
-	static int	j = -1;
 	int			k;
 	char		**ret;
 
-	ret = malloc (sizeof (char *) * (i - j + 1));
+	ret = malloc (sizeof (char *) * (i - (*j) + 2));
 	k = 0;
-	while (++j < i && pr[j])
+	while (++(*j) < i && pr[(*j)])
 	{
-		ret[k] = cpy (ret[k], pr[j]);
+		ret[k] = cpy (ret[k], pr[(*j)]);
 		k++;
 	}
 	ret[k] = NULL;
-	if (!pr[j])
-		j = -1;
+	if (!pr[(*j)])
+		(*j) = -1;
 	return (ret);
 }
 
@@ -79,8 +78,10 @@ char	***split_pr(char **pr, int i, int k, char q)
 {
 	int		j;
 	int		r;
+	int		t;
 	char	***ret;
 
+	t = -1;
 	k = get_size(pr, 0, 0, '\0');
 	ret = malloc (sizeof (char **) * (k + 2));
 	q = '\0';
@@ -91,11 +92,16 @@ char	***split_pr(char **pr, int i, int k, char q)
 		while (pr[i][++j])
 			q = get_q(pr, i, j, q);
 		if (!(ft_strncmp(pr[i], "|", ft_strlen(pr[i]))) && !q)
-			ret[k++] = get_ret(pr, i);
+		{
+			if (i == t + 1)
+				t++;
+			else
+				ret[k++] = get_ret(pr, i, &t);
+		}
 		i++;
 	}
 	if (ft_strncmp(pr[i - 1], "|", ft_strlen(pr[i - 1])))
-		ret[k++] = get_ret(pr, i);
+		ret[k++] = get_ret(pr, i, &t);
 	ret[k] = NULL;
 	return (ret);
 }

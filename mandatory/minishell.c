@@ -55,6 +55,7 @@ void	edit_ret(char **str)
 	}
 	if (str[i - 1] && !str[i - 1][0])
 		free (str[i - 1]);
+	i = -1;
 	str[k] = NULL;
 }
 
@@ -117,18 +118,6 @@ char	*remove_pwd(char **env, int i)
 	return (ret);
 }
 
-
-// int	check_doll(char *str)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (str[++i])
-// 		if (str[i] == '$')
-// 			return (0);
-// 	return (1);
-// }
-
 int	check_next(t_spl *comm, int t, int i)
 {
 	int	k;
@@ -149,185 +138,7 @@ int	check_next(t_spl *comm, int t, int i)
 	return (1);
 }
 
-int	check_redi(t_spl *comm, int t, int stdin, int *fdd)
-{
-	int		i;
-	int		j;
-	int		r = 0;
-	int		k;
-	char	**tmp;
-	char	***splited = comm->a_var;
-	char	***before = comm->b_var;
-	char	*str;
-	int		*fd;
-	int		std[2];
-
-
-	std[0] = dup(0);
-	std[1] = dup(1);
-	fd = malloc (sizeof (int) * 2);
-	fd[0] = -2;
-	fd[1] = -2;
-	i = -1;
-	k = -1;
-	while (splited[t][++i])
-	{
-		if (!(ft_strcmp(">", splited[t][i])))
-		{
-			if (splited[t][i + 1])
-			{
-				k = open (splited[t][i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-				if (k == -1)
-				{
-					printf ("minishell: %s: Permission denied\n", splited[t][i + 1]);
-					return (0);
-				}
-			}
-			else
-			{
-				printf ("minishell: %s: ambiguous redirect\n", before[t][i + 1]);
-				return (0);
-			}
-			std[1] = k;
-			r = 1;
-		}
-		if (!(ft_strcmp(">>", splited[t][i])))
-		{
-			if (splited[t][i + 1])
-			{
-				k = open (splited[t][i + 1], O_WRONLY, 0777);
-				if (k == -1)
-				{
-					printf ("minishell: %s: Permission denied\n", splited[t][i + 1]);
-					return (0);
-				}
-			}
-			else
-			{
-				printf ("minishell: %s: ambiguous redirect\n", before[t][i + 1]);
-				return (0);
-			}
-			std[1] = k;
-			r = 1;
-		}
-		if (!(ft_strcmp("<<", splited[t][i])))
-		{
-			if (fd[0] == -2)
-				pipe (fd);
-			else
-			{
-				close (fd[0]);
-				close (fd[1]);
-				pipe (fd);
-			}
-			str = readline("> ");
-			while (ft_strcmp(str, before[t][i + 1]))
-			{
-				if (!splited[t + 1])
-				{
-					write (fd[1], str, ft_strlen(str));
-					write (fd[1], "\n", 1);
-				}
-				else
-				{
-					write (fdd[1], str, ft_strlen(str));
-					write (fdd[1], "\n", 1);
-				}
-				free (str);
-				str = readline("> ");
-			}
-			free (str);
-			r = 2;
-		}
-		if (!(ft_strcmp("<", splited[t][i])))
-		{
-			if (splited[t][i + 1])
-			{
-				if (access(splited[t][i + 1], F_OK))
-				{
-					printf ("minishell: %s: No such file or directory\n", splited[t][i + 1]);
-					return (0);
-				}
-				k = open (splited[t][i + 1], O_RDONLY, 0777);
-				if (k == -1)
-				{
-					printf ("minishell: %s: Permission denied\n", splited[t][i + 1]);
-					return (0);
-				}
-			}
-			else
-			{
-				printf ("minishell: %s: ambiguous redirect\n", before[t][i + 1]);
-				return (0);
-			}
-			std[0] = k;
-			r = 1;
-		}
-	}
-	if (r == 2)
-	{
-		dup2 (std[0], 0);
-		dup2 (std[1], 1);
-		close (std[0]);
-		close (std[1]);
-		if (fd[0] != -2 || fd[1] != -2)
-		{
-			dup2 (fd[0], 0);
-			close (fd[1]);
-			close (fd[0]);
-		}
-	}
-	else if (r == 1)
-	{
-		if (fd[0] != -2 || fd[1] != -2)
-		{
-			dup2 (fd[0], 0);
-			close (fd[1]);
-			close (fd[0]);
-		}
-		dup2 (std[0], 0);
-		dup2 (std[1], 1);
-		close (std[0]);
-		close (std[1]);
-	}
-	i = -1;
-	k = -1;
-	while (splited[t][++k])
-		t = t;
-	tmp = malloc (sizeof (char *) * (k + 1));
-	k = 0;
-	while (splited[t][++i])
-	{
-		if (!(ft_strcmp(">", splited[t][i]))
-			|| !(ft_strcmp("<", splited[t][i]))
-			|| !(ft_strcmp(">>", splited[t][i])))
-			i++;
-		else if (!(ft_strcmp("<<", splited[t][i])))
-		{
-			if (check_next(comm, t, i + 1))
-				i++;
-		}
-		else
-		{
-			tmp[k] = cpy(tmp[k], splited[t][i]);
-			k++;
-		}
-		if (!splited[t][i])
-			break ;
-	}
-	tmp[k] = NULL;
-	i = -1;
-	while (splited[t][++i])
-		free (splited[t][i]);
-	free (splited[t]);
-	splited[t] = tmp;
-	i = -1;
-	k = -1;
-	free (fd);
-	return (1);
-}
-
-int	check_command_utils(char **splited, char **env, int fd)
+int	check_command_utils(char **splited, char **env, int fd, int t)
 {
 	if (!(ft_strcmp(splited[0], "pwd")))
 	{
@@ -353,7 +164,10 @@ int	check_command_utils(char **splited, char **env, int fd)
 	else if (!(ft_strcmp(splited[0], "exit")))
 	{
 		if (fd)
-			ft_exit(splited, env);
+		{
+			if (!t)
+				ft_exit(splited, env);
+		}
 		else
 			exit (0);
 	}
@@ -362,7 +176,7 @@ int	check_command_utils(char **splited, char **env, int fd)
 	return (0);
 }
 
-int check_command(char **env, char **splited, int fd)
+int check_command(char **env, char **splited, int fd, int t)
 {
 	if (!(strcmp(splited[0], "export")))
 	{
@@ -386,7 +200,7 @@ int check_command(char **env, char **splited, int fd)
 			exit (0);
 	}
 	else
-		return (check_command_utils(splited, env, fd));
+		return (check_command_utils(splited, env, fd, t));
 	return (0);
 }
 
@@ -433,66 +247,61 @@ int	exec(int fd, char **env)
 		k = 1;
 		if (splited[t + 1])
 			pipe(fdd);
-		k = check_redi(&comm, t, stdin, fdd);
+		if (splited[t + 1])
+		{
+			dup2(fdd[1], 1);
+			close (fdd[1]);
+		}
+		// k = check_redi(&comm, t, stdin, fdd);
 		if (!splited[t][0])
 		{
 			dup2(stdin, 0);
 			dup2(stdout, 1);
+			close (stdin);
+			close (stdout);
 			break ;
 		}
 		r[t] = fork();
-		if (check_command(env, splited[t], r[t]) && !r[t])
+		if (check_command(env, splited[t], r[t], t) && !r[t])
 		{
-			if (splited[t + 1])
-			{
-				dup2(fdd[1], 1);
-				close(fdd[0]);
-				close(fdd[1]);
-			}
 			path = get_path(env, splited[t][0]);
+			close (fdd[0]);
 			if (k)
 				child_exec(splited, path, t, env);
 			exit (1);
 		}
-		dup2(stdin, 0);
-		dup2(stdout, 1);
-		k = -1;
 		if (splited[t + 1])
 		{
-			dup2(fdd[0], 0);
-			close(fdd[0]);
-			close(fdd[1]);
+			dup2 (stdout, 1);
+			dup2 (fdd[0], 0);
+			close (fdd[0]);
 		}
-		else
-			dup2(stdin, 0);
+		// else
+		// {
+		// }
 		t++;
 	}
 	r[t] = '\0';
 	while (--t != -1)
-	{
-		get_glo(1);
 		waitpid(r[t], &k, 0);
-	}
-	if (WIFSIGNALED(k))
-		get_glo_2(1, k + 128);
-	else if (WEXITSTATUS(k))
-		get_glo_2(1, k / 128 / 2);
-	if (k >= 25600)
-		get_glo_2(1, (k * 100) / 25600);
-	k = -1;
-	while (splited[++k])
-		free_2 (splited[k]);
-	free (splited);
-	k = -1;
-	while (before[++k])
-		free_2 (before[k]);
-	free (before);
-	// dup2(stdout, 1);
-	// dup2(stdin, 0);
-	close (stdout);
-	close (stdin);
-	free (r);
+	dup2(stdin, 0);
+	dup2(stdout, 0);
+	// if (WIFSIGNALED(k))
+	// 	get_glo_2(1, k + 128);
+	// else if (WEXITSTATUS(k))
+	// 	get_glo_2(1, k / 128 / 2);
+	// if (k >= 25600)
+	// 	get_glo_2(1, (k * 100) / 25600);
 	// k = -1;
+	// while (splited[++k])
+	// 	free_2 (splited[k]);
+	// free (splited);
+	// k = -1;
+	// while (before[++k])
+	// 	free_2 (before[k]);
+	// free (before);
+	// free (r);
+	// write (2, "yooo\n", 5);
 	return (1);
 }
 

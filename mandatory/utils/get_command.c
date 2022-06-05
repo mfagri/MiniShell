@@ -112,8 +112,8 @@ t_spl	get_command(char **env, int fd)
 	char		**ret;
 	char		**ret2;
 	t_spl		comm;
-	static int i = 0;
-
+	// static int i = 0;
+	
 	// if (!i++)
 	// 	tmp = get_next_line(open ("s", O_RDONLY));
 	// tmp = get_next_line(0);

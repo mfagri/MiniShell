@@ -70,7 +70,10 @@ void	ft_cd(char **arg, char **env)
 		if (!ft_strncmp("-", arg[1], ft_strlen("-")))
 			ft_oldpwd(env);
 		else if (ft_count_args(arg) > 2)
-			return (ft_putstr_fd("minishell: cd: too many arguments\n", 2),free(oldpath));
+		{
+			free(oldpath);
+			return (ft_putstr_fd("minishell: cd: too many arguments\n", 2));
+		}
 		else
 			if (chdir(arg[1]) == -1)
 				printf("minishell: cd: %s : No such file \
@@ -80,19 +83,30 @@ void	ft_cd(char **arg, char **env)
 	ft_cd_norm(env, oldpath, "OLDPWD");
 	ft_cd_norm(env, newpath, "PWD");
 }
+
+int	ft_exit_utils(char **arg, int t, int j)
+{
+	if (ft_isalpha(arg[1][j]))
+		t = 255;
+	else if (!arg[2])
+		t = ft_atoi(arg[1]);
+	get_glo_2(1, t);
+	return (t);
+}
+
 void	ft_exit(char **arg, char **env)
 {
 	int	i;
 	int	t;
-	int j;
+	int	j;
 
 	t = get_glo_2(0, 0);
 	i = 0;
 	j = 0;
 	while (arg[i])
 		i++;
-	if(i >= 2)
-		if(arg[1][j] == '+' || arg[1][j] == '-')
+	if (i >= 2)
+		if (arg[1][j] == '+' || arg[1][j] == '-')
 			j++;
 	ft_putstr_fd("exit\n", 1);
 	if (i > 2 && !ft_isalpha(arg[1][j]))
@@ -100,15 +114,9 @@ void	ft_exit(char **arg, char **env)
 	if (i >= 2 && ft_isalpha(arg[1][j]))
 		printf("minishell: exit: %s: numeric argument required\n", arg[1]);
 	if (arg[1])
-	{
-		if(ft_isalpha(arg[1][j]))
-			t = 255;
-		else if(!arg[2])
-			t = ft_atoi(arg[1]);
-		get_glo_2(1, t);
-	}
-	i = 0;
-	while (env[i++])
+		t = ft_exit_utils(arg, t, j);
+	i = -1;
+	while (env[++i])
 		free(env[i]);
 	exit (t);
 }

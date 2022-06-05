@@ -20,7 +20,7 @@ t_spl	get_comm(int fd, char ***ret, char ***ret2, char **env)
 	edit_var(*ret, env, 1, -1);
 	edit_ret(*ret);
 	edit_ret(*ret2);
-	if (!ret[0])
+	if (!(*ret)[0])
 	{
 		free_2 (*ret);
 		free_2 (*ret2);
