@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/05 14:17:43 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/06 14:52:37 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct	s_spl
 	char	***a_var;
 }	t_spl;
 
-int				get_fd_utils_1(t_spl *comm, t_arg tt, int **std, int **fd);
 char			**get_ret(char **pr, int i, int *j);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_echo(char **pr);
@@ -126,7 +125,23 @@ int				check_pr(char **str);
 int				ft_atoi(const char *str);
 char			*ft_strchr(const char *s, int c);
 void			ft_putstr_fd(char *s, int fd);
-int				check_redi(t_spl *comm, int t, int stdin, int *fdd);
+int				check_redi(t_spl *comm, int t, int *st, int *fdd);
 int				check_next(t_spl *comm, int t, int i);
+void			remove_from_env(char *arg, char **env, int l);
+void			ft_print_env(char **env);
+void    		get_dup_2(int r, int fd, int *std);
+void			get_here_doc(t_spl *comm, t_arg tt, int *fd, int *st);
+int				check_k(int k, t_spl *comm, t_arg tt);
+int				fd_utils_4(t_spl *c, t_arg tt, int **std, int r);
+char			**get_aftere_red(t_spl *comm, int i, int k, int t);
+int				get_fd(t_spl *comm, t_arg tt, int *fdd, int *st);
+void			get_dup(int r, int fd, int *std);
+int				get_fd_utils_1(t_spl *comm, t_arg tt, int **std, int *fd);
+void			get_default(int *fd, int **std);
+int				fd_utils_2(t_spl *comm, int t, int i, int **std);
+int				fd_utils_1(t_spl *c, int t, int i, int **std);
+void			ft_printf_error(char *com, int i);
+int				free_two(int *fd, int **std);
+int				fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st);
 
 #endif

@@ -2,7 +2,8 @@
 	"files.associations": {
 		"term.h": "c",
 		"minishell.h": "c",
-		"tmp": "c"
+		"tmp": "c",
+		"locale": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

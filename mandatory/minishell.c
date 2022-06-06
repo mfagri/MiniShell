@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/05 16:49:09 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/06 16:11:53 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ int	check_next(t_spl *comm, int t, int i)
 	k = 0;
 	while (before[t][i] && ft_strcmp(before[t][i], "|"))
 	{
-		// printf ("before = %s\n", before[t][i]);
-		// printf ("after = %s\n", splited[t][i]);
 		if (!splited[t][i])
 			return (0);
 		if (ft_strcmp(splited[t][i], before[t][i]))
@@ -211,8 +209,7 @@ int	exec(int fd, char **env)
 	int		i;
 	int		j = -1;
 	int		t;
-	int		stdout;
-	int		stdin;
+	int		st[2];
 	int		fdd[2];
 	char	***splited;
 	char	***before;
@@ -229,8 +226,10 @@ int	exec(int fd, char **env)
 	// 	while (splited[i][++j])
 	// 		printf ("----%s\n", splited[i][j]);
 	// }
-	stdin = dup(0);
-	stdout = dup(1);
+	st[0] = dup(0);
+	st[1] = dup(1);
+	fdd[0] = -2;
+	fdd[1] = -2;
 	k = -1;
 	t = -1;
 	k = -1;
@@ -247,38 +246,47 @@ int	exec(int fd, char **env)
 		k = 1;
 		if (splited[t + 1])
 			pipe(fdd);
-		if (splited[t + 1])
-		{
-			dup2(fdd[1], 1);
-			close (fdd[1]);
-		}
-		// k = check_redi(&comm, t, stdin, fdd);
 		if (!splited[t][0])
 		{
-			dup2(stdin, 0);
-			dup2(stdout, 1);
-			close (stdin);
-			close (stdout);
+			dup2(st[0], 0);
+			dup2(st[1], 1);
+			close (st[0]);
+			close (st[1]);
 			break ;
 		}
-		r[t] = fork();
-		if (check_command(env, splited[t], r[t], t) && !r[t])
+		r[t] = fork();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+		if (!r[t])
 		{
+			if (splited[t + 1])
+			{
+				dup2 (fdd[1], 1);
+				// close (fdd[0]);
+				// close (fdd[1]);
+			}
+			check_redi(&comm, t, st, fdd);
+			if (splited[t + 1])
+			{
+				close (fdd[0]);
+				close (fdd[1]);
+			}
+			// if (!check_command(env, splited[t], r[t], t))
+			// 	exit (0);
 			path = get_path(env, splited[t][0]);
-			close (fdd[0]);
-			if (k)
-				child_exec(splited, path, t, env);
-			exit (1);
+			child_exec(splited, path, t, env);
 		}
 		if (splited[t + 1])
 		{
-			dup2 (stdout, 1);
 			dup2 (fdd[0], 0);
 			close (fdd[0]);
+			close (fdd[1]);
 		}
-		// else
-		// {
-		// }
+		else
+		{
+			dup2 (st[1], 1);
+			dup2 (st[0], 0);
+			close (st[0]);
+			close (st[1]);
+		}
 		t++;
 	}
 	r[t] = '\0';
@@ -287,24 +295,25 @@ int	exec(int fd, char **env)
 		get_glo(1);
 		waitpid(r[t], &k, 0);
 	}
-	dup2(stdin, 0);
-	dup2(stdout, 0);
-	// if (WIFSIGNALED(k))
-	// 	get_glo_2(1, k + 128);
-	// else if (WEXITSTATUS(k))
-	// 	get_glo_2(1, k / 128 / 2);
-	// if (k >= 25600)
-	// 	get_glo_2(1, (k * 100) / 25600);
-	// k = -1;
-	// while (splited[++k])
-	// 	free_2 (splited[k]);
-	// free (splited);
-	// k = -1;
-	// while (before[++k])
-	// 	free_2 (before[k]);
-	// free (before);
-	// free (r);
-	// write (2, "yooo\n", 5);
+	dup2(st[0], 0);
+	dup2(st[1], 1);
+	close (st[0]);
+	close (st[1]);
+	if (WIFSIGNALED(k))
+		get_glo_2(1, k + 128);
+	else if (WEXITSTATUS(k))
+		get_glo_2(1, k / 128 / 2);
+	if (k >= 25600)
+		get_glo_2(1, (k * 100) / 25600);
+	k = -1;
+	while (splited[++k])
+		free_2 (splited[k]);
+	free (splited);
+	k = -1;
+	while (before[++k])
+		free_2 (before[k]);
+	free (before);
+	free (r);
 	return (1);
 }
 
