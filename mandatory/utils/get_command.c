@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:08:09 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/03 13:05:58 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/06 19:05:31 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,9 @@ t_spl	get_command(char **env, int fd)
 	// if (!i++)
 	// 	tmp = get_next_line(open ("s", O_RDONLY));
 	// tmp = get_next_line(0);
+	get_glo_3(1);
 	tmp = readline ("minishell=> ");
+	get_glo_3(0);
 	comm = check_tmp(&tmp, fd, env);
 	if (comm.a_var)
 		return (comm);

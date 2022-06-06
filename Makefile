@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+         #
+#    By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 19:42:03 by aaitoual          #+#    #+#              #
-#    Updated: 2022/06/06 10:11:49 by aaitoual         ###   ########.fr        #
+#    Updated: 2022/06/06 19:00:50 by mfagri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc 
 FLAGS = -Wall -Wextra -Werror 
-LFLAGS	= -I/goinfre/$(USER)/.brew/opt/readline/include
+LFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 AR = ar rcs
 OBJ = ./mandatory/obj
 
@@ -33,10 +33,10 @@ LIB = ./mandatory/minishell.h
 
 all: $(NAME)
 
-$(NAME): $(FILE1) $(LIB)
-	$(CC) $(FILE1) $(FLAGS) -o $@  -lreadline -L/goinfre/$(USER)/.brew/opt/readline/lib
+$(NAME): $(FILE1) $(LIB) 
+	$(CC) $(FILE1) $(FLAGS) -o $@  -lreadline -L/Users/$(USER)/.brew/opt/readline/lib
 
-%.o : %.c
+%.o : %.c 
 	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
 
 clean:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/06 14:52:37 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/06 21:34:51 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,7 @@ int				fd_utils_1(t_spl *c, int t, int i, int **std);
 void			ft_printf_error(char *com, int i);
 int				free_two(int *fd, int **std);
 int				fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st);
+int				get_glo_3(int i);
+int				get_glo_4(int i);
 
 #endif

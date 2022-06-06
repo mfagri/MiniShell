@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rederections_utils_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 09:47:47 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/06 16:10:51 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/06 21:35:32 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void    get_dup_2(int r, int fd, int *std)
 void	get_here_doc(t_spl *comm, t_arg tt, int *fd, int *st)
 {
 	char	*str;
-
+	
+	// get_glo_4(1);
 	str = readline("> ");
 	while (ft_strcmp(str, comm->b_var[tt.k][tt.r + 1]))
 	{

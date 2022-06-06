@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/06 16:11:53 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/06 21:35:25 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,7 +300,10 @@ int	exec(int fd, char **env)
 	close (st[0]);
 	close (st[1]);
 	if (WIFSIGNALED(k))
-		get_glo_2(1, k + 128);
+	{
+		if(get_glo_2(1, k + 128) == 130)
+			write(1,"\n",1);
+	}
 	else if (WEXITSTATUS(k))
 		get_glo_2(1, k / 128 / 2);
 	if (k >= 25600)
@@ -385,6 +388,7 @@ int	main(int ac, char **av, char **env)
 	signal(SIGQUIT,ft_sig);
 	while (1)
 	{
+		// get_glo_4(0);
 		get_glo(0);
 		exec(fd, env);
 	}
