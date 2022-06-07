@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/06 21:35:25 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 14:46:40 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,35 +139,15 @@ int	check_next(t_spl *comm, int t, int i)
 int	check_command_utils(char **splited, char **env, int fd, int t)
 {
 	if (!(ft_strcmp(splited[0], "pwd")))
-	{
-		if (fd)
-			ft_pwd(splited);
-		else
-			exit (0);
-	}
+		ft_pwd(splited);
 	else if (!(ft_strcmp(splited[0], "cd")))
-	{
-		if (fd)
-			ft_cd(splited, env);
-		else
-			exit (0);
-	}
+		ft_cd(splited, env);
 	else if (!(ft_strcmp(splited[0], "env")))
-	{
-		if (fd)
-			ft_print_env(env);
-		else
-			exit (0);
-	}
+		ft_print_env(env);
 	else if (!(ft_strcmp(splited[0], "exit")))
 	{
-		if (fd)
-		{
-			if (!t)
-				ft_exit(splited, env);
-		}
-		else
-			exit (0);
+		if (!t)
+			ft_exit(splited, env);
 	}
 	else
 		return (1);
@@ -177,26 +157,11 @@ int	check_command_utils(char **splited, char **env, int fd, int t)
 int check_command(char **env, char **splited, int fd, int t)
 {
 	if (!(strcmp(splited[0], "export")))
-	{
-		if (fd)
-			ft_export(env, splited);
-		else
-			exit (0);
-	}
+		ft_export(env, splited);
 	else if (!(strcmp(splited[0], "unset")))
-	{
-		if (fd)
-			ft_unset(splited,env);
-		else
-			exit (0);
-	}
+		ft_unset(splited,env);
 	else if (!(ft_strcmp(splited[0], "echo")))
-	{
-		if (fd)
-			ft_echo(splited);
-		else
-			exit (0);
-	}
+		ft_echo(splited);
 	else
 		return (check_command_utils(splited, env, fd, t));
 	return (0);
@@ -219,13 +184,6 @@ int	exec(int fd, char **env)
 	comm = get_command(env, fd);
 	splited = comm.a_var;
 	before = comm.b_var;
-	// i = -1;
-	// while (splited[++i])
-	// {
-	// 	j = -1;
-	// 	while (splited[i][++j])
-	// 		printf ("----%s\n", splited[i][j]);
-	// }
 	st[0] = dup(0);
 	st[1] = dup(1);
 	fdd[0] = -2;
@@ -258,19 +216,14 @@ int	exec(int fd, char **env)
 		if (!r[t])
 		{
 			if (splited[t + 1])
-			{
 				dup2 (fdd[1], 1);
-				// close (fdd[0]);
-				// close (fdd[1]);
-			}
 			check_redi(&comm, t, st, fdd);
 			if (splited[t + 1])
 			{
 				close (fdd[0]);
 				close (fdd[1]);
 			}
-			// if (!check_command(env, splited[t], r[t], t))
-			// 	exit (0);
+			check_command(env, splited[t], r[t], t)
 			path = get_path(env, splited[t][0]);
 			child_exec(splited, path, t, env);
 		}
