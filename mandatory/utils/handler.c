@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 22:41:47 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/06 21:35:52 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 15:11:03 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_sig(int signum)
 	
 	if (signum == SIGINT && !get_glo(2) && get_glo_3(3) && get_glo_4(-1) == 0)
 	{
+		get_glo_2(1, 1);
 		write (1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);

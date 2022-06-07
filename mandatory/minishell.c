@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 15:03:35 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:11:58 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	child_exec(char ***splited, char *path, int t, char **env)
 		exit (126);
 	if (execve(path, splited[t], env) == -1)
 	{
-		ft_printf_error(4, splited[t][0]);
+		ft_printf_error(splited[t][0], 4);
 		exit (127);
 	}
 	exit (0);
@@ -223,7 +223,7 @@ int	exec(int fd, char **env)
 				close (fdd[0]);
 				close (fdd[1]);
 			}
-			check_command(env, splited[t], r[t], t)
+			check_command(env, splited[t], r[t], t);
 			path = get_path(env, splited[t][0]);
 			child_exec(splited, path, t, env);
 		}
