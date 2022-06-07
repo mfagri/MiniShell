@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:06 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/04 17:01:05 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:20:25 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	add_to_env(char *arg, char **env)
 	return ;
 }
 
-void	check_arg_export(char *arg, char **env)
+int	check_arg_export(char *arg, char **env)
 {
 	int	j;
 
@@ -80,7 +80,7 @@ void	check_arg_export(char *arg, char **env)
 	while ((ft_isalpha(arg[j])) || arg[j] == '_')
 		j++;
 	if (ft_do_nothing(arg))
-		return ;
+		return (0);
 	else
 	{
 		if (arg[j] == '+')
@@ -94,7 +94,7 @@ void	check_arg_export(char *arg, char **env)
 		else if (!(strchr(arg, '=')) && !(ft_strchr(arg, '+')))
 			set_new(arg, env);
 	}
-	return ;
+	return (0);
 }
 
 char	**ft_sort_env(char **env)

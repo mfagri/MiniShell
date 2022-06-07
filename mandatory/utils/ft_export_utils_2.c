@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:12 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/04 17:01:20 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:16:24 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,11 @@ char	*final_srt_add(char *value, char *name)
 	return (f);
 }
 
-void	ft_print_export_error(char *arg)
+int	ft_print_export_error(char *arg)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd("export: `", 2);
 	ft_putstr_fd(arg, 2);
 	ft_putstr_fd("': not a valid identifier\n", 2);
+	return (1);
 }

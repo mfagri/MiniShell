@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 18:12:27 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 18:43:08 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ typedef struct	s_spl
 	char	***a_var;
 }	t_spl;
 
-void			ft_cd_free(char *s);
+void			ft_cd_free(char *s, char *arg, int i);
 char			**get_ret(char **pr, int i, int *j);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_echo(char **pr);
 void			ft_pwd(char **arg);
 void			ft_cd(char **arg, char **env);
 void			ft_exit(char **arg, char **env);
-void			ft_home(char **env);
+void			ft_home(char **env, char *s);
 int				ft_oldpwd(char **env);
-char			*ft_take_pwd_old(char p[]);
+char			*ft_take_pwd_old(char *p);
 void			ft_cd_norm(char **env, char *path, char s[]);
 void			ft_unset(char **arg, char **env);
 int				ft_count_args(char **args);
@@ -102,13 +102,13 @@ void			ft_putstr_fd(char *s, int fd);
 char			*ft_strrchr(char *s, int c);
 void			remove_from_env(char *arg, char **env, int l);
 char			**ft_sort_env(char **env);
-void			check_arg_export(char *arg, char **env);
+int				check_arg_export(char *arg, char **env);
 void			add_to_env(char *arg, char **env);
 void			add_to_env_norm(char *name, char *value, char *f, char **env);
 void			set_new_norm(char **env, char *name, char *f);
 void			set_new(char *arg, char **env);
 char			*final_srt_add(char *value, char *name);
-void			ft_print_export_error(char *arg);
+int				ft_print_export_error(char *arg);
 void			ft_print_export(char **t, int i, int k);
 int				ft_isalpha(int c);
 int				ft_do_nothing(char *arg);

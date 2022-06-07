@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/04 17:01:41 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:23:18 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,27 @@ char	*final_srt(char *arg, char *name, int i)
 void	ft_export(char **env, char **arg)
 {
 	int		i;
+	int		l;
 	char	**t;
 
 	t = ft_sort_env(env);
 	i = 0;
 	i = 1;
+	l = 0;
 	if (!arg[i])
+	{
 		ft_print_export(t, -1, 0);
+		l = 1;
+	}
 	else
 		while (arg[i])
-			check_arg_export(arg[i++], env);
+			if(check_arg_export(arg[i++], env))
+				l = 0;
 	i = 0;
 	while (t[i])
 		free(t[i++]);
 	free(t);
+	if(l)
+		exit (0);
+	exit (1);
 }

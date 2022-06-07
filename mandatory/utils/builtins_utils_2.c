@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 08:50:42 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 16:00:19 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:53:49 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_count_args(char **args)
 	return (i);
 }
 
-void	ft_home(char **env)
+void	ft_home(char **env,char *s)
 {
 	int		i;
 	char	*path;
@@ -40,9 +40,9 @@ void	ft_home(char **env)
 	if (chdir(path) == -1)
 	{
 		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
+		free(s);
 		exit(1);
 	}
-	exit(0);
 }
 
 int	ft_oldpwd(char **env)

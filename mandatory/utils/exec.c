@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:33:29 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 18:12:57 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 18:37:40 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	exec_utils_1(t_spl comm, int *t, int *st, char **env)
 		check_redi(&comm, (*t), st, fdd);
 		if (comm.a_var[(*t) + 1])
 		{
-			close ((fdd)[0]);
-			close ((fdd)[1]);
+			close (fdd[0]);
+			close (fdd[1]);
 		}
 		check_command(env, comm.a_var[(*t)], (*t));
 		path = get_path(env, comm.a_var[(*t)][0]);
@@ -58,7 +58,7 @@ int	exec_utils_1(t_spl comm, int *t, int *st, char **env)
 		close (st[1]);
 	}
 	(*t)++;
-	free (fdd);	
+	free (fdd);
 	return (r);
 }
 
@@ -92,8 +92,8 @@ int	exec(int fd, char **env)
 	t = 0;
 	while (comm.a_var[t])
 	{
-		r[t] = exec_utils_1(comm, &t, st, env);
-		if (!r[t])
+		r[t - 1] = exec_utils_1(comm, &t, st, env);
+		if (!r[t - 1])
 			break ;
 	}
 	r[t] = '\0';
