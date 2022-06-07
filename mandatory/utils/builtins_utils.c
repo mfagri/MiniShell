@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 18:41:30 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 19:55:59 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_cd_free(char *s, char *arg, int i)
 	free(s);
 	exit (1);
 }
-void	ft_cd(char **arg, char **env)
+void	ft_cd(char **arg, char **env, int fd)
 {
 	char	*oldpath;
 	char	*newpath;
@@ -48,7 +48,8 @@ void	ft_cd(char **arg, char **env)
 	newpath = ft_take_pwd_old("PWD=");
 	ft_cd_norm(env, oldpath, "OLDPWD");
 	ft_cd_norm(env, newpath, "PWD");
-	exit (0);
+	if (!fd)
+		exit (0);
 }
 
 int	ft_exit_utils(char **arg, int t, int j)

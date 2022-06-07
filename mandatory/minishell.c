@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 18:11:26 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 20:13:41 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,14 +134,14 @@ int	check_next(t_spl *comm, int t, int i)
 	return (1);
 }
 
-int	check_command_utils(char **splited, char **env, int t)
+int	check_command_utils(char **splited, char **env, int t, int fd)
 {
 	if (!(ft_strcmp(splited[0], "pwd")))
-		ft_pwd(splited);
+		ft_pwd(splited, fd);
 	else if (!(ft_strcmp(splited[0], "cd")))
-		ft_cd(splited, env);
+		ft_cd(splited, env, fd);
 	else if (!(ft_strcmp(splited[0], "env")))
-		ft_print_env(env);
+		ft_print_env(env, fd);
 	else if (!(ft_strcmp(splited[0], "exit")))
 	{
 		if (!t)
@@ -152,16 +152,16 @@ int	check_command_utils(char **splited, char **env, int t)
 	return (0);
 }
 
-int	check_command(char **env, char **splited, int t)
+int	check_command(char **env, char **splited, int t, int fd)
 {
-	if (!(strcmp(splited[0], "export")))
-		ft_export(env, splited);
-	else if (!(strcmp(splited[0], "unset")))
-		ft_unset(splited, env);
+	if (!(ft_strcmp(splited[0], "export")))
+		ft_export(env, splited, fd);
+	else if (!(ft_strcmp(splited[0], "unset")))
+		ft_unset(splited, env, fd);
 	else if (!(ft_strcmp(splited[0], "echo")))
-		ft_echo(splited);
+		ft_echo(splited, fd);
 	else
-		return (check_command_utils(splited, env, t));
+		return (check_command_utils(splited, env, t, fd));
 	return (0);
 }
 

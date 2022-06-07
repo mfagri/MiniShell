@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rederections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:12:08 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 15:53:56 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 19:12:20 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	ft_printf_error(char *com, int i)
 		ft_putstr_fd(com, 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
 	}
-	exit (1);
 }
 
 int	fd_utils_1(t_spl *c, int t, int i, int **std)

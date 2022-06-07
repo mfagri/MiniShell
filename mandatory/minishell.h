@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 18:43:08 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 19:51:12 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,13 @@ typedef struct	s_spl
 void			ft_cd_free(char *s, char *arg, int i);
 char			**get_ret(char **pr, int i, int *j);
 void			ft_putstr_fd(char *s, int fd);
-void			ft_echo(char **pr);
-void			ft_pwd(char **arg);
-void			ft_cd(char **arg, char **env);
+void			ft_echo(char **pr, int fd);
 void			ft_exit(char **arg, char **env);
 void			ft_home(char **env, char *s);
 int				ft_oldpwd(char **env);
 char			*ft_take_pwd_old(char *p);
 void			ft_cd_norm(char **env, char *path, char s[]);
-void			ft_unset(char **arg, char **env);
+void			ft_unset(char **arg, char **env, int fd);
 int				ft_count_args(char **args);
 int				ft_check_n(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -75,7 +73,6 @@ char			*ft_itoa(int j);
 void			ft_sig(int signum);
 int				exec(int fd, char **env);
 int				get_glo(int i);
-void			ft_pwd();
 char			***split_pr(char **pr, int i, int k, char q);
 char			get_q(char **pr, int i, int j, char q);
 void			remove_ctlc(void);
@@ -91,16 +88,13 @@ void			edit_qu(char ***str, int i, int j, t_arg k);
 char			*sep(char *str, int i, int k);
 char			*remove_pwd(char **env, int i);
 int				ft_strcmp(const char *s1, const char *s2);
-void			ft_echo(char **pr);
-void			ft_pwd(char **arg);
-void 			ft_cd(char **arg,char **env);
-void			 ft_print_env(char **env);
-void			ft_export(char **env,char **arg);
-void 			ft_unset(char **arg,char **env);
+void			ft_pwd(char **arg, int fd);
+void 			ft_cd(char **arg, char **env, int fd);
+void			ft_export(char **env,char **arg, int fd);
 int				ft_isalpha(int c);
 void			ft_putstr_fd(char *s, int fd);
 char			*ft_strrchr(char *s, int c);
-void			remove_from_env(char *arg, char **env, int l);
+void			remove_from_env(char *arg, char **env, int l, int fd);
 char			**ft_sort_env(char **env);
 int				check_arg_export(char *arg, char **env);
 void			add_to_env(char *arg, char **env);
@@ -113,7 +107,6 @@ void			ft_print_export(char **t, int i, int k);
 int				ft_isalpha(int c);
 int				ft_do_nothing(char *arg);
 char			*final_srt(char *arg, char *name, int i);
-void			ft_export(char **env, char **arg);
 void			ft_exit(char **arg,char **env);
 int				get_glo_2(int i, int j);
 void			get_var_2_utils(char *env, int j, char **ret, int k);
@@ -128,8 +121,7 @@ char			*ft_strchr(const char *s, int c);
 void			ft_putstr_fd(char *s, int fd);
 int				check_redi(t_spl *comm, int t, int *st, int *fdd);
 int				check_next(t_spl *comm, int t, int i);
-void			remove_from_env(char *arg, char **env, int l);
-void			ft_print_env(char **env);
+void			ft_print_env(char **env, int fd);
 void    		get_dup_2(int r, int fd, int *std);
 void			get_here_doc(t_spl *comm, t_arg tt, int *fd, int *st);
 int				check_k(int k, t_spl *comm, t_arg tt);
@@ -147,7 +139,7 @@ int				fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st);
 int				get_glo_3(int i);
 int				get_glo_4(int i);
 struct termios	get_term(struct termios term, int i);
-int				check_command(char **env, char **splited, int t);
+int				check_command(char **env, char **splited, int t, int fd);
 void			child_exec(char ***splited, char *path, int t, char **env);
 
 #endif

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils_3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:30:52 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 15:56:58 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 19:47:23 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_print_env(char **env)
+void	ft_print_env(char **env, int fd)
 {
 	int	i;
 
@@ -26,9 +26,11 @@ void	ft_print_env(char **env)
 		}
 		i++;
 	}
+	if (!fd)
+		exit (0);
 }
 
-void	remove_from_env(char *arg, char **env, int l)
+void	remove_from_env(char *arg, char **env, int l, int fd)
 {
 	int	i;
 	int	j;
@@ -39,7 +41,8 @@ void	remove_from_env(char *arg, char **env, int l)
 		ft_putstr_fd("minishell: unset: `", 2);
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd("': not a valid identifier\n", 2);
-		exit (1);
+		if (!fd)
+			exit (1);
 	}
 	i = -1;
 	while (env[++i])

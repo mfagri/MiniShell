@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 16:23:18 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 19:41:44 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*final_srt(char *arg, char *name, int i)
 	return (f);
 }
 
-void	ft_export(char **env, char **arg)
+void	ft_export(char **env, char **arg, int fd)
 {
 	int		i;
 	int		l;
@@ -121,6 +121,10 @@ void	ft_export(char **env, char **arg)
 		free(t[i++]);
 	free(t);
 	if(l)
-		exit (0);
-	exit (1);
+	{
+		if (!fd)
+			exit (0);
+	}
+	if (!fd)
+		exit (1);
 }

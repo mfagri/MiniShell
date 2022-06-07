@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 04:30:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 15:57:44 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 19:52:24 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_check_n(const char *s1, const char *s2)
 	return (1);
 }
 
-void	ft_echo(char **pr)
+void	ft_echo(char **pr, int fd)
 {
 	int		i;
 	int		n_option;
@@ -71,10 +71,11 @@ void	ft_echo(char **pr)
 	}
 	if (n_option == 0)
 		write(1, "\n", 1);
-	exit (0);
+	if (!fd)
+		exit (0);
 }
 
-void	ft_pwd(char **arg)
+void	ft_pwd(char **arg, int fd)
 {
 	char	s[1024];
 
@@ -85,15 +86,17 @@ void	ft_pwd(char **arg)
 		exit (1);
 	}
 	printf("%s\n", s);
-	exit (0);
+	if (!fd)
+		exit (0);
 }
 
-void	ft_unset(char **arg, char **env)
+void	ft_unset(char **arg, char **env, int fd)
 {
 	int	i;
 
 	i = 0;
 	while (arg[++i])
-		remove_from_env(arg[i], env, 0);
-	exit (0);
+		remove_from_env(arg[i], env, 0, fd);
+	if (!fd)
+		exit (0);
 }
