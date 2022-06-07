@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 15:11:58 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 18:11:26 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,22 +121,20 @@ char	*remove_pwd(char **env, int i)
 int	check_next(t_spl *comm, int t, int i)
 {
 	int	k;
-	char ***splited = comm->a_var;
-	char ***before = comm->b_var;
 
 	k = 0;
-	while (before[t][i] && ft_strcmp(before[t][i], "|"))
+	while (comm->b_var[t][i] && ft_strcmp(comm->b_var[t][i], "|"))
 	{
-		if (!splited[t][i])
+		if (!comm->a_var[t][i])
 			return (0);
-		if (ft_strcmp(splited[t][i], before[t][i]))
+		if (ft_strcmp(comm->a_var[t][i], comm->b_var[t][i]))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int	check_command_utils(char **splited, char **env, int fd, int t)
+int	check_command_utils(char **splited, char **env, int t)
 {
 	if (!(ft_strcmp(splited[0], "pwd")))
 		ft_pwd(splited);
@@ -154,123 +152,17 @@ int	check_command_utils(char **splited, char **env, int fd, int t)
 	return (0);
 }
 
-int check_command(char **env, char **splited, int fd, int t)
+int	check_command(char **env, char **splited, int t)
 {
 	if (!(strcmp(splited[0], "export")))
 		ft_export(env, splited);
 	else if (!(strcmp(splited[0], "unset")))
-		ft_unset(splited,env);
+		ft_unset(splited, env);
 	else if (!(ft_strcmp(splited[0], "echo")))
 		ft_echo(splited);
 	else
-		return (check_command_utils(splited, env, fd, t));
+		return (check_command_utils(splited, env, t));
 	return (0);
-}
-
-int	exec(int fd, char **env)
-{
-	int		*r;
-	int		k;
-	int		i;
-	int		j = -1;
-	int		t;
-	int		st[2];
-	int		fdd[2];
-	char	***splited;
-	char	***before;
-	char	*path;
-	t_spl	comm;
-
-	comm = get_command(env, fd);
-	splited = comm.a_var;
-	before = comm.b_var;
-	st[0] = dup(0);
-	st[1] = dup(1);
-	fdd[0] = -2;
-	fdd[1] = -2;
-	k = -1;
-	t = -1;
-	k = -1;
-	t = -1;
-	t = -1;
-	k = 0;
-	while (splited[++t])
-		k++;
-	r = malloc (sizeof(int) * (k + 1));
-	k = -1;
-	t = 0;
-	while (splited[t])
-	{
-		k = 1;
-		if (splited[t + 1])
-			pipe(fdd);
-		if (!splited[t][0])
-		{
-			dup2(st[0], 0);
-			dup2(st[1], 1);
-			close (st[0]);
-			close (st[1]);
-			break ;
-		}
-		r[t] = fork();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-		if (!r[t])
-		{
-			if (splited[t + 1])
-				dup2 (fdd[1], 1);
-			check_redi(&comm, t, st, fdd);
-			if (splited[t + 1])
-			{
-				close (fdd[0]);
-				close (fdd[1]);
-			}
-			check_command(env, splited[t], r[t], t);
-			path = get_path(env, splited[t][0]);
-			child_exec(splited, path, t, env);
-		}
-		if (splited[t + 1])
-		{
-			dup2 (fdd[0], 0);
-			close (fdd[0]);
-			close (fdd[1]);
-		}
-		else
-		{
-			dup2 (st[1], 1);
-			dup2 (st[0], 0);
-			close (st[0]);
-			close (st[1]);
-		}
-		t++;
-	}
-	r[t] = '\0';
-	while (--t != -1)
-	{
-		get_glo(1);
-		waitpid(r[t], &k, 0);
-	}
-	dup2(st[0], 0);
-	dup2(st[1], 1);
-	close (st[0]);
-	close (st[1]);
-	if (WIFSIGNALED(k))
-	{
-		if(get_glo_2(1, k + 128) == 130)
-			write(1,"\n",1);
-	}
-	else if (WEXITSTATUS(k))
-		get_glo_2(1, k / 128 / 2);
-	if (k >= 25600)
-		get_glo_2(1, (k * 100) / 25600);
-	k = -1;
-	while (splited[++k])
-		free_2 (splited[k]);
-	free (splited);
-	k = -1;
-	while (before[++k])
-		free_2 (before[k]);
-	free (before);
-	free (r);
-	return (1);
 }
 
 int	check_shlvl(char **env)

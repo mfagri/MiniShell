@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:30:52 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 15:56:58 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:00:09 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,10 @@ void	remove_from_env(char *arg, char **env, int l)
 	}
 	if (l)
 		env[i - 1] = NULL;
+}
+
+void	ft_cd_free(char *s)
+{
+	free(s);
+	exit (1);
 }

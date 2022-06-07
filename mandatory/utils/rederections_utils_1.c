@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rederections_utils_1.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 09:48:33 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/06 16:12:25 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:16:05 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	get_dup(int r, int fd, int *std)
 			close (std[1]);
 		}
 		if (fd != -2)
-        {
-            close (fd);
+		{
+			close (fd);
 			fd = open (".here_doc.txt", O_RDONLY, 0777);
 			dup2 (fd, 0);
-            close (fd);
-        }
-    }
+			close (fd);
+		}
+	}
 	get_dup_2(r, fd, std);
 }
 

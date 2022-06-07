@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 22:41:47 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 15:11:03 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:14:41 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-struct termios get_term(struct termios term, int i)
-{
-	static struct termios	terminal;
-
-	if (i)
-		terminal = term;
-	return (terminal);
-}
 
 void	remove_ctlc(void)
 {
@@ -71,7 +62,7 @@ int	get_glo(int i)
 void	ft_sig(int signum)
 {
 	struct termios	term;
-	
+
 	if (signum == SIGINT && !get_glo(2) && get_glo_3(3) && get_glo_4(-1) == 0)
 	{
 		get_glo_2(1, 1);

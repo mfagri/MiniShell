@@ -6,16 +6,12 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 16:04:33 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:43:08 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-static void	ft_cd_free(char *s)
-{
-	free(s);
-	exit (1);
-}
+
 void	ft_cd(char **arg, char **env)
 {
 	char	*oldpath;
@@ -26,9 +22,11 @@ void	ft_cd(char **arg, char **env)
 		ft_home(env);
 	else
 	{
-		if (!ft_strncmp("-", arg[1], ft_strlen("-")))
-			if(ft_oldpwd(env))
+		if (!ft_strncmp ("-", arg[1], ft_strlen ("-")))
+		{
+			if (ft_oldpwd(env))
 				ft_cd_free(oldpath);
+		}
 		else if (ft_count_args(arg) > 2)
 		{
 			ft_putstr_fd("minishell: cd: too many arguments\n", 2);

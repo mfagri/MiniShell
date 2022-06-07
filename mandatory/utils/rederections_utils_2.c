@@ -6,22 +6,22 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 09:47:47 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/06 21:35:32 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:18:00 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    get_dup_2(int r, int fd, int *std)
+void	get_dup_2(int r, int fd, int *std)
 {
 	if (r == 1)
 	{
 		if (fd != -2)
-        {
+		{
 			fd = open (".here_doc.txt", O_RDONLY, 0777);
 			dup2 (fd, 0);
-            close (fd);
-        }
+			close (fd);
+		}
 		if (std[0] != -2)
 		{
 			dup2 (std[0], 0);
@@ -29,7 +29,6 @@ void    get_dup_2(int r, int fd, int *std)
 		}
 		if (std[1] != -2)
 		{
-			// write (2, "yoo\n", 4);
 			dup2 (std[1], 1);
 			close (std[1]);
 		}
@@ -40,6 +39,7 @@ void	get_here_doc(t_spl *comm, t_arg tt, int *fd, int *st)
 {
 	char			*str;
 	struct termios	term;
+
 	get_glo_4(*fd);
 	rl_catch_signals = 1;
 	remove_ctlc();

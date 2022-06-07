@@ -56,7 +56,7 @@ void	ft_printf_error(char *com, int i)
 		ft_putstr_fd(com, 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
 	}
-	exit (1)
+	exit (1);
 }
 
 int	fd_utils_1(t_spl *c, int t, int i, int **std)

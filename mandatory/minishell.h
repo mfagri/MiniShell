@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/06 21:34:51 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 18:12:27 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_spl
 	char	***a_var;
 }	t_spl;
 
+void			ft_cd_free(char *s);
 char			**get_ret(char **pr, int i, int *j);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_echo(char **pr);
@@ -48,7 +49,7 @@ void			ft_pwd(char **arg);
 void			ft_cd(char **arg, char **env);
 void			ft_exit(char **arg, char **env);
 void			ft_home(char **env);
-void			ft_oldpwd(char **env);
+int				ft_oldpwd(char **env);
 char			*ft_take_pwd_old(char p[]);
 void			ft_cd_norm(char **env, char *path, char s[]);
 void			ft_unset(char **arg, char **env);
@@ -146,5 +147,7 @@ int				fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st);
 int				get_glo_3(int i);
 int				get_glo_4(int i);
 struct termios	get_term(struct termios term, int i);
+int				check_command(char **env, char **splited, int t);
+void			child_exec(char ***splited, char *path, int t, char **env);
 
 #endif

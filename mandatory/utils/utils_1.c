@@ -6,11 +6,20 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 06:39:48 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/30 19:31:42 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:14:52 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../minishell.h"
+
+struct termios	get_term(struct termios term, int i)
+{
+	static struct termios	terminal;
+
+	if (i)
+		terminal = term;
+	return (terminal);
+}
 
 char	*remove_path(char *str)
 {
