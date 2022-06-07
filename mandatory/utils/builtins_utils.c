@@ -6,12 +6,13 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 19:55:59 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:46:23 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-void	ft_cd_free(char *s, char *arg, int i)
+
+int	ft_cd_free(char *s, char *arg, int i, int fd)
 {
 	if(!arg && i)
 		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
@@ -22,7 +23,10 @@ void	ft_cd_free(char *s, char *arg, int i)
 		ft_putstr_fd(": No such file or directory\n", 2);
 	}	
 	free(s);
-	exit (1);
+	if (!fd)
+		exit (1);
+	get_glo_2(1, 1);
+	return (0);
 }
 void	ft_cd(char **arg, char **env, int fd)
 {
@@ -31,25 +35,34 @@ void	ft_cd(char **arg, char **env, int fd)
 
 	oldpath = ft_take_pwd_old("OLDPWD=");
 	if (!arg[1])
-		ft_home(env,oldpath);
+	{
+		if (!ft_home(env, oldpath, fd))
+			return ;
+	}
 	else
 	{
 		if (!ft_strncmp("-", arg[1], ft_strlen("-")))
 		{
 			if(ft_oldpwd(env))
-				ft_cd_free(oldpath,NULL,0);
+				if (!ft_cd_free(oldpath,NULL,0, fd))
+					return ;
 		}
 		else if (ft_count_args(arg) > 2)
-			ft_cd_free(oldpath,NULL,1);
+		{	
+			if (!ft_cd_free(oldpath,NULL,1, fd))
+				return ;
+		}
 		else
 			if (chdir(arg[1]) == -1)
-				ft_cd_free(oldpath,arg[1],0);
+				if (!ft_cd_free(oldpath,arg[1],0, fd))
+					return ;
 	}
 	newpath = ft_take_pwd_old("PWD=");
 	ft_cd_norm(env, oldpath, "OLDPWD");
 	ft_cd_norm(env, newpath, "PWD");
 	if (!fd)
 		exit (0);
+	get_glo_2(1, 0);
 }
 
 int	ft_exit_utils(char **arg, int t, int j)

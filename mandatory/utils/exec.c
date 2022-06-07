@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:33:29 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 20:14:46 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:50:33 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,23 +106,26 @@ int	exec(int fd, char **env)
 	t = get_default_2(&k, &st, comm, &r);
 	if (!comm.a_var[1] && !check_command(env, comm.a_var[0], 0, 1))
 		t++;
-	while (comm.a_var[++t])
+	if (comm.a_var[t + 1])
 	{
-		r[t] = exec_utils_1(comm, t, st, env);
-		if (!r[t])
-			break ;
+		while (comm.a_var[++t])
+		{
+			r[t] = exec_utils_1(comm, t, st, env);
+			if (!r[t])
+				break ;
+		}
+		r[t] = '\0';
+		while (--t != -1)
+		{
+			get_glo(1);
+			waitpid(r[t], &k, 0);
+		}
+		return_handler(k);
+		dup2(st[0], 0);
+		dup2(st[1], 1);
+		close (st[0]);
+		close (st[1]);
 	}
-	r[t] = '\0';
-	while (--t != -1)
-	{
-		get_glo(1);
-		waitpid(r[t], &k, 0);
-	}
-	return_handler(k);
-	dup2(st[0], 0);
-	dup2(st[1], 1);
-	close (st[0]);
-	close (st[1]);
 	k = -1;
 	while (comm.a_var[++k])
 		free_2 (comm.a_var[k]);

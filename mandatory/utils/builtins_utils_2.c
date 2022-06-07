@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 08:50:42 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 16:53:49 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:42:03 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_count_args(char **args)
 	return (i);
 }
 
-void	ft_home(char **env,char *s)
+int	ft_home(char **env,char *s, int fd)
 {
 	int		i;
 	char	*path;
@@ -41,8 +41,12 @@ void	ft_home(char **env,char *s)
 	{
 		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
 		free(s);
-		exit(1);
+		if (!fd)
+			exit(1);
+		get_glo_2(1, 1);
+		return (0);
 	}
+	return (1);
 }
 
 int	ft_oldpwd(char **env)

@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:30:52 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 19:47:23 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:40:13 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	remove_from_env(char *arg, char **env, int l, int fd)
 		ft_putstr_fd("': not a valid identifier\n", 2);
 		if (!fd)
 			exit (1);
+		return ;
 	}
 	i = -1;
 	while (env[++i])

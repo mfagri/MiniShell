@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 19:51:12 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:44:26 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ typedef struct	s_spl
 	char	***a_var;
 }	t_spl;
 
-void			ft_cd_free(char *s, char *arg, int i);
+int				ft_cd_free(char *s, char *arg, int i, int fd);
 char			**get_ret(char **pr, int i, int *j);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_echo(char **pr, int fd);
 void			ft_exit(char **arg, char **env);
-void			ft_home(char **env, char *s);
+int				ft_home(char **env, char *s, int fdd);
 int				ft_oldpwd(char **env);
 char			*ft_take_pwd_old(char *p);
 void			ft_cd_norm(char **env, char *path, char s[]);
