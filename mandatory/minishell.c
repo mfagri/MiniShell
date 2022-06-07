@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 14:46:40 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:03:35 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	child_exec(char ***splited, char *path, int t, char **env)
 		exit (126);
 	if (execve(path, splited[t], env) == -1)
 	{
-		printf ("minishell: %s: command not found\n", splited[t][0]);
+		ft_printf_error(4, splited[t][0]);
 		exit (127);
 	}
 	exit (0);

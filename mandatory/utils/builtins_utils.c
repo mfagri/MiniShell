@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/05 17:59:56 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 15:05:51 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	ft_cd(char **arg, char **env)
 		}
 		else
 			if (chdir(arg[1]) == -1)
-				printf("minishell: cd: %s : No such file \
-					or directory\n", arg[1]);
+				ft_printf_error (arg[1], 3);
 	}
 	newpath = ft_take_pwd_old("PWD=");
 	ft_cd_norm(env, oldpath, "OLDPWD");
@@ -86,7 +85,7 @@ void	exit_norm(char *arg, int *t)
 	n = ft_atoi_exit("-9223372036854775808");
 	if (ft_atoi_exit(arg) > l || ft_atoi_exit(arg) < n)
 	{
-		printf("minishell: exit: %s: numeric argument required\n", arg);
+		ft_printf_error(arg, 5);
 		*t = 255;
 	}
 	return ;
@@ -110,7 +109,7 @@ void	ft_exit(char **arg, char **env)
 	if (i > 2 && !ft_isalpha(arg[1][j]))
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 	if (i >= 2 && ft_isalpha(arg[1][j]))
-		printf("minishell: exit: %s: numeric argument required\n", arg[1]);
+		ft_printf_error(arg[1], 5);
 	if (arg[1])
 		t = ft_exit_utils(arg, t, j);
 	if (i > 1)
