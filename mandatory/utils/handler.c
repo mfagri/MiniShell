@@ -12,6 +12,27 @@
 
 #include "../minishell.h"
 
+struct termios get_term(struct termios term, int i)
+{
+	static struct termios	terminal;
+
+	if (i)
+		terminal = term;
+	return (terminal);
+}
+
+void	remove_ctlc(void)
+{
+	struct termios	terminal;
+	struct termios	terminal2;
+
+	tcgetattr(0, &terminal);
+	terminal2 = terminal;
+	terminal.c_lflag &= ~(ECHOCTL);
+	tcsetattr(0, TCSANOW | TCSAFLUSH, &terminal);
+	get_term(terminal2, 1);
+}
+
 int	get_glo_3(int i)
 {
 	static int	j;
@@ -29,12 +50,8 @@ int	get_glo_4(int i)
 {
 	static int	j;
 
-	if (i == 0)
-		j = 0;
-	else if (i == 1)
-		j = 1;
-	else
-		return (j);
+	if (i != -1)
+		j = i;
 	return (j);
 }
 
@@ -53,19 +70,23 @@ int	get_glo(int i)
 
 void	ft_sig(int signum)
 {
-	if (signum == SIGINT && !get_glo(2) && get_glo_3(3) )//&& get_glo_4(2) != 1)
+	struct termios	term;
+	
+	if (signum == SIGINT && !get_glo(2) && get_glo_3(3) && get_glo_4(-1) == 0)
 	{
 		write (1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	else if (signum == SIGQUIT && !get_glo(2) && get_glo_3(3) ) //&& get_glo_4(2) != 1)
+	if (signum == SIGQUIT && !get_glo(2) && get_glo_3(3) && get_glo_4(-1) == 0)
 		return ;
-	// else if (signum == SIGINT && get_glo_4(2) == 1)
-	// {
-	// 	get_glo_4(0);
-	//  	write(1, "\n", 1);
-	// 	exit(1);
-	// }
+	if (signum == SIGINT && get_glo_4(-1) != 0)
+	{
+		term = get_term(term, 0);
+		tcsetattr(STDIN_FILENO, TCSANOW, &term);
+		close (get_glo_4(-1));
+		write (1, "\n", 1);
+		exit(1);
+	}
 }

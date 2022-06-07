@@ -77,7 +77,7 @@ int				get_glo(int i);
 void			ft_pwd();
 char			***split_pr(char **pr, int i, int k, char q);
 char			get_q(char **pr, int i, int j, char q);
-struct termios	remove_ctlc(void);
+void			remove_ctlc(void);
 char			get_q_1(char *pr, int i, char q);
 char			*remove_qu(char *str, int i, int j);
 int				check_next_qu(char *str, char c, int i);
@@ -145,5 +145,6 @@ int				free_two(int *fd, int **std);
 int				fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st);
 int				get_glo_3(int i);
 int				get_glo_4(int i);
+struct termios	get_term(struct termios term, int i);
 
 #endif

@@ -18,7 +18,6 @@ void    get_dup_2(int r, int fd, int *std)
 	{
 		if (fd != -2)
         {
-            close (fd);
 			fd = open (".here_doc.txt", O_RDONLY, 0777);
 			dup2 (fd, 0);
             close (fd);
@@ -39,9 +38,11 @@ void    get_dup_2(int r, int fd, int *std)
 
 void	get_here_doc(t_spl *comm, t_arg tt, int *fd, int *st)
 {
-	char	*str;
-	
-	// get_glo_4(1);
+	char			*str;
+	struct termios	term;
+	get_glo_4(*fd);
+	rl_catch_signals = 1;
+	remove_ctlc();
 	str = readline("> ");
 	while (ft_strcmp(str, comm->b_var[tt.k][tt.r + 1]))
 	{
@@ -51,6 +52,10 @@ void	get_here_doc(t_spl *comm, t_arg tt, int *fd, int *st)
 		str = readline("> ");
 	}
 	free (str);
+	close (*fd);
+	term = get_term(term, 0);
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+	exit (0);
 }
 
 int	fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st)
@@ -65,7 +70,12 @@ int	fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st)
 		dup2(st[0], 0);
 		dup2(st[1], 1);
 		*fd = open (".here_doc.txt", O_CREAT | O_TRUNC | O_RDWR, 0777);
-		get_here_doc(comm, tt, fd, st);
+		k = fork();
+		if (k == 0)
+			get_here_doc(comm, tt, fd, st);
+		get_glo_4(0);
+		waitpid (k, NULL, 0);
+		close (*fd);
 		r = 2;
 	}
 	return (r);
