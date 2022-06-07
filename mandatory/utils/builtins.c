@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 04:30:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 15:07:23 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:57:44 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_echo(char **pr)
 	}
 	if (n_option == 0)
 		write(1, "\n", 1);
+	exit (0);
 }
 
 void	ft_pwd(char **arg)
@@ -79,8 +80,12 @@ void	ft_pwd(char **arg)
 
 	getcwd(s, sizeof(s));
 	if (!s[0])
-		return (perror("pwd"));
+	{
+		ft_putstr_fd("pwd\n",2);
+		exit (1);
+	}
 	printf("%s\n", s);
+	exit (0);
 }
 
 void	ft_unset(char **arg, char **env)
@@ -90,4 +95,5 @@ void	ft_unset(char **arg, char **env)
 	i = 0;
 	while (arg[++i])
 		remove_from_env(arg[i], env, 0);
+	exit (0);
 }

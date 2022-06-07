@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 08:50:42 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/04 16:58:57 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:00:19 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ void	ft_home(char **env)
 	else
 		path = NULL;
 	if (chdir(path) == -1)
+	{
 		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
+		exit(1);
+	}
+	exit(0);
 }
 
-void	ft_oldpwd(char **env)
+int	ft_oldpwd(char **env)
 {
 	int		i;
 	char	*s;
@@ -56,12 +60,15 @@ void	ft_oldpwd(char **env)
 			s = ft_strrchr(env[i], '=');
 			s++;
 			if (chdir(s) == -1)
+			{
 				ft_putstr_fd("minishell: cd: OLDPWD not set\n", 2);
-			return ;
+				return (1);
+			}
+			return (0);
 		}
 	}
 	ft_putstr_fd("minishell: cd: OLDPWD not set\n", 2);
-	return ;
+	return (1);
 }
 
 char	*ft_take_pwd_old(char p[])
