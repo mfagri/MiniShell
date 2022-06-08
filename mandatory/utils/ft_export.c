@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 11:20:26 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/08 12:12:33 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void	ft_export(char **env, char **arg, int fd)
 	int		l;
 	char	**t;
 
-
 	t = ft_sort_env(env);
 	i = 0;
 	i = 1;
@@ -119,19 +118,19 @@ void	ft_export(char **env, char **arg, int fd)
 		ft_print_export(t, -1, 0);
 		l = 1;
 	}
-	else
-		while (arg[i])
-			if(check_arg_export(arg[i++], env))
-				l = 0;
-	i = 0;
-	while (t[i])
-		free(t[i++]);
-	free(t);
-	if(l)
-	{
-		if (!fd)
-			exit (0);
-	}
-	if (!fd)
+	// else
+	// 	while (arg[i])
+	// 		if (check_arg_export(arg[i++], env))
+	// 			l = 0;
+	// i = 0;
+	// while (t[i])
+	// 	free(t[i++]);
+	// free(t);
+	// if (l)
+	// {
+	// 	if (!fd)
+	// 		exit (0);
+	// }
+	// if (!fd)
 		exit (1);
 }

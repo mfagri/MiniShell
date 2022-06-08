@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rederections_utils_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 09:47:47 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 16:18:00 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/08 14:03:13 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,8 @@ int	fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st)
 	r = 3;
 	if (!(ft_strcmp("<<", comm->a_var[tt.k][tt.r])))
 	{
-		dup2(st[0], 0);
-		dup2(st[1], 1);
-		*fd = open (".here_doc.txt", O_CREAT | O_TRUNC | O_RDWR, 0777);
-		k = fork();
-		if (k == 0)
-			get_here_doc(comm, tt, fd, st);
-		get_glo_4(0);
-		waitpid (k, NULL, 0);
-		close (*fd);
 		r = 2;
+		*fd = 1;
 	}
 	return (r);
 }

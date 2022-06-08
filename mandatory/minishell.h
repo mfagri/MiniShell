@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 20:44:26 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 12:02:17 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_spl
 	char	***a_var;
 }	t_spl;
 
+int				ft_cd_utils(char **arg, char **env, char *oldpath, int fd);
 int				ft_cd_free(char *s, char *arg, int i, int fd);
 char			**get_ret(char **pr, int i, int *j);
 void			ft_putstr_fd(char *s, int fd);
@@ -65,7 +66,7 @@ int				new_line_index(char	*all);
 int				ft_strlen(char *c);
 char			*ft_return(char *all, int i);
 char			*edit_all(char *all, int i, int k);
-int				get_history();
+int				get_history(void);
 char			*get_path(char **env, char *command);
 int				ft_isalnum(int c);
 int				ft_isdigit(int c);

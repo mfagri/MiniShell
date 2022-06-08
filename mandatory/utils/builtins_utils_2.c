@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 08:50:42 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 20:42:03 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 11:39:35 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_count_args(char **args)
 	return (i);
 }
 
-int	ft_home(char **env,char *s, int fd)
+int	ft_home(char **env, char *s, int fd)
 {
 	int		i;
 	char	*path;

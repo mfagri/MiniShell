@@ -1,6 +1,11 @@
 make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/mfagri/Desktop/MiniShell'
-make: Nothing to be done for `all'.
+make: Entering directory `/Users/aaitoual/Desktop/minishell'
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -I -I/goinfre/aaitoual/.brew/opt/readline/include -o mandatory/utils/builtins_utils_3.o  -c mandatory/utils/builtins_utils_3.c
  
-make: Leaving directory `/Users/mfagri/Desktop/MiniShell'
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -I -I/goinfre/aaitoual/.brew/opt/readline/include -o mandatory/utils/rederections_utils_2.o  -c mandatory/utils/rederections_utils_2.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -I -I/goinfre/aaitoual/.brew/opt/readline/include -o mandatory/utils/rederections_utils_1.o  -c mandatory/utils/rederections_utils_1.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -I -I/goinfre/aaitoual/.brew/opt/readline/include -o mandatory/utils/exec.o  -c mandatory/utils/exec.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -I -I/goinfre/aaitoual/.brew/opt/readline/include -o mandatory/utils/builtins_utils_4.o  -c mandatory/utils/builtins_utils_4.c
+cc  ./mandatory/minishell.o ./mandatory/utils/ft_split.o ./mandatory/utils/ft_strncmp.o ./mandatory/utils/get_next_line_utils.o ./mandatory/utils/get_next_line.o ./mandatory/utils/ft_strlen.o ./mandatory/utils/ft_strjoin.o ./mandatory/utils/utils_1.o ./mandatory/utils/ft_strlcpy.o ./mandatory/utils/ft_isdigit.o ./mandatory/utils/ft_isalnum.o ./mandatory/utils/ft_itoa.o ./mandatory/utils/handler.o ./mandatory/utils/utils_2.o ./mandatory/utils/quotations.o ./mandatory/utils/get_arg.o ./mandatory/utils/vars.o ./mandatory/utils/separation.o ./mandatory/utils/ft_export.o ./mandatory/utils/builtins.o ./mandatory/utils/builtins_utils.o ./mandatory/utils/ft_export_utils_1.o ./mandatory/utils/ft_export_utils_2.o ./mandatory/utils/builtins_utils_2.o ./mandatory/utils/vars_utils.o ./mandatory/utils/get_command.o ./mandatory/utils/get_command_utils.o ./mandatory/utils/check_pr.o ./mandatory/utils/ft_atoi.o ./mandatory/utils/ft_strchr.o ./mandatory/utils/rederections.o ./mandatory/utils/builtins_utils_3.o ./mandatory/utils/rederections_utils_2.o ./mandatory/utils/rederections_utils_1.o ./mandatory/utils/exec.o ./mandatory/utils/builtins_utils_4.o -Wall -Wextra -Werror  -o minishell  -lreadline -L/goinfre/aaitoual/.brew/opt/readline/lib
+make: Leaving directory `/Users/aaitoual/Desktop/minishell'
  

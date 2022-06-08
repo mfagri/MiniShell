@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rederections_utils_1.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 09:48:33 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 16:16:05 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/08 14:03:47 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	get_dup(int r, int fd, int *std)
 		}
 		if (fd != -2)
 		{
-			close (fd);
 			fd = open (".here_doc.txt", O_RDONLY, 0777);
 			dup2 (fd, 0);
 			close (fd);
