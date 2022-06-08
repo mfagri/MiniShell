@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:12 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 11:05:26 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/08 15:14:59 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	set_new_norm(char **env, char *name, char *f)
 	i = -1;
 	while (env[++i])
 	{
-		if (!ft_strncmp(env[i], name, ft_strlen(name)))
+		if (!ft_strcmp(env[i], name))
 		{
 			j = 123456;
 			if (ft_strchr(f, '='))

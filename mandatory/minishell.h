@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 14:48:57 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:03:16 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 # define BUFFER_SIZE 1
-# define HISTORY_PATH "/Users/mfagri/.minishell_history"
+# define HISTORY_PATH "/Users/aaitoual/.minishell_history"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
