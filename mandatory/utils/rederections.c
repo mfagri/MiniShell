@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:12:08 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 13:30:11 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:35:10 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,7 @@ void	ft_printf_error(char *com, int i)
 		ft_putstr_fd(com, 2);
 		ft_putstr_fd(": ambiguous redirect\n", 2);
 	}
-	if (i == 3)
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(com, 2);
-		ft_putstr_fd(": No such file or directory\n", 2);
-	}
-	if (i == 4)
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(com, 2);
-		ft_putstr_fd(": command not found\n", 2);
-	}
-	if (i == 5)
-	{
-		ft_putstr_fd("minishell: exit: ", 2);
-		ft_putstr_fd(com, 2);
-		ft_putstr_fd(": numeric argument required\n", 2);
-	}
+	ft_printf_error_utils(com, i);
 }
 
 int	fd_utils_1(t_spl *c, int t, int i, int **std)

@@ -6,13 +6,13 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:33:29 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 14:00:54 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:29:25 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int		get_default_exec(int **fdd, int *st, t_spl comm, int t)
+int	get_default_exec(int **fdd, int *st, t_spl comm, int t)
 {
 	*fdd = malloc (sizeof (int) * 2);
 	if (comm.a_var[t + 1])
@@ -27,11 +27,6 @@ int		get_default_exec(int **fdd, int *st, t_spl comm, int t)
 	}
 	return (1);
 }
-
-// void	pre_execute(t_spl comm, int *fdd, int t, int *st)
-// {
-
-// }
 
 void	after_exec(int **fdd, int *st, t_spl comm, int t)
 {
@@ -53,8 +48,8 @@ void	after_exec(int **fdd, int *st, t_spl comm, int t)
 
 void	get_here_doc_content(t_spl comm, int t, int *st)
 {
-	int	fd;
-	int	k;
+	int		fd;
+	int		k;
 	t_arg	tt;
 
 	tt.k = t;
@@ -70,8 +65,6 @@ void	get_here_doc_content(t_spl comm, int t, int *st)
 			if (k == 0)
 				get_here_doc(&comm, tt, &fd, st);
 			get_glo_4(0);
-			// puts ("yooo");
-			// puts ("heyyy");÷
 			waitpid (k, NULL, 0);
 			close (fd);
 		}
@@ -107,38 +100,6 @@ int	exec_utils_1(t_spl comm, int t, int *st, char **env)
 	return (r);
 }
 
-int	get_default_2(int *k, int **st, t_spl comm, int **r)
-{
-	int	i;
-
-	i = -1;
-	while (comm.a_var[++i])
-		i = i;
-	*r = malloc (sizeof(int) * (i + 1));
-	*st = malloc (sizeof(int) * 2);
-	(*st)[0] = dup(0);
-	(*st)[1] = dup(1);
-	*k = -1;
-	return (-1);
-}
-
-void	return_handler(int k)
-{
-	if (WIFSIGNALED(k))
-	{
-		if (get_glo_2(1, k + 128) == 130)
-			write(1, "\n", 1);
-	}
-	else if (WEXITSTATUS(k))
-	{
-		get_glo_2(1, k / 128 / 2);
-	}
-	else if (k >= 25600)
-		get_glo_2(1, (k * 100) / 25600);
-	else
-		get_glo_2(1, 0);
-}
-
 int	exec(int fd, char **env)
 {
 	int		*r;
@@ -161,20 +122,6 @@ int	exec(int fd, char **env)
 	waitpid(r[0], &k, 0);
 	while (--t != -1)
 		waitpid(r[t], NULL, 0);
-	get_glo(1);
-	return_handler(k);
-	dup2(st[0], 0);
-	dup2(st[1], 1);
-	close (st[0]);
-	close (st[1]);
-	k = -1;
-	while (comm.a_var[++k])
-		free_2 (comm.a_var[k]);
-	free (comm.a_var);
-	k = -1;
-	while (comm.b_var[++k])
-		free_2 (comm.b_var[k]);
-	free (comm.b_var);
-	free (r);
+	return_default(&comm, k, &st, &r);
 	return (1);
 }
