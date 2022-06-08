@@ -6,31 +6,38 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:06 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 10:41:11 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/08 19:00:36 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+void	add_to_env_norm2(char **env,char *value,int i)
+{
+		if (ft_strchr(env[i], '='))
+				env[i] = ft_strjoin(env[i], value);
+		else
+		{
+				env[i] = ft_strjoin(env[i], "=");
+				env[i] = ft_strjoin(env[i], value);
+		}
+}
+
 void	add_to_env_norm(char *name, char *value, char *f, char **env)
 {
 	int	i;
 	int	j;
-
+	char **t;
 	i = -1;
 	while (env[++i])
 	{
-		if (!ft_strncmp(env[i], name, ft_strlen(name)))
+		t = ft_split(env[i],'=');
+		if (!ft_strncmp(name, env[i],ft_strlen(t[0])) && (ft_strlen(t[0]) == ft_strlen(name)))
 		{
 			j = 123456;
-			if (ft_strchr(env[i], '='))
-				env[i] = ft_strjoin(env[i], value);
-			else
-			{
-				env[i] = ft_strjoin(env[i], "=");
-				env[i] = ft_strjoin(env[i], value);
-			}
+			add_to_env_norm2(env,value,i);
 		}
+		free_2(t);
 	}
 	if (j != 123456)
 	{

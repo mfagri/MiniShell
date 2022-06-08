@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 15:44:48 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:48:49 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ char	*final_srt(char *arg, char *name, int i)
 	while (arg[i] && arg[++i])
 	{
 		value[j] = arg[i];
-		write(1,&value[j],1);
 		j++;
 	}
 	value[i] = '\0';
