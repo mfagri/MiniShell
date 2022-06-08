@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 15:03:16 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:32:57 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_spl
 	char	***a_var;
 }	t_spl;
 
+char			get_q_single(char c, char q);
+int				check_utils_4(int k, char *s, int j, char q);
 int				check_command_utils(char **splited, char **env, int t, int fd);
 int				check_command(char **env, char **splited, int t, int fd);
 int				check_shlvl(char **env);

@@ -6,7 +6,7 @@
 #    By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 19:42:03 by aaitoual          #+#    #+#              #
-#    Updated: 2022/06/08 14:53:40 by aaitoual         ###   ########.fr        #
+#    Updated: 2022/06/08 18:38:36 by aaitoual         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ FILE =  ./mandatory/minishell.c ./mandatory/utils/ft_split.c ./mandatory/utils/f
 		./mandatory/utils/check_pr.c ./mandatory/utils/ft_atoi.c ./mandatory/utils/ft_strchr.c  ./mandatory/utils/rederections.c\
 		./mandatory/utils/builtins_utils_3.c ./mandatory/utils/rederections_utils_2.c ./mandatory/utils/rederections_utils_1.c\
 		./mandatory/utils/exec.c ./mandatory/utils/builtins_utils_4.c ./mandatory/utils/rederections_utils_4.c ./mandatory/utils/exec_utils_1.c\
-		./mandatory/utils/utils_3.c ./mandatory/utils/utils_4.c \
+		./mandatory/utils/utils_3.c ./mandatory/utils/utils_4.c ./mandatory/utils/check_pr_utils_1.c \
 
 FILE1 = $(FILE:.c=.o)
 

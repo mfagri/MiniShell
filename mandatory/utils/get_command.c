@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:08:09 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/06 19:05:31 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/08 15:45:42 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_spl	exit_checker(char ***ret, char **env, int fd)
 	comm.a_var = NULL;
 	if (!check_pr(*ret))
 	{
-		printf ("%s\n", "syntax error");
+		ft_putstr_fd ("syntax error\n", 2);
 		get_glo_2(1, 258);
 		free_2(*ret);
 		return (get_command(env, fd));

@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:30:52 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 12:02:45 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:45:44 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,20 @@ void	ft_print_env(char **env, int fd)
 		exit (0);
 }
 
-int	remove_from_env_utils(char **env, char *arg, int l)
+int	remove_from_env_utils(char **env, char *arg, int l, int *i)
 {
-	int	i;
 	int	j;
 
-	i = -1;
-	while (env[++i])
+	*i = -1;
+	while (env[++(*i)])
 	{
-		j = i + 1;
-		if (!ft_strncmp(env[i], arg, ft_strlen(arg)))
+		j = (*i) + 1;
+		if (!ft_strncmp(env[*i], arg, ft_strlen(arg)))
 		{
-			free (env[i]);
+			free (env[*i]);
 			l = 1;
 			while (env[j])
-				env[i++] = env[j++];
+				env[(*i)++] = env[j++];
 		}
 	}
 	return (l);
@@ -65,7 +64,7 @@ void	remove_from_env(char *arg, char **env, int l, int fd)
 			exit (1);
 		return ;
 	}
-	l = remove_from_env_utils(env, arg, l);
+	l = remove_from_env_utils(env, arg, l, &i);
 	if (l)
 		env[i - 1] = NULL;
 }

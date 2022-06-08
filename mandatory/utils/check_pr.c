@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:28:07 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/03 20:46:31 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/08 18:39:26 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,25 @@ int	check_pr_utils_2(char **str, char q)
 
 int	check_pr_utils_4(char **str, int u, int i, int j)
 {
+	char	q;
+
+	q = '\0';
 	while (str[++i])
 	{
 		j = -1;
 		while (str[i][++j])
 		{
-			if ((str[i][j] == '<' && str[i][j + 1] == '<'
-				&& str[i][j + 2] != '<') || (str[i][j] == '>'
-				&& str[i][j + 1] == '>' && str[i][j + 2] != '>'))
+			q = get_q_single(str[i][j], q);
+			if (check_utils_4(1, str[i], j, q))
 			{
 				if (u)
 					return (0);
 				else if (!u)
 					u = 1;
 			}
-			if (str[i][j] != '|' && str[i][j] != '<'
+			if (!q && (str[i][j] != '|' && str[i][j] != '<'
 				&& str[i][j] != '>' && str[i][j] != '<'
-				&& str[i][j] && str[i][j] != ' ')
+				&& str[i][j] && str[i][j] != ' '))
 				u = 0;
 		}
 	}
@@ -88,21 +90,25 @@ int	check_pr_utils_4(char **str, int u, int i, int j)
 
 int	check_pr_utils_3(char **str, int u, int i, int j)
 {
+	char	q;
+
+	q = '\0';
 	while (str[++i])
 	{
 		j = -1;
 		while (str[i][++j])
 		{
-			if ((str[i][j] == '<' && str[i][j + 1] != '<')
-				|| (str[i][j] == '>' && str[i][j + 1] != '>'))
+			q = get_q_single(str[i][j], q);
+			if (!q && ((str[i][j] == '<' && str[i][j + 1] != '<')
+				|| (str[i][j] == '>' && str[i][j + 1] != '>')))
 			{
 				if (u)
 					return (0);
 				else
 					u = 1;
 			}
-			if (str[i][j] != '|' && str[i][j] != '<' && str[i][j] != '>'
-					&& str[i][j] != '<' && str[i][j] && str[i][j] != ' ')
+			if ((str[i][j] != '|' && str[i][j] != '<' && str[i][j] != '>'
+					&& str[i][j] && str[i][j] != ' ') && !q)
 				u = 0;
 		}
 	}

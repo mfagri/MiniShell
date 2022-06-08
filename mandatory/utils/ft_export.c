@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 15:13:48 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:44:48 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void	ft_print_export(char **t, int i, int k)
 	int	j;
 	int	l;
 
-	// i = -1;
-	// while (t[++i])
-	// 	printf ("**%s\n", t[i]);
 	i = -1;
 	while (t[++i])
 	{
