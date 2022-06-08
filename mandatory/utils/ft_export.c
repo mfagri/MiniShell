@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/07 19:41:44 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/08 11:20:26 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	ft_print_export(char **t, int i, int k)
 	int	j;
 	int	l;
 
+	// i = -1;
+	// while (t[++i])
+	// 	printf ("**%s\n", t[i]);
 	i = -1;
 	while (t[++i])
 	{
@@ -67,8 +70,8 @@ int	ft_do_nothing(char *arg)
 			n++;
 		j++;
 	}
-	if (n == 2)
-		return (0);
+	if (n == 1)
+		return (1);
 	else if (n == 1 && a == 0)
 		return (1);
 	return (0);
@@ -84,9 +87,12 @@ char	*final_srt(char *arg, char *name, int i)
 	f[0] = '\0';
 	value = malloc(ft_strlen(arg) - i + 1);
 	j = 0;
-	i++;
-	while (arg[i])
-		value[j++] = arg[i++];
+	while (arg[i] && arg[++i])
+	{
+		value[j] = arg[i];
+		write(1,&value[j],1);
+		j++;
+	}
 	value[i] = '\0';
 	f = ft_strjoin(f, name);
 	if (ft_strchr(arg, '='))
@@ -102,6 +108,7 @@ void	ft_export(char **env, char **arg, int fd)
 	int		i;
 	int		l;
 	char	**t;
+
 
 	t = ft_sort_env(env);
 	i = 0;

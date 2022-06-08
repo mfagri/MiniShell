@@ -1,0 +1,11 @@
+Makefile
+a
+b
+mandatory
+minishell
+minishell.dSYM
+s
+script.sh
+t
+t.txt
+tests
