@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:12 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 10:07:29 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:07:37 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	set_new_norm(char **env, char *name, char *f)
 			if (ft_strchr(f, '='))
 				env[i] = cpy(env[i], f);
 		}
+		free_2(t);
 	}
 	if (j != 123456)
 	{

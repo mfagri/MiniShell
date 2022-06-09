@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:33:29 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/09 15:30:40 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:09:14 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int	exec_utils_1(t_spl comm, int t, int *st, char **env)
 			dup2 (fdd[1], 1);
 		if (!check_redi(&comm, t, st, fdd))
 			exit (1);
+		if (!comm.a_var[t][0] || !comm.a_var[t][0])
+			exit (0);
 		if (comm.a_var[t + 1])
 		{
 			close (fdd[0]);
