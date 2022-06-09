@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   utils_5.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 15:50:39 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 10:36:18 by aaitoual         ###   ########.fr       */
+/*   Created: 2022/06/09 09:29:17 by aaitoual          #+#    #+#             */
+/*   Updated: 2022/06/09 09:29:20 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../minishell.h"
+#include "../minishell.h"
 
-static size_t	lenp(const char *src)
+void	shlvl_increment(char **env, int i)
 {
-	size_t	i;
+	char	*tmp;
+	int		k;
+	char	*t;
+	char	*s;
 
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
-
-char	*cpy(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	dest = malloc (sizeof (char) * (ft_strlen(src) + 2));
-	while (src && src[i])
-	{
-		// printf ("%c", src[i]);
-		dest[i] = src[i];
-		i++;
-	}
-	// printf ("\n");
-	dest[i] = '\0';
-	return (dest);
+	tmp = cpy (tmp, "SHLVL=");
+	t = ft_strrchr(env[i], '=');
+	k = ft_atoi(++t) + 1;
+	s = ft_itoa(k);
+	tmp = ft_strjoin(tmp, s);
+	free (s);
+	env[i] = cpy (env[i], tmp);
+	free (tmp);
 }

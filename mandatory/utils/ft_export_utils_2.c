@@ -3,25 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:12 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 18:22:29 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/09 10:07:29 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+int	ft_export_utils(char **env, char **arg, int i, char **t)
+{
+	int	l;
+
+	l = 0;
+	if (!arg[i])
+	{
+		ft_print_export(t, -1, 0);
+		l = 1;
+	}
+	else
+		while (arg[i])
+			if (check_arg_export(arg[i++], env))
+				l = 0;
+	return (l);
+}
+
 void	set_new_norm(char **env, char *name, char *f)
 {
-	int	i;
-	int	j;
-	char **t;
+	int		i;
+	int		j;
+	char	**t;
+
 	i = -1;
 	while (env[++i])
 	{
-		t = ft_split(env[i],'=');
-		if (!ft_strncmp(name, env[i],ft_strlen(t[0])) && (ft_strlen(t[0]) == ft_strlen(name)))
+		t = ft_split(env[i], '=');
+		if (!ft_strncmp(name, env[i], ft_strlen(t[0]))
+			&& (ft_strlen(t[0]) == ft_strlen(name)))
 		{
 			j = 123456;
 			if (ft_strchr(f, '='))

@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:33:29 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 17:21:35 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:15:27 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	exec_utils_1(t_spl comm, int t, int *st, char **env)
 	char	*path;
 	int		*fdd;
 
-	r = 1;
 	get_here_doc_content(comm, t, st);
 	if (!get_default_exec(&fdd, st, comm, t))
 		return (0);
@@ -93,7 +92,7 @@ int	exec_utils_1(t_spl comm, int t, int *st, char **env)
 			close (fdd[0]);
 			close (fdd[1]);
 		}
-		check_command(env, comm.a_var[t], t, r);
+		check_command(env, &comm, t, r);
 		path = get_path(env, comm.a_var[t][0]);
 		child_exec(comm.a_var, path, t, env);
 	}
@@ -109,9 +108,16 @@ int	exec(int fd, char **env)
 	int		*st;
 	t_spl	comm;
 
+	t = -1;
 	comm = get_command(env, fd);
+	// while (comm.a_var[++t])
+	// {
+	// 	k = -1;
+	// 	while (comm.a_var[t][++k])
+	// 		printf ("%s\n", comm.a_var[t][k]);
+	// }
 	t = get_default_2(&k, &st, comm, &r);
-	if (!comm.a_var[1] && !check_command(env, comm.a_var[0], 0, 1))
+	if (!comm.a_var[1] && !check_command(env, &comm, 0, 1))
 		t++;
 	while (comm.a_var[++t])
 	{

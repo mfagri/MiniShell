@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+         #
+#    By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 19:42:03 by aaitoual          #+#    #+#              #
-#    Updated: 2022/06/08 19:06:24 by mfagri           ###   ########.fr        #
+#    Updated: 2022/06/09 09:29:55 by aaitoual         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc 
 FLAGS = -Wall -Wextra -Werror 
-LFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
+LFLAGS	= -I/goinfre/$(USER)/.brew/opt/readline/include
 AR = ar rcs
 OBJ = ./mandatory/obj
 
@@ -27,7 +27,7 @@ FILE =  ./mandatory/minishell.c ./mandatory/utils/ft_split.c ./mandatory/utils/f
 		./mandatory/utils/check_pr.c ./mandatory/utils/ft_atoi.c ./mandatory/utils/ft_strchr.c  ./mandatory/utils/rederections.c\
 		./mandatory/utils/builtins_utils_3.c ./mandatory/utils/rederections_utils_2.c ./mandatory/utils/rederections_utils_1.c\
 		./mandatory/utils/exec.c ./mandatory/utils/builtins_utils_4.c ./mandatory/utils/rederections_utils_4.c ./mandatory/utils/exec_utils_1.c\
-		./mandatory/utils/utils_3.c ./mandatory/utils/utils_4.c ./mandatory/utils/check_pr_utils_1.c \
+		./mandatory/utils/utils_3.c ./mandatory/utils/utils_4.c ./mandatory/utils/check_pr_utils_1.c ./mandatory/utils/utils_5.c \
 
 FILE1 = $(FILE:.c=.o)
 
@@ -36,7 +36,7 @@ LIB = ./mandatory/minishell.h
 all: $(NAME)
 
 $(NAME): $(FILE1) $(LIB) 
-	$(CC) $(FILE1) $(FLAGS) -o $@  -lreadline -L/Users/$(USER)/.brew/opt/readline/lib
+	$(CC) $(FILE1) $(FLAGS) -o $@  -lreadline -L/goinfre/$(USER)/.brew/opt/readline/lib
 
 %.o : %.c 
 	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^

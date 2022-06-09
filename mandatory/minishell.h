@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 18:32:57 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:07:33 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ typedef struct s_spl
 	char	***a_var;
 }	t_spl;
 
+int				ft_export_utils(char **env, char **arg, int i, char **t);
+void			get_here_doc_content(t_spl comm, int t, int *st);
 char			get_q_single(char c, char q);
 int				check_utils_4(int k, char *s, int j, char q);
 int				check_command_utils(char **splited, char **env, int t, int fd);
-int				check_command(char **env, char **splited, int t, int fd);
+int				check_command(char **env, t_spl *comm, int t, int fd);
 int				check_shlvl(char **env);
 void			shlvl_increment(char **env, int i);
 void			get_env(char **env);
@@ -148,7 +150,6 @@ int				fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st);
 int				get_glo_3(int i);
 int				get_glo_4(int i);
 struct termios	get_term(struct termios term, int i);
-int				check_command(char **env, char **splited, int t, int fd);
 void			child_exec(char ***splited, char *path, int t, char **env);
 
 #endif

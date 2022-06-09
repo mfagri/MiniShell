@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:08:09 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 15:45:42 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:27:55 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,7 @@ t_spl	get_command(char **env, int fd)
 	char		**ret;
 	char		**ret2;
 	t_spl		comm;
-	// static int i = 0;
-	
-	// if (!i++)
-	// 	tmp = get_next_line(open ("s", O_RDONLY));
+
 	// tmp = get_next_line(0);
 	get_glo_3(1);
 	tmp = readline ("minishell=> ");

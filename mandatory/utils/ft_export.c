@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 18:48:49 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/09 09:23:25 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,7 @@ void	ft_export(char **env, char **arg, int fd)
 	i = 0;
 	i = 1;
 	l = 0;
-	if (!arg[i])
-	{
-		ft_print_export(t, -1, 0);
-		l = 1;
-	}
-	else
-		while (arg[i])
-			if (check_arg_export(arg[i++], env))
-				l = 0;
+	l = ft_export_utils(env, arg, i, t);
 	i = 0;
 	while (t[i])
 		free(t[i++]);

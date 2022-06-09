@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_arg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 10:08:26 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/20 10:08:26 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:33:48 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,17 @@ char	*get_arg(char *tmp, int i, int t)
 	char	q;
 	char	*ret;
 
-	str = cpy (str, tmp);
+	puts ("yooo");
+	printf ("%s\n", tmp);
+	str = cpy(str, tmp);
+	puts ("kooo");
 	r = 0;
 	q = '\0';
 	ret = get_arg_2(str, t, i);
 	while (++t <= i)
 	{
 		q = get_q_1(str, t, q);
-		if (str[t] != ' ' || q)
+		if (str && str[t] && (str[t] != ' ' || q))
 		{
 			ret[r] = str[t];
 			r++;
