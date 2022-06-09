@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:08:09 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 10:27:55 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:28:53 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_spl	check_tmp(char **tmp, int fd, char **env)
 	return (ret);
 }
 
-int	get_comm_loop(char **tmp, char ***ret, int *i, int *k)
+int	get_comm_loop(char *tmp, char ***ret, int *i, int *k)
 {
 	static char	r;
 	static int	t;
@@ -50,16 +50,16 @@ int	get_comm_loop(char **tmp, char ***ret, int *i, int *k)
 		t = -1;
 		r = '\0';
 	}
-	r = get_q_1((*tmp), (*i), r);
-	if (((*tmp)[(*i)] == ' ' && (*tmp)[(*i) + 1] != ' ' && (*tmp)[(*i) + 1]))
+	r = get_q_1(tmp, (*i), r);
+	if ((tmp[(*i)] == ' ' && tmp[(*i) + 1] != ' ' && tmp[(*i) + 1]))
 	{
 		if (!r)
 		{
-			(*ret)[(*k)] = get_arg((*tmp), (*i), t);
+			(*ret)[(*k)] = get_arg(tmp, (*i), t);
 			(*k)++;
 			t = (*i);
 			(*i)++;
-			r = get_q_1((*tmp), (*i), r);
+			r = get_q_1(tmp, (*i), r);
 		}
 	}
 	return (t);
@@ -80,7 +80,7 @@ char	**get_command_utils(char **tmp, int i, int k)
 	i = -1;
 	while ((*tmp)[++i])
 	{
-		t = get_comm_loop(tmp, &ret, &i, &k);
+		t = get_comm_loop(*tmp, &ret, &i, &k);
 		if (!(*tmp)[i])
 			break ;
 	}

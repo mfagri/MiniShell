@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 15:50:39 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 10:36:18 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:56:04 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,9 @@ char	*cpy(char *dest, char *src)
 
 	i = 0;
 	dest = malloc (sizeof (char) * (ft_strlen(src) + 2));
-	while (src && src[i])
-	{
-		// printf ("%c", src[i]);
+	i = -1;
+	while (src[++i])
 		dest[i] = src[i];
-		i++;
-	}
-	// printf ("\n");
 	dest[i] = '\0';
 	return (dest);
 }
