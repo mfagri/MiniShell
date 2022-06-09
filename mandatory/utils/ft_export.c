@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/09 09:23:25 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:41:22 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_print_export(char **t, int i, int k)
 	{
 		k = 0;
 		if (t[i][0])
-			write (1, "declare -x ", 12);
+			write (1, "declare -x ", 11);
 		j = -1;
 		l = 0;
 		while (t[i][++j])
