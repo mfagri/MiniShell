@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:08:09 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 12:25:51 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:33:11 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,8 @@ t_spl	get_command(char **env, int fd)
 	char		**ret2;
 	t_spl		comm;
 
-	// tmp = get_next_line(0);
 	get_glo_3(1);
-	tmp = readline ("minishell=> ");
+	tmp = get_next_line(0);
 	get_glo_3(0);
 	comm = check_tmp(&tmp, fd, env);
 	if (comm.a_var)

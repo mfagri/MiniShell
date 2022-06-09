@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 09:48:33 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 09:01:46 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:30:10 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	get_fd(t_spl *comm, t_arg tt, int *fdd, int *st)
 			return (free_two(&fd, &std));
 	}
 	get_dup(r, fd, std);
+	free (std);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:00 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 14:30:24 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:56:19 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	return_default(t_spl *comm, int k, int **st, int **r)
 	dup2((*st)[1], 1);
 	close ((*st)[0]);
 	close ((*st)[1]);
+	free (*st);
 	k = -1;
 	while (comm->a_var[++k])
 		free_2 (comm->a_var[k]);

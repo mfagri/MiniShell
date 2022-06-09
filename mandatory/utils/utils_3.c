@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:46:11 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 09:30:13 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:29:14 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ int	check_command_utils(char **splited, char **env, int t, int fd)
 	return (0);
 }
 
-int	check_redi_2(t_spl *comm, int t)
+int	check_redi_2(t_spl *comm, int t, int i, int k)
 {
-	int		i;
-	int		k;
 	char	**tmp;
 	t_arg	tt;
 	int		*st;
@@ -45,9 +43,10 @@ int	check_redi_2(t_spl *comm, int t)
 	tt.k = t;
 	tt.r = -1;
 	if (!get_fd(comm, tt, NULL, st))
+	{
+		free (st);
 		return (0);
-	i = -1;
-	k = -1;
+	}
 	while (comm->a_var[t][++k])
 		t = t;
 	tmp = get_aftere_red(comm, -1, k, t);
@@ -56,29 +55,20 @@ int	check_redi_2(t_spl *comm, int t)
 		free (comm->a_var[t][i]);
 	free (comm->a_var[t]);
 	comm->a_var[t] = tmp;
+	free (st);
 	return (1);
 }
 
 int	check_command(char **env, t_spl *comm, int t, int fd)
 {
+	if (!check_redi_2(comm, t, -1, -1))
+		return (1);
 	if (!(ft_strcmp(comm->a_var[t][0], "export")))
-	{
-		if (!check_redi_2(comm, t))
-			return (1);
 		ft_export(env, comm->a_var[t], fd);
-	}
 	else if (!(ft_strcmp(comm->a_var[t][0], "unset")))
-	{
-		if (!check_redi_2(comm, t))
-			return (1);
 		ft_unset(comm->a_var[t], env, fd);
-	}
 	else if (!(ft_strcmp(comm->a_var[t][0], "echo")))
-	{
-		if (!check_redi_2(comm, t))
-			return (1);
 		ft_echo(comm->a_var[t], fd);
-	}
 	else
 		return (check_command_utils(comm->a_var[t], env, t, fd));
 	return (0);
