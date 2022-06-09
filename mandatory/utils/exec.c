@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:33:29 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/09 10:15:27 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:31:30 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,6 @@ int	exec(int fd, char **env)
 
 	t = -1;
 	comm = get_command(env, fd);
-	// while (comm.a_var[++t])
-	// {
-	// 	k = -1;
-	// 	while (comm.a_var[t][++k])
-	// 		printf ("%s\n", comm.a_var[t][k]);
-	// }
 	t = get_default_2(&k, &st, comm, &r);
 	if (!comm.a_var[1] && !check_command(env, &comm, 0, 1))
 		t++;
