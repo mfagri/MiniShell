@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/09 14:41:22 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:21:34 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,6 @@ void	ft_print_export(char **t, int i, int k)
 			write (1, "\"", 1);
 		write (1, "\n", 1);
 	}
-}
-
-int	ft_isalpha(int c)
-{
-	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90))
-		return (1);
-	return (0);
 }
 
 int	ft_do_nothing(char *arg)
@@ -97,6 +90,26 @@ char	*final_srt(char *arg, char *name, int i)
 		f = ft_strjoin(f, value);
 	free(value);
 	return (f);
+}
+
+int	export_is_invalid(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i++] && arg[i] != '=')
+	{
+		if (arg[i] == '_')
+		{
+			while (arg[i] == '-')
+				i++;
+		}
+		else if (ft_isdigit(arg[0]) || (!ft_isalpha(arg[i])
+				&& !ft_isdigit(arg[i]) && arg[i++])
+			|| (!ft_isalpha(arg[0]) && arg[0] != '_'))
+			return (1);
+	}
+	return (0);
 }
 
 void	ft_export(char **env, char **arg, int fd)

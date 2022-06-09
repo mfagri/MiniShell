@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/09 10:07:33 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:48:33 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,6 @@ int				get_glo_3(int i);
 int				get_glo_4(int i);
 struct termios	get_term(struct termios term, int i);
 void			child_exec(char ***splited, char *path, int t, char **env);
+int				export_is_invalid(char *arg);
 
 #endif

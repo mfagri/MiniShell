@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils_3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:30:52 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 18:45:44 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:18:47 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,22 @@ void	ft_print_env(char **env, int fd)
 
 int	remove_from_env_utils(char **env, char *arg, int l, int *i)
 {
-	int	j;
+	int		j;
+	char	**t;
 
 	*i = -1;
 	while (env[++(*i)])
 	{
 		j = (*i) + 1;
-		if (!ft_strncmp(env[*i], arg, ft_strlen(arg)))
+		t = ft_split(env[*i], '=');
+		if (!ft_strcmp(t[0], arg))
 		{
 			free (env[*i]);
 			l = 1;
 			while (env[j])
 				env[(*i)++] = env[j++];
 		}
+		free_2(t);
 	}
 	return (l);
 }
@@ -54,8 +57,7 @@ void	remove_from_env(char *arg, char **env, int l, int fd)
 	int	i;
 	int	j;
 
-	if (!(ft_isalpha(arg[0])) && arg[0] != '_'
-		&& ft_strchr (arg, '=') && ft_strchr (arg, '+'))
+	if (export_is_invalid(arg))
 	{
 		ft_putstr_fd("minishell: unset: `", 2);
 		ft_putstr_fd(arg, 2);

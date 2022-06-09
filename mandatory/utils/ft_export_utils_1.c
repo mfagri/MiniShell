@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:06 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 09:26:27 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:21:21 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ int	check_arg_export(char *arg, char **env)
 {
 	int	j;
 
-	if (!(ft_isalpha(arg[0])) && arg[0] != '_')
+	if (export_is_invalid(arg))
 		return (ft_print_export_error(arg));
 	j = 0;
-	while ((ft_isalpha(arg[j])) || arg[j] == '_')
+	while (arg[j] != '+' && arg[j] != '=')
 		j++;
 	if (ft_do_nothing(arg))
 		return (0);
