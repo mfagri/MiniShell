@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/10 13:25:01 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 19:34:12 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,10 @@ void	ft_export(char **env, char **arg, int fd)
 	{
 		if (!fd)
 			exit (0);
+		get_glo_2(1, 0);
+		return ;
 	}
 	if (!fd)
 		exit (1);
+	get_glo_2(1, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 04:30:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/10 14:26:54 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 19:36:30 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_echo(char **pr, int fd)
 		write(1, "\n", 1);
 	if (!fd)
 		exit (0);
+	get_glo_2(1, 0);
 }
 
 void	ft_pwd(char **arg, int fd)
@@ -99,4 +100,5 @@ void	ft_unset(char **arg, char **env, int fd)
 		remove_from_env(arg[i], env, 0, fd);
 	if (!fd)
 		exit (0);
+	get_glo_2(1, 0);
 }

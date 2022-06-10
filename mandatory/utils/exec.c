@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:33:29 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/10 15:04:03 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 19:20:13 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,32 @@ int	exec_utils_1(t_spl comm, int t, int *st, char **env)
 	return (r);
 }
 
+void	get_value(int *r, int t, int k)
+{
+	while (r[++t])
+	{
+		if (r[t] != -1)
+		{
+			waitpid(r[t], &k, 0);
+			if (WIFSIGNALED(k))
+			{
+				if (get_glo_2(1, k + 128) == 131)
+					write(1, "Quit: 3\n", 8);
+				else
+					write(1, "\n", 1);
+			}
+			else if (WEXITSTATUS(k))
+			{
+				get_glo_2(1, k / 128 / 2);
+			}
+			else if (k >= 25600)
+				get_glo_2(1, (k * 100) / 25600);
+			else
+				get_glo_2(1, 0);
+		}
+	}
+}
+
 int	exec(int fd, char **env)
 {
 	int		*r;
@@ -120,7 +146,10 @@ int	exec(int fd, char **env)
 	comm = get_command(env, fd);
 	t = get_default_2(&k, &st, comm, &r);
 	if (!comm.a_var[1] && !check_command(env, &comm, 0, 1))
+	{
 		t++;
+		r[0] = -1;
+	}
 	while (comm.a_var[++t])
 	{
 		r[t] = exec_utils_1(comm, t, st, env);
@@ -128,11 +157,7 @@ int	exec(int fd, char **env)
 			break ;
 	}
 	r[t] = '\0';
-	if (r[--t])
-		waitpid(r[t], &k, 0);
-	while (--t != -1)
-		if (r[t])
-			waitpid(r[t], NULL, 0);
+	get_value(r, -1, 0);
 	return_default(&comm, k, &st, &r);
 	return (1);
 }
