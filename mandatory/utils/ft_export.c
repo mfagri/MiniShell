@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/10 19:34:12 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 20:44:22 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ int	export_is_invalid(char *arg)
 	int	i;
 
 	i = 0;
+	if (arg[0] == '+' || arg[0] == '=')
+		return (1);
 	while (arg[i++] && arg[i] != '=')
 	{
-		if (arg[0] == '+')
-			return (1);
 		if (arg[i] == '_')
 		{
 			while (arg[i] == '-')

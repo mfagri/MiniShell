@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils_3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:30:52 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/10 15:29:22 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 23:08:16 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,36 @@ void	ft_print_env(char **env, int fd)
 		exit (0);
 }
 
+static int	count(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=')
+			break ;
+		i++;
+	}
+	return (i);
+}
+
 int	remove_from_env_utils(char **env, char *arg, int l, int *i)
 {
 	int		j;
-	char	**t;
-	char	*v;
 
 	*i = -1;
 	while (env[++(*i)])
 	{
 		j = (*i) + 1;
-		if (ft_strchr(env[*i], '='))
-		{
-			t = ft_split(env[*i], '=');
-			v = cpy(v, t[0]);
-			free_2(t);
-		}
-		else
-			v = cpy(v, env[*i]);
-		if (!ft_strcmp(v, arg))
+		if (strncmp(arg, env[*i], count(env[*i])) == 0
+			&& (count(env[*i]) == ft_strlen(arg)))
 		{
 			free (env[*i]);
 			l = 1;
 			while (env[j])
 				env[(*i)++] = env[j++];
 		}
-		free(v);
 	}
 	return (l);
 }

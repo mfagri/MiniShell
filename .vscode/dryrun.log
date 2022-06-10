@@ -1,49 +1,6 @@
 make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/mfagri/Desktop/MiniShell'
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/minishell.o  -c mandatory/minishell.c
+make: Entering directory `/Users/mfagri/Desktop/maron6'
+make: Nothing to be done for `all'.
  
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_split.o  -c mandatory/utils/ft_split.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_strncmp.o  -c mandatory/utils/ft_strncmp.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/get_next_line_utils.o  -c mandatory/utils/get_next_line_utils.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/get_next_line.o  -c mandatory/utils/get_next_line.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_strlen.o  -c mandatory/utils/ft_strlen.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_strjoin.o  -c mandatory/utils/ft_strjoin.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/utils_1.o  -c mandatory/utils/utils_1.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_strlcpy.o  -c mandatory/utils/ft_strlcpy.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_isdigit.o  -c mandatory/utils/ft_isdigit.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_isalnum.o  -c mandatory/utils/ft_isalnum.c
- 
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_itoa.o  -c mandatory/utils/ft_itoa.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/handler.o  -c mandatory/utils/handler.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/utils_2.o  -c mandatory/utils/utils_2.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/quotations.o  -c mandatory/utils/quotations.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/get_arg.o  -c mandatory/utils/get_arg.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/vars.o  -c mandatory/utils/vars.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/separation.o  -c mandatory/utils/separation.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_export.o  -c mandatory/utils/ft_export.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/builtins.o  -c mandatory/utils/builtins.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/builtins_utils.o  -c mandatory/utils/builtins_utils.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_export_utils_1.o  -c mandatory/utils/ft_export_utils_1.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_export_utils_2.o  -c mandatory/utils/ft_export_utils_2.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/builtins_utils_2.o  -c mandatory/utils/builtins_utils_2.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/vars_utils.o  -c mandatory/utils/vars_utils.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/get_command.o  -c mandatory/utils/get_command.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/get_command_utils.o  -c mandatory/utils/get_command_utils.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/check_pr.o  -c mandatory/utils/check_pr.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_atoi.o  -c mandatory/utils/ft_atoi.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/ft_strchr.o  -c mandatory/utils/ft_strchr.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/rederections.o  -c mandatory/utils/rederections.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/builtins_utils_3.o  -c mandatory/utils/builtins_utils_3.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/rederections_utils_2.o  -c mandatory/utils/rederections_utils_2.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/rederections_utils_1.o  -c mandatory/utils/rederections_utils_1.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/exec.o  -c mandatory/utils/exec.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/builtins_utils_4.o  -c mandatory/utils/builtins_utils_4.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/rederections_utils_4.o  -c mandatory/utils/rederections_utils_4.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/exec_utils_1.o  -c mandatory/utils/exec_utils_1.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/utils_3.o  -c mandatory/utils/utils_3.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/utils_4.o  -c mandatory/utils/utils_4.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/check_pr_utils_1.o  -c mandatory/utils/check_pr_utils_1.c
-cc  -I/Users/mfagri/.brew/opt/readline/include -I -I/Users/mfagri/.brew/opt/readline/include -o mandatory/utils/utils_5.o  -c mandatory/utils/utils_5.c
-cc  ./mandatory/minishell.o ./mandatory/utils/ft_split.o ./mandatory/utils/ft_strncmp.o ./mandatory/utils/get_next_line_utils.o ./mandatory/utils/get_next_line.o ./mandatory/utils/ft_strlen.o ./mandatory/utils/ft_strjoin.o ./mandatory/utils/utils_1.o ./mandatory/utils/ft_strlcpy.o ./mandatory/utils/ft_isdigit.o ./mandatory/utils/ft_isalnum.o ./mandatory/utils/ft_itoa.o ./mandatory/utils/handler.o ./mandatory/utils/utils_2.o ./mandatory/utils/quotations.o ./mandatory/utils/get_arg.o ./mandatory/utils/vars.o ./mandatory/utils/separation.o ./mandatory/utils/ft_export.o ./mandatory/utils/builtins.o ./mandatory/utils/builtins_utils.o ./mandatory/utils/ft_export_utils_1.o ./mandatory/utils/ft_export_utils_2.o ./mandatory/utils/builtins_utils_2.o ./mandatory/utils/vars_utils.o ./mandatory/utils/get_command.o ./mandatory/utils/get_command_utils.o ./mandatory/utils/check_pr.o ./mandatory/utils/ft_atoi.o ./mandatory/utils/ft_strchr.o ./mandatory/utils/rederections.o ./mandatory/utils/builtins_utils_3.o ./mandatory/utils/rederections_utils_2.o ./mandatory/utils/rederections_utils_1.o ./mandatory/utils/exec.o ./mandatory/utils/builtins_utils_4.o ./mandatory/utils/rederections_utils_4.o ./mandatory/utils/exec_utils_1.o ./mandatory/utils/utils_3.o ./mandatory/utils/utils_4.o ./mandatory/utils/check_pr_utils_1.o ./mandatory/utils/utils_5.o -Wall -Wextra -Werror  -o minishell  -lreadline -L/Users/mfagri/.brew/opt/readline/lib
-make: Leaving directory `/Users/mfagri/Desktop/MiniShell'
+make: Leaving directory `/Users/mfagri/Desktop/maron6'
  
