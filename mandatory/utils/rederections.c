@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:12:08 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 08:28:52 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:30:57 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	fd_utils_1(t_spl *c, int t, int i, int **std)
 	r = 3;
 	if (!(ft_strcmp(">", c->a_var[t][i])))
 	{
-		if (c->a_var[t][i + 1])
+		if (c->a_var[t][i + 1] && c->a_var[t][i + 1][0])
 		{
 			k = open (c->a_var[t][i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 			if (k == -1)
@@ -58,11 +58,8 @@ int	fd_utils_1(t_spl *c, int t, int i, int **std)
 				return (0);
 			}
 		}
-		else
-		{
-			ft_printf_error(c->a_var[t][i + 1], 2);
+		else if (!ft_utils_return(c, t, i))
 			return (0);
-		}
 		(*std)[1] = k;
 		r = 1;
 	}
@@ -77,20 +74,17 @@ int	fd_utils_2(t_spl *comm, int t, int i, int **std)
 	r = 3;
 	if (!(ft_strcmp(">>", comm->a_var[t][i])))
 	{
-		if (comm->a_var[t][i + 1])
+		if (comm->a_var[t][i + 1] && comm->a_var[t][i + 1][0])
 		{
-			k = open (comm->a_var[t][i + 1], O_WRONLY, 0777);
+			k = open (comm->a_var[t][i + 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
 			if (k == -1)
 			{
 				ft_printf_error(comm->a_var[t][i + 1], 1);
 				return (0);
 			}
 		}
-		else
-		{
-			ft_printf_error(comm->a_var[t][i + 1], 2);
+		else if (!ft_utils_return(comm, t, i))
 			return (0);
-		}
 		(*std)[1] = k;
 		r = 1;
 	}

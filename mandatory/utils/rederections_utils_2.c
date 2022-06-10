@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 09:47:47 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 14:03:13 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 12:47:30 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,8 @@ int	fd_utils_4(t_spl *c, t_arg tt, int **std, int r)
 			if (!check_k(k, c, tt))
 				return (0);
 		}
-		else
-		{
-			ft_printf_error(c->b_var[tt.k][tt.r + 1], 2);
+		else if (!ft_utils_return(c, tt.k, tt.r))
 			return (0);
-		}
 		(*std)[0] = k;
 		r = 1;
 	}

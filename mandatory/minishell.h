@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/09 17:48:33 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/10 15:19:54 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_spl
 	char	***a_var;
 }	t_spl;
 
+int				ft_utils_return(t_spl *c, int t, int i);
+int				exec_utils_2(t_spl comm, int t, int *st, int **fdd);
 int				ft_export_utils(char **env, char **arg, int i, char **t);
 void			get_here_doc_content(t_spl comm, int t, int *st);
 char			get_q_single(char c, char q);
@@ -152,5 +154,5 @@ int				get_glo_4(int i);
 struct termios	get_term(struct termios term, int i);
 void			child_exec(char ***splited, char *path, int t, char **env);
 int				export_is_invalid(char *arg);
-
+void			get_return_value(char **ret);
 #endif

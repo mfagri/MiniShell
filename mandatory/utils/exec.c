@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:33:29 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/09 16:09:14 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:04:03 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,17 @@ void	get_here_doc_content(t_spl comm, int t, int *st)
 	}
 }
 
+void	lah_ysame7(t_spl comm, int t, int *st, int **fdd)
+{
+	int	i;
+
+	i = exec_utils_2(comm, t, st, fdd);
+	if (i == 1)
+		exit (1);
+	if (i == 0)
+		exit (0);
+}
+
 int	exec_utils_1(t_spl comm, int t, int *st, char **env)
 {
 	int		r;
@@ -83,12 +94,7 @@ int	exec_utils_1(t_spl comm, int t, int *st, char **env)
 	r = fork();
 	if (!r)
 	{
-		if (comm.a_var[t + 1])
-			dup2 (fdd[1], 1);
-		if (!check_redi(&comm, t, st, fdd))
-			exit (1);
-		if (!comm.a_var[t][0] || !comm.a_var[t][0])
-			exit (0);
+		lah_ysame7(comm, t, st, &fdd);
 		if (comm.a_var[t + 1])
 		{
 			close (fdd[0]);
@@ -122,8 +128,8 @@ int	exec(int fd, char **env)
 			break ;
 	}
 	r[t] = '\0';
-	if (r[0])
-		waitpid(r[0], &k, 0);
+	if (r[--t])
+		waitpid(r[t], &k, 0);
 	while (--t != -1)
 		if (r[t])
 			waitpid(r[t], NULL, 0);

@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:30:00 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 14:56:19 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:00:15 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	return_handler(int k)
 	{
 		if (get_glo_2(1, k + 128) == 130)
 			write(1, "\n", 1);
+		if (get_glo_2(1, k + 128) == 131)
+			write(1, "Quit: 3\n", 8);
 	}
 	else if (WEXITSTATUS(k))
 	{
@@ -62,4 +64,15 @@ void	return_default(t_spl *comm, int k, int **st, int **r)
 		free_2 (comm->b_var[k]);
 	free (comm->b_var);
 	free (*r);
+}
+
+int	exec_utils_2(t_spl comm, int t, int *st, int **fdd)
+{
+	if (comm.a_var[t + 1])
+		dup2 ((*fdd)[1], 1);
+	if (!check_redi(&comm, t, st, *fdd))
+		return (1);
+	if (!comm.a_var[t][0])
+		return (0);
+	return (2);
 }

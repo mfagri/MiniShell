@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 08:01:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/03 08:01:17 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:19:46 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,13 @@ void	get_var_2_utils(char *env, int j, char **ret, int k)
 	while (env[j])
 		(*ret)[k++] = env[j++];
 	(*ret)[k] = '\0';
+}
+
+void	get_return_value(char **ret)
+{
+	char	*tmp;
+
+	tmp = ft_itoa(get_glo_2(0, 0));
+	*ret = ft_strjoin(*ret, tmp);
+	free (tmp);
 }

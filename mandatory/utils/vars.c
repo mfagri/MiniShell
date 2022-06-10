@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:52:55 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/05/30 18:06:46 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/10 15:19:41 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*get_var(char *str, char **env, int j, int i)
 		tmp2[i++] = str[k++];
 	tmp2[i] = '\0';
 	if (!strcmp(tmp2, "?"))
-		ret = ft_strjoin(ret, ft_itoa(get_glo_2(0, 0)));
+		get_return_value(&ret);
 	else if (!tmp2[0])
 		ret = ft_strjoin(ret, "$");
 	else

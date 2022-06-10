@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:46:11 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 16:11:08 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:10:51 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	check_command(char **env, t_spl *comm, int t, int fd)
 {
 	if (!check_redi_2(comm, t, -1, -1))
 		return (0);
-	if (!comm->a_var[t][0] || !comm->a_var[t][0])
-		return (1);
+	if (!comm->a_var[t][0])
+		return (0);
 	if (!(ft_strcmp(comm->a_var[t][0], "export")))
 		ft_export(env, comm->a_var[t], fd);
 	else if (!(ft_strcmp(comm->a_var[t][0], "unset")))

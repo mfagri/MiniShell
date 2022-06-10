@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:12 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 16:07:37 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:26:07 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	set_new_norm(char **env, char *name, char *f)
 		if (!ft_strncmp(name, env[i], ft_strlen(t[0]))
 			&& (ft_strlen(t[0]) == ft_strlen(name)))
 		{
+			free (env[i]);
 			j = 123456;
 			if (ft_strchr(f, '='))
 				env[i] = cpy(env[i], f);
