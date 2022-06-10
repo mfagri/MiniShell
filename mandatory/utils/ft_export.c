@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:25:32 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/09 18:21:34 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/10 12:16:05 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int	export_is_invalid(char *arg)
 			while (arg[i] == '-')
 				i++;
 		}
+		if (arg[i] == '+' && arg[i + 1] == '=')
+			break ;
 		else if (ft_isdigit(arg[0]) || (!ft_isalpha(arg[i])
 				&& !ft_isdigit(arg[i]) && arg[i++])
 			|| (!ft_isalpha(arg[0]) && arg[0] != '_'))

@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 18:30:52 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 18:18:47 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/10 12:16:59 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,27 @@ int	remove_from_env_utils(char **env, char *arg, int l, int *i)
 {
 	int		j;
 	char	**t;
+	char	*v;
 
 	*i = -1;
 	while (env[++(*i)])
 	{
 		j = (*i) + 1;
-		t = ft_split(env[*i], '=');
-		if (!ft_strcmp(t[0], arg))
+		if (ft_strchr(env[*i], '='))
+		{
+			t = ft_split(env[*i], '=');
+			v = cpy(v, t[0]);
+			free_2(t);
+		}
+		else
+			v = cpy(v, env[*i]);
+		if (!ft_strcmp(v, arg))
 		{
 			free (env[*i]);
 			l = 1;
 			while (env[j])
 				env[(*i)++] = env[j++];
 		}
-		free_2(t);
 	}
 	return (l);
 }
