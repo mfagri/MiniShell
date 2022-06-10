@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:12 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/10 15:26:07 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:33:04 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ int	ft_export_utils(char **env, char **arg, int i, char **t)
 	return (l);
 }
 
-void	set_new_norm(char **env, char *name, char *f)
+void	set_new_norm(char **env, char *name, char *f, int i)
 {
-	int		i;
 	int		j;
 	char	**t;
 
-	i = -1;
 	while (env[++i])
 	{
 		t = ft_split(env[i], '=');
@@ -75,7 +73,7 @@ void	set_new(char *arg, char **env)
 		name[i] = arg[i];
 	name[i] = '\0';
 	f = final_srt(arg, name, i);
-	set_new_norm(env, name, f);
+	set_new_norm(env, name, f, -1);
 }
 
 char	*final_srt_add(char *value, char *name)

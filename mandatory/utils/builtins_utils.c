@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:06:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 11:38:12 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:27:54 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,22 @@ void	ft_cd(char **arg, char **env, int fd)
 
 int	ft_exit_utils(char **arg, int t, int j)
 {
-	if (ft_isalpha(arg[1][j]))
-		t = 255;
-	else if (!arg[2])
-		t = ft_atoi(arg[1]);
-	get_glo_2(1, t);
+	int	k;
+
+	if (arg[1][j] == '+' || arg[1][j] == '-')
+			j++;
+	if (arg[1])
+	{
+		while (arg[1][k])
+		{
+			if (!ft_isdigit(arg[1][k]))
+			{
+				ft_printf_error(arg[1], 5);
+				t = 255;
+			}
+			k++;
+		}
+	}
 	return (t);
 }
 
@@ -93,25 +104,25 @@ void	ft_exit(char **arg, char **env)
 {
 	int	i;
 	int	t;
-	int	j;
 
 	t = get_glo_2(0, 0);
 	i = 0;
-	j = 0;
+	ft_putstr_fd("exit\n", 1);
 	while (arg[i])
 		i++;
 	if (i >= 2)
-		if (arg[1][j] == '+' || arg[1][j] == '-')
-			j++;
-	ft_putstr_fd("exit\n", 1);
-	if (i > 2 && !ft_isalpha(arg[1][j]))
-		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-	if (i >= 2 && ft_isalpha(arg[1][j]))
-		ft_printf_error(arg[1], 5);
-	if (arg[1])
-		t = ft_exit_utils(arg, t, j);
-	if (i > 1)
+		t = ft_exit_utils(arg, t, 0);
+	if (i > 2 && t != 255)
+	{
+		get_glo_2(1, 1);
+		return (ft_putstr_fd("minishell: exit: too many arguments\n", 2));
+	}
+	else if (arg[1] && t != 255)
+	{
+		t = ft_atoi(arg[1]);
+		get_glo_2(1, t);
 		exit_norm(arg[1], &t);
+	}
 	i = -1;
 	while (env[++i])
 		free(env[i]);

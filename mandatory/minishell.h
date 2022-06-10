@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/10 15:19:54 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:32:01 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char			**ft_sort_env(char **env);
 int				check_arg_export(char *arg, char **env);
 void			add_to_env(char *arg, char **env);
 void			add_to_env_norm(char *name, char *value, char *f, char **env);
-void			set_new_norm(char **env, char *name, char *f);
+void			set_new_norm(char **env, char *name, char *f, int i);
 void			set_new(char *arg, char **env);
 char			*final_srt_add(char *value, char *name);
 int				ft_print_export_error(char *arg);
