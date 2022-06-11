@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:17:31 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 16:20:40 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/11 12:40:41 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char	get_q(char **pr, int i, int j, char q)
 char	***split_pr(char **pr, int i, int t, char q)
 {
 	int		j;
-	int		r;
 	int		k;
 	char	***ret;
 

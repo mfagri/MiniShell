@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 09:47:47 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/10 12:47:30 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:51:33 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	get_here_doc(t_spl *comm, t_arg tt, int *fd, int *st)
 	char			*str;
 	struct termios	term;
 
+	(void)st;
+	term.c_ispeed = 0;
 	get_glo_4(*fd);
 	rl_catch_signals = 1;
 	remove_ctlc();
@@ -60,10 +62,9 @@ void	get_here_doc(t_spl *comm, t_arg tt, int *fd, int *st)
 
 int	fd_utils_3(t_spl *comm, t_arg tt, int *fd, int *st)
 {
-	int		k;
 	int		r;
-	char	*str;
 
+	(void)st;
 	r = 3;
 	if (!(ft_strcmp("<<", comm->a_var[tt.k][tt.r])))
 	{
@@ -87,6 +88,7 @@ int	fd_utils_4(t_spl *c, t_arg tt, int **std, int r)
 {
 	int	k;
 
+	k = 0;
 	if (!(ft_strcmp("<", c->a_var[tt.k][tt.r])))
 	{
 		if (c->a_var[tt.k][tt.r + 1])

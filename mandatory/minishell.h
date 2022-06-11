@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:15:25 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/10 18:32:01 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/11 12:50:56 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 typedef struct s_arg
 {
-	char	r;
+	int		r;
 	int		k;
 	int		stdout;
 }	t_arg;
@@ -41,6 +41,11 @@ typedef struct s_spl
 	char	***a_var;
 }	t_spl;
 
+void			lah_ysame7(t_spl comm, int t, int *st, int **fdd);
+void			after_exec(int **fdd, int *st, t_spl comm, int t);
+int				get_default_exec(int **fdd, int *st, t_spl comm, int t);
+int				exec_utils_1(t_spl comm, int t, int *st, char **env);
+void			get_value(int *r, int t, int k);
 int				ft_utils_return(t_spl *c, int t, int i);
 int				exec_utils_2(t_spl comm, int t, int *st, int **fdd);
 int				ft_export_utils(char **env, char **arg, int i, char **t);

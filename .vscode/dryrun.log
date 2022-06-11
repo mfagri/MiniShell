@@ -1,6 +1,50 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/mfagri/Desktop/maron6'
-make: Nothing to be done for `all'.
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/aaitoual/Desktop/push'
  
-make: Leaving directory `/Users/mfagri/Desktop/maron6'
+mkdir object_files 
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -I/goinfre/aaitoual/.brew/opt/readline/include -o object_files/minishell.o  -c mandatory/minishell.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_split.o  -c mandatory/utils/ft_split.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_strncmp.o  -c mandatory/utils/ft_strncmp.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/get_next_line_utils.o  -c mandatory/utils/get_next_line_utils.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/get_next_line.o  -c mandatory/utils/get_next_line.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_strlen.o  -c mandatory/utils/ft_strlen.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_strjoin.o  -c mandatory/utils/ft_strjoin.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/utils_1.o  -c mandatory/utils/utils_1.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_strlcpy.o  -c mandatory/utils/ft_strlcpy.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_isdigit.o  -c mandatory/utils/ft_isdigit.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_isalnum.o  -c mandatory/utils/ft_isalnum.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_itoa.o  -c mandatory/utils/ft_itoa.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/handler.o  -c mandatory/utils/handler.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/utils_2.o  -c mandatory/utils/utils_2.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/quotations.o  -c mandatory/utils/quotations.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/get_arg.o  -c mandatory/utils/get_arg.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/vars.o  -c mandatory/utils/vars.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/separation.o  -c mandatory/utils/separation.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_export.o  -c mandatory/utils/ft_export.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/builtins.o  -c mandatory/utils/builtins.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/builtins_utils.o  -c mandatory/utils/builtins_utils.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_export_utils_1.o  -c mandatory/utils/ft_export_utils_1.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_export_utils_2.o  -c mandatory/utils/ft_export_utils_2.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/builtins_utils_2.o  -c mandatory/utils/builtins_utils_2.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/vars_utils.o  -c mandatory/utils/vars_utils.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/get_command.o  -c mandatory/utils/get_command.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/get_command_utils.o  -c mandatory/utils/get_command_utils.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/check_pr.o  -c mandatory/utils/check_pr.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_atoi.o  -c mandatory/utils/ft_atoi.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/ft_strchr.o  -c mandatory/utils/ft_strchr.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/rederections.o  -c mandatory/utils/rederections.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/builtins_utils_3.o  -c mandatory/utils/builtins_utils_3.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/rederections_utils_2.o  -c mandatory/utils/rederections_utils_2.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/rederections_utils_1.o  -c mandatory/utils/rederections_utils_1.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/exec.o  -c mandatory/utils/exec.c
+ 
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/builtins_utils_4.o  -c mandatory/utils/builtins_utils_4.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/rederections_utils_4.o  -c mandatory/utils/rederections_utils_4.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/exec_utils_1.o  -c mandatory/utils/exec_utils_1.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/utils_3.o  -c mandatory/utils/utils_3.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/utils_4.o  -c mandatory/utils/utils_4.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/check_pr_utils_1.o  -c mandatory/utils/check_pr_utils_1.c
+cc  -I/goinfre/aaitoual/.brew/opt/readline/include -Wall -Wextra -Werror  -o object_files/utils_5.o  -c mandatory/utils/utils_5.c
+cc  ./object_files/minishell.o ./object_files/ft_split.o ./object_files/ft_strncmp.o ./object_files/get_next_line_utils.o ./object_files/get_next_line.o ./object_files/ft_strlen.o ./object_files/ft_strjoin.o ./object_files/utils_1.o ./object_files/ft_strlcpy.o ./object_files/ft_isdigit.o ./object_files/ft_isalnum.o ./object_files/ft_itoa.o ./object_files/handler.o ./object_files/utils_2.o ./object_files/quotations.o ./object_files/get_arg.o ./object_files/vars.o ./object_files/separation.o ./object_files/ft_export.o ./object_files/builtins.o ./object_files/builtins_utils.o ./object_files/ft_export_utils_1.o ./object_files/ft_export_utils_2.o ./object_files/builtins_utils_2.o ./object_files/vars_utils.o ./object_files/get_command.o ./object_files/get_command_utils.o ./object_files/check_pr.o ./object_files/ft_atoi.o ./object_files/ft_strchr.o ./object_files/rederections.o ./object_files/builtins_utils_3.o ./object_files/rederections_utils_2.o ./object_files/rederections_utils_1.o ./object_files/exec.o ./object_files/builtins_utils_4.o ./object_files/rederections_utils_4.o ./object_files/exec_utils_1.o ./object_files/utils_3.o ./object_files/utils_4.o ./object_files/check_pr_utils_1.o ./object_files/utils_5.o -Wall -Wextra -Werror  -I/goinfre/aaitoual/.brew/opt/readline/include -o minishell  -lreadline -L/goinfre/aaitoual/.brew/opt/readline/lib
+make: Leaving directory `/Users/aaitoual/Desktop/push'
  

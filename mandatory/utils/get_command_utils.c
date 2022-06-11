@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_command_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:10:49 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 16:20:49 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/11 12:44:54 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_spl	get_comm(int fd, char ***ret, char ***ret2, char **env)
 	t_arg	ll;
 	t_spl	comm;
 
+	ll.k = 1;
 	edit_var(*ret, env, 1, -1);
 	edit_ret(*ret);
 	edit_ret(*ret2);

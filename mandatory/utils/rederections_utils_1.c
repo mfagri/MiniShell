@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 09:48:33 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/10 12:47:09 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:52:04 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	get_fd(t_spl *comm, t_arg tt, int *fdd, int *st)
 	int		k;
 	int		r;
 
+	(void)fdd;
 	r = 0;
 	get_default(&fd, &std);
 	while (comm->a_var[tt.k][++tt.r])

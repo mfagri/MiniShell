@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 11:08:09 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 16:10:44 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:44:21 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**get_command_utils(char **tmp, int i, int k)
 
 	t = -1;
 	ret = malloc (sizeof(char *) * (get_spaces(*tmp) + 1));
-	tmp2 = cpy(tmp2, (*tmp));
+	tmp2 = cpy(NULL, (*tmp));
 	free ((*tmp));
 	(*tmp) = sep(tmp2, 0, 0);
 	free (tmp2);
@@ -114,6 +114,7 @@ t_spl	get_command(char **env, int fd)
 	t_spl		comm;
 
 	get_glo_3(1);
+	rl_catch_signals = 0;
 	tmp = readline ("minishell=> ");
 	get_glo_3(0);
 	comm = check_tmp(&tmp, fd, env);

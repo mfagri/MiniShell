@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 20:32:12 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/10 18:33:04 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/11 12:43:25 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	set_new_norm(char **env, char *name, char *f, int i)
 		if (!ft_strncmp(name, env[i], ft_strlen(t[0]))
 			&& (ft_strlen(t[0]) == ft_strlen(name)))
 		{
-			free (env[i]);
 			j = 123456;
 			if (ft_strchr(f, '='))
+			{
+				free (env[i]);
 				env[i] = cpy(env[i], f);
+			}
 		}
 		free_2(t);
 	}
@@ -53,8 +55,6 @@ void	set_new_norm(char **env, char *name, char *f, int i)
 		i++;
 	}
 	env[i] = NULL;
-	free(f);
-	free(name);
 }
 
 void	set_new(char *arg, char **env)
@@ -62,7 +62,6 @@ void	set_new(char *arg, char **env)
 	int		i;
 	char	*name;
 	char	*f;
-	int		j;
 
 	i = 0;
 	while (arg[i] != '=' && arg[i])
@@ -74,6 +73,8 @@ void	set_new(char *arg, char **env)
 	name[i] = '\0';
 	f = final_srt(arg, name, i);
 	set_new_norm(env, name, f, -1);
+	free (f);
+	free (name);
 }
 
 char	*final_srt_add(char *value, char *name)

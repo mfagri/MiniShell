@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:33:29 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/10 19:20:13 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:56:16 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,58 +82,6 @@ void	lah_ysame7(t_spl comm, int t, int *st, int **fdd)
 		exit (0);
 }
 
-int	exec_utils_1(t_spl comm, int t, int *st, char **env)
-{
-	int		r;
-	char	*path;
-	int		*fdd;
-
-	get_here_doc_content(comm, t, st);
-	if (!get_default_exec(&fdd, st, comm, t))
-		return (0);
-	r = fork();
-	if (!r)
-	{
-		lah_ysame7(comm, t, st, &fdd);
-		if (comm.a_var[t + 1])
-		{
-			close (fdd[0]);
-			close (fdd[1]);
-		}
-		check_command(env, &comm, t, r);
-		path = get_path(env, comm.a_var[t][0]);
-		child_exec(comm.a_var, path, t, env);
-	}
-	after_exec(&fdd, st, comm, t);
-	return (r);
-}
-
-void	get_value(int *r, int t, int k)
-{
-	while (r[++t])
-	{
-		if (r[t] != -1)
-		{
-			waitpid(r[t], &k, 0);
-			if (WIFSIGNALED(k))
-			{
-				if (get_glo_2(1, k + 128) == 131)
-					write(1, "Quit: 3\n", 8);
-				else
-					write(1, "\n", 1);
-			}
-			else if (WEXITSTATUS(k))
-			{
-				get_glo_2(1, k / 128 / 2);
-			}
-			else if (k >= 25600)
-				get_glo_2(1, (k * 100) / 25600);
-			else
-				get_glo_2(1, 0);
-		}
-	}
-}
-
 int	exec(int fd, char **env)
 {
 	int		*r;
@@ -159,5 +107,6 @@ int	exec(int fd, char **env)
 	r[t] = '\0';
 	get_value(r, -1, 0);
 	return_default(&comm, k, &st, &r);
+	unlink (".here_doc.txt");
 	return (1);
 }

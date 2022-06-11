@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 22:41:47 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/08 15:23:50 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:55:14 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_sig(int signum)
 {
 	struct termios	term;
 
+	term.c_ispeed = 0;
 	if (signum == SIGINT && !get_glo(2) && get_glo_3(3) && get_glo_4(-1) == 0)
 	{
 		get_glo_2(1, 1);

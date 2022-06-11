@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 04:30:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/06/10 19:36:30 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:42:19 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	ft_pwd(char **arg, int fd)
 {
 	char	s[1024];
 
+	(void)arg;
 	getcwd(s, sizeof(s));
 	if (!s[0])
 	{

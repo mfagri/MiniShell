@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 09:29:17 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 09:29:20 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:54:31 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	shlvl_increment(char **env, int i)
 	char	*t;
 	char	*s;
 
-	tmp = cpy (tmp, "SHLVL=");
+	tmp = cpy (NULL, "SHLVL=");
 	t = ft_strrchr(env[i], '=');
 	k = ft_atoi(++t) + 1;
 	s = ft_itoa(k);

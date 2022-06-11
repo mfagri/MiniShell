@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 10:08:26 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 11:05:23 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:40:58 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*get_arg(char *tmp, int i, int t)
 	char	q;
 	char	*ret;
 
-	str = cpy(str, tmp);
+	str = cpy(NULL, tmp);
 	r = 0;
 	q = '\0';
 	ret = get_arg_2(str, t, i);

@@ -3,46 +3,53 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+         #
+#    By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 19:42:03 by aaitoual          #+#    #+#              #
-#    Updated: 2022/06/10 22:24:59 by mfagri           ###   ########.fr        #
+#    Updated: 2022/06/11 12:38:17 by aaitoual         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc 
 FLAGS = -Wall -Wextra -Werror 
-LFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
+LFLAGS	= -I/goinfre/$(USER)/.brew/opt/readline/include
 AR = ar rcs
-OBJ = ./mandatory/obj
+OBJECT_PATH = ./object_files/
 
-FILE =  ./mandatory/minishell.c ./mandatory/utils/ft_split.c ./mandatory/utils/ft_strncmp.c ./mandatory/utils/get_next_line_utils.c \
-		./mandatory/utils/get_next_line.c ./mandatory/utils/ft_strlen.c ./mandatory/utils/ft_strjoin.c ./mandatory/utils/utils_1.c \
-		./mandatory/utils/ft_strlcpy.c ./mandatory/utils/ft_isdigit.c ./mandatory/utils/ft_isalnum.c ./mandatory/utils/ft_itoa.c\
-		./mandatory/utils/handler.c ./mandatory/utils/utils_2.c ./mandatory/utils/quotations.c ./mandatory/utils/get_arg.c \
-		./mandatory/utils/vars.c ./mandatory/utils/separation.c ./mandatory/utils/ft_export.c \
-		./mandatory/utils/builtins.c ./mandatory/utils/builtins_utils.c ./mandatory/utils/ft_export_utils_1.c ./mandatory/utils/ft_export_utils_2.c\
-		./mandatory/utils/builtins_utils_2.c ./mandatory/utils/vars_utils.c ./mandatory/utils/get_command.c ./mandatory/utils/get_command_utils.c \
-		./mandatory/utils/check_pr.c ./mandatory/utils/ft_atoi.c ./mandatory/utils/ft_strchr.c  ./mandatory/utils/rederections.c\
-		./mandatory/utils/builtins_utils_3.c ./mandatory/utils/rederections_utils_2.c ./mandatory/utils/rederections_utils_1.c\
-		./mandatory/utils/exec.c ./mandatory/utils/builtins_utils_4.c ./mandatory/utils/rederections_utils_4.c ./mandatory/utils/exec_utils_1.c\
-		./mandatory/utils/utils_3.c ./mandatory/utils/utils_4.c ./mandatory/utils/check_pr_utils_1.c ./mandatory/utils/utils_5.c \
+FILE =  minishell.c ft_split.c ft_strncmp.c get_next_line_utils.c \
+		get_next_line.c ft_strlen.c ft_strjoin.c utils_1.c \
+		ft_strlcpy.c ft_isdigit.c ft_isalnum.c ft_itoa.c\
+		handler.c utils_2.c quotations.c get_arg.c \
+		vars.c separation.c ft_export.c \
+		builtins.c builtins_utils.c ft_export_utils_1.c ft_export_utils_2.c\
+		builtins_utils_2.c vars_utils.c get_command.c get_command_utils.c \
+		check_pr.c ft_atoi.c ft_strchr.c  rederections.c\
+		builtins_utils_3.c rederections_utils_2.c rederections_utils_1.c\
+		exec.c builtins_utils_4.c rederections_utils_4.c exec_utils_1.c\
+		utils_3.c utils_4.c check_pr_utils_1.c utils_5.c \
 
-FILE1 = $(FILE:.c=.o)
 
-LIB = ./mandatory/minishell.h 
+LIB = ./mandatory/minishell.h
 
-all: $(NAME)
+OBJECTS = $(addprefix $(OBJECT_PATH), $(FILE:.c=.o))
 
-$(NAME): $(FILE1) $(LIB) 
-	$(CC) $(FILE1) $(FLAGS) -o $@  -lreadline -L/Users/$(USER)/.brew/opt/readline/lib
+all: object_files $(NAME) 
 
-%.o : %.c 
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+$(NAME): $(OBJECTS)
+	$(CC) $(OBJECTS) $(FLAGS) $(LFLAGS) -o $@  -lreadline -L/goinfre/$(USER)/.brew/opt/readline/lib
+
+$(OBJECT_PATH)%.o  : ./mandatory/%.c
+	$(CC) $(LFLAGS) $(LFLAGS) -o $@  -c $^
+
+$(OBJECT_PATH)%.o : ./mandatory/utils/%.c
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+
+object_files :
+	@mkdir object_files 
 
 clean:
-	rm -f $(FILE1) $(FILE1_BONUS)
+	rm -f $(OBJECTS) $(FILE1_BONUS)
 
 fclean: clean
 	rm -f $(NAME) $(NAME_BONUS)

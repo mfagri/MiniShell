@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:46:11 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/10 15:10:51 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:53:27 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_redi_2(t_spl *comm, int t, int i, int k)
 		return (0);
 	}
 	while (comm->a_var[t][++k])
-		t = t;
+		t = t + 1 - 1;
 	tmp = get_aftere_red(comm, -1, k, t);
 	i = -1;
 	while (comm->a_var[t][++i])

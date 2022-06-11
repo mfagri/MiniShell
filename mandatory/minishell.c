@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:40:16 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/10 23:01:58 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/11 12:37:48 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	free_2(char **str)
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
-		free(str[i++]);
+	i = -1;
+	while (str[++i])
+		free(str[i]);
 	free (str);
 }
 
@@ -73,6 +73,8 @@ int	main(int ac, char **av, char **env)
 {
 	int	fd;
 
+	(void)ac;
+	(void)av;
 	rl_catch_signals = 0;
 	fd = get_history();
 	get_env(env);

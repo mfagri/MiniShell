@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:28:07 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/08 18:39:26 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:45:22 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,6 @@ int	check_pr_utils_3(char **str, int u, int i, int j)
 
 int	check_pr(char **str)
 {
-	int		i;
-	int		j;
-
 	if (!check_pr_utils_2(str, '\0'))
 		return (0);
 	if (!check_pr_utils_3(str, 0, -1, 0))

@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 10:12:08 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/10 14:30:57 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:47:06 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	fd_utils_1(t_spl *c, int t, int i, int **std)
 	int	r;
 
 	r = 3;
+	k = 0;
 	if (!(ft_strcmp(">", c->a_var[t][i])))
 	{
 		if (c->a_var[t][i + 1] && c->a_var[t][i + 1][0])
@@ -66,24 +67,25 @@ int	fd_utils_1(t_spl *c, int t, int i, int **std)
 	return (r);
 }
 
-int	fd_utils_2(t_spl *comm, int t, int i, int **std)
+int	fd_utils_2(t_spl *c, int t, int i, int **std)
 {
 	int	k;
 	int	r;
 
 	r = 3;
-	if (!(ft_strcmp(">>", comm->a_var[t][i])))
+	k = 0;
+	if (!(ft_strcmp(">>", c->a_var[t][i])))
 	{
-		if (comm->a_var[t][i + 1] && comm->a_var[t][i + 1][0])
+		if (c->a_var[t][i + 1] && c->a_var[t][i + 1][0])
 		{
-			k = open (comm->a_var[t][i + 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
+			k = open (c->a_var[t][i + 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
 			if (k == -1)
 			{
-				ft_printf_error(comm->a_var[t][i + 1], 1);
+				ft_printf_error(c->a_var[t][i + 1], 1);
 				return (0);
 			}
 		}
-		else if (!ft_utils_return(comm, t, i))
+		else if (!ft_utils_return(c, t, i))
 			return (0);
 		(*std)[1] = k;
 		r = 1;
@@ -105,7 +107,7 @@ int	check_redi(t_spl *comm, int t, int *st, int *fdd)
 	i = -1;
 	k = -1;
 	while (comm->a_var[t][++k])
-		t = t;
+		t = t + 1 - 1;
 	tmp = get_aftere_red(comm, -1, k, t);
 	i = -1;
 	while (comm->a_var[t][++i])

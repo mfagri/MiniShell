@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 13:52:55 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/10 15:19:41 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:41:43 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_var_2(char *str, char **env, int k, int i)
 		ret = ft_itoa(0);
 		return (ret);
 	}
-	tmp = cpy(tmp, str);
+	tmp = cpy(NULL, str);
 	str = ft_strjoin(tmp, "=");
 	while (env[++i])
 		if (!ft_strncmp(env[i], str, ft_strlen(str)))
@@ -59,7 +59,7 @@ char	*get_var_utils_1(char *str, int *j, int *k)
 		i++;
 		(*j)++;
 	}
-	ret = cpy(ret, tmp);
+	ret = cpy(NULL, tmp);
 	free (tmp);
 	return (ret);
 }

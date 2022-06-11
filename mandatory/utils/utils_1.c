@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 06:39:48 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/07 16:14:52 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/06/11 12:18:00 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ char	*get_path(char **env, char *command)
 	int		i;
 	char	**ret;
 	char	*path;
-	char	*tmp;
 
+	path = NULL;
 	if (!access(command, F_OK))
 		return (command);
 	ret = get_path_2(env, command);

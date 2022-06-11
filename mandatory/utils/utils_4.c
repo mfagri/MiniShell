@@ -6,7 +6,7 @@
 /*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 14:46:41 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/09 09:30:26 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/11 12:54:11 by aaitoual         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 char	**cpy_2(char **str)
 {
 	int		i;
-	int		j;
 	char	**ret;
 
 	i = -1;
 	while (str[++i])
-		i = i;
+		i = i + 1 - 1;
 	ret = malloc (sizeof (char *) * (i + 1));
 	i = -1;
 	while (str[++i])

@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Fri Jun 10 22:25:13 2022
+# Make data base, printed on Sat Jun 11 13:00:32 2022
 
 # Variables
 
@@ -16,8 +16,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# makefile (from `Makefile', line 18)
-OBJ = ./mandatory/obj
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -27,7 +27,7 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/mfagri/Desktop/maron6
+CURDIR := /Users/aaitoual/Desktop/push
 # makefile
 SHELL = /bin/sh
 # environment
@@ -39,85 +39,113 @@ MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000ccsr00336f/T/vscode-ipc-e45e4b2e-aacb-420e-a8eb-2ac772a65725.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cd8r0033_6/T/vscode-ipc-317fd0c4-65ef-4842-be53-b257d0b9115e.sock
 # environment
-VSCODE_CWD = /
+VSCODE_CWD = /Users/aaitoual/Desktop/push
 # environment
-PATH = /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+PATH = /Users/aaitoual/goinfre/homebrew/bin:/Users/aaitoual/goinfre/homebrew/bin:/Users/aaitoual/goinfre/homebrew/bin:/Users/aaitoual/goinfre/homebrew/bin:/goinfre/aaitoual/.brew/opt/readline/bin:/Users/aaitoual/goinfre/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/aaitoual/.fig/bin
 # environment
-LaunchInstanceID = 310EBB23-4F23-4C3B-9671-78BA8012E6D0
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+FIG_CHECKED_PROMPTS = 1
 # makefile (from `Makefile', line 17)
 AR = ar rcs
 # environment
 VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
-# makefile (from `Makefile', line 34)
-LIB = ./mandatory/minishell.h 
+# makefile (from `Makefile', line 33)
+LIB = ./mandatory/minishell.h
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.9bAzvWV592/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.aVe0xLRX4R/Listeners
 # automatic
 %F = $(notdir $%)
-# makefile (from `Makefile', line 32)
-FILE1 = $(FILE:.c=.o)
+# environment
+HOMEBREW_TEMP = /tmp/aaitoual/Homebrew/Temp
+# environment
+TTY = /dev/ttys002
+# environment
+FIG_ENV_VAR = 1
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /Users/mfagri/Desktop/maron6
+PWD = /Users/aaitoual/Desktop/push
 # makefile (from `Makefile', line 20)
-FILE = ./mandatory/minishell.c ./mandatory/utils/ft_split.c ./mandatory/utils/ft_strncmp.c ./mandatory/utils/get_next_line_utils.c ./mandatory/utils/get_next_line.c ./mandatory/utils/ft_strlen.c ./mandatory/utils/ft_strjoin.c ./mandatory/utils/utils_1.c ./mandatory/utils/ft_strlcpy.c ./mandatory/utils/ft_isdigit.c ./mandatory/utils/ft_isalnum.c ./mandatory/utils/ft_itoa.c ./mandatory/utils/handler.c ./mandatory/utils/utils_2.c ./mandatory/utils/quotations.c ./mandatory/utils/get_arg.c ./mandatory/utils/vars.c ./mandatory/utils/separation.c ./mandatory/utils/ft_export.c ./mandatory/utils/builtins.c ./mandatory/utils/builtins_utils.c ./mandatory/utils/ft_export_utils_1.c ./mandatory/utils/ft_export_utils_2.c ./mandatory/utils/builtins_utils_2.c ./mandatory/utils/vars_utils.c ./mandatory/utils/get_command.c ./mandatory/utils/get_command_utils.c ./mandatory/utils/check_pr.c ./mandatory/utils/ft_atoi.c ./mandatory/utils/ft_strchr.c  ./mandatory/utils/rederections.c ./mandatory/utils/builtins_utils_3.c ./mandatory/utils/rederections_utils_2.c ./mandatory/utils/rederections_utils_1.c ./mandatory/utils/exec.c ./mandatory/utils/builtins_utils_4.c ./mandatory/utils/rederections_utils_4.c ./mandatory/utils/exec_utils_1.c ./mandatory/utils/utils_3.c ./mandatory/utils/utils_4.c ./mandatory/utils/check_pr_utils_1.c ./mandatory/utils/utils_5.c 
+FILE = minishell.c ft_split.c ft_strncmp.c get_next_line_utils.c get_next_line.c ft_strlen.c ft_strjoin.c utils_1.c ft_strlcpy.c ft_isdigit.c ft_isalnum.c ft_itoa.c handler.c utils_2.c quotations.c get_arg.c vars.c separation.c ft_export.c builtins.c builtins_utils.c ft_export_utils_1.c ft_export_utils_2.c builtins_utils_2.c vars_utils.c get_command.c get_command_utils.c check_pr.c ft_atoi.c ft_strchr.c  rederections.c builtins_utils_3.c rederections_utils_2.c rederections_utils_1.c exec.c builtins_utils_4.c rederections_utils_4.c exec_utils_1.c utils_3.c utils_4.c check_pr_utils_1.c utils_5.c 
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /Users/mfagri
+HOME = /Users/aaitoual
 # default
-MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/mfagri/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+VSCODE_CLI = 1
 # environment
-LOGNAME = mfagri
+VSCODE_CODE_CACHE_PATH = /Users/aaitoual/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+LOGNAME = aaitoual
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+ZSH = /Users/aaitoual/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
+# makefile (from `Makefile', line 18)
+OBJECT_PATH = ./object_files/
 # environment
 XPC_FLAGS = 0x0
+# environment
+COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
-# default
-MAKECMDGOALS := all
 # environment
-SHLVL = 1
+LC_TERMINAL = iTerm2
+# environment
+HOMEBREW_CACHE = /tmp/aaitoual/Homebrew/Caches
+# environment
+SHLVL = 3
+# environment
+FIG_TERM = 1
 # makefile (from `Makefile', line 14)
 CC = cc 
 # default
 MAKE_VERSION := 3.81
 # environment
-USER = mfagri
-# makefile
-.DEFAULT_GOAL := all
+USER = aaitoual
+# environment
+FIG_TERM_VERSION = 3
+# default
+MAKECMDGOALS := all
+# environment
+TERM_SESSION_ID = w0t0p1:2B6D4BA7-0D93-4E6B-9AB8-8269EE1BB1E4
 # makefile (from `Makefile', line 13)
 NAME = minishell
+# environment
+LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
+# environment
+FIG_INTEGRATION_VERSION = 5
 # makefile (from `Makefile', line 16)
-LFLAGS = -I/Users/$(USER)/.brew/opt/readline/include
+LFLAGS = -I/goinfre/$(USER)/.brew/opt/readline/include
 # default
-MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# environment
+TERM_PROGRAM = iTerm.app
 # default
 .VARIABLES := 
 # environment
-TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000ccsr00336f/T/
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cd8r0033_6/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/mfagri/Library/Application Support/Code/1.67.0-main.sock
+VSCODE_IPC_HOOK = /Users/aaitoual/Library/Application Support/Code/1.67.0-main.sock
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -125,23 +153,33 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000001.Electron
+TERM_PROGRAM_VERSION = 3.4.13
+# environment
+XPC_SERVICE_NAME = 0
+# environment
+LC_TERMINAL_VERSION = 3.4.13
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
-__CF_USER_TEXT_ENCODING = 0x18CCE:0x0:0x0
+ITERM_SESSION_ID = w0t0p1:2B6D4BA7-0D93-4E6B-9AB8-8269EE1BB1E4
 # environment
-COMMAND_MODE = unix2003
+COLORFGBG = 7;0
+# environment
+__CF_USER_TEXT_ENCODING = 0x18D46:0x0:0x0
 # default
 MAKEFILES := 
+# environment
+HOMEBREW_NO_AUTO_UPDATE = 1
 # automatic
 <F = $(notdir $<)
 # environment
-LC_ALL = C
+ITERM_PROFILE = Default
 # environment
-SECURITYSESSIONID = 186a7
+PAGER = less
+# environment
+LC_ALL = C
 # automatic
 ^F = $(notdir $^)
 # default
@@ -152,12 +190,18 @@ FLAGS = -Wall -Wextra -Werror
 .INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
+# makefile (from `Makefile', line 35)
+OBJECTS = $(addprefix $(OBJECT_PATH), $(FILE:.c=.o))
+# makefile
+.DEFAULT_GOAL := all
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6593
+TERM = xterm-256color
+# environment
+VSCODE_PID = 50376
 # variable set hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=4/101=4%
+# Load=94/1024=9%, Rehash=0, Collisions=6/125=5%
 
 # Pattern-specific Variable Values
 
@@ -165,84 +209,58 @@ VSCODE_PID = 6593
 
 # Directories
 
-# . (device 16777225, inode 2341272): 10 files, no impossibilities.
-# mandatory/utils (device 16777225, inode 2341345): 83 files, no impossibilities so far.
-# mandatory (device 16777225, inode 2341342): 3 files, no impossibilities so far.
+# . (device 16777225, inode 4959223): 10 files, no impossibilities.
+# ./mandatory/utils (device 16777225, inode 4959470): 61 files, no impossibilities so far.
+# mandatory (device 16777225, inode 4959423): 6 files, no impossibilities.
+# mandatory/utils (device 16777225, inode 4959470): 61 files, no impossibilities so far.
+# ./mandatory (device 16777225, inode 4959423): 6 files, no impossibilities.
 
-# 96 files, no impossibilities in 3 directories.
+# 144 files, no impossibilities in 5 directories.
 
 # Implicit Rules
 
-%.o: %.c
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+object_files/%.o: ./mandatory/%.c
+#  commands to execute (from `Makefile', line 43):
+	$(CC) $(LFLAGS) $(LFLAGS) -o $@  -c $^
 	
 
-# 1 implicit rules, 0 (0.0%) terminal.
+object_files/%.o: ./mandatory/utils/%.c
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+# 2 implicit rules, 0 (0.0%) terminal.
 
 # Files
 
-mandatory/utils/builtins_utils_3.o: mandatory/utils/builtins_utils_3.c
+object_files/rederections_utils_4.o: mandatory/utils/rederections_utils_4.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/builtins_utils_3'
-#  Last modified 2022-06-10 22:22:29
+#  Implicit/static pattern stem: `rederections_utils_4'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
-mandatory/utils/check_pr.o: mandatory/utils/check_pr.c
+object_files/ft_atoi.o: mandatory/utils/ft_atoi.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/check_pr'
-#  Last modified 2022-06-10 20:47:19
+#  Implicit/static pattern stem: `ft_atoi'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-# Not a target:
-mandatory/utils/get_command.c:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-mandatory/utils/rederections_utils_4.o: mandatory/utils/rederections_utils_4.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/rederections_utils_4'
-#  Last modified 2022-06-10 20:47:19
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/ft_atoi.o: mandatory/utils/ft_atoi.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_atoi'
-#  Last modified 2022-06-10 20:47:19
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/separation.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -251,7 +269,7 @@ mandatory/utils/separation.c:
 # Not a target:
 mandatory/utils/builtins_utils_4.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -259,27 +277,27 @@ mandatory/utils/builtins_utils_4.c:
 
 # Not a target:
 mandatory/utils/rederections_utils_1.c:
- 
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:52:04
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-all: minishell
+all: object_files minishell
 #  Command-line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
 #  Successfully updated.
+ 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 mandatory/utils/vars.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:41:43
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -288,7 +306,7 @@ mandatory/utils/vars.c:
 # Not a target:
 mandatory/utils/handler.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:55:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -297,7 +315,7 @@ mandatory/utils/handler.c:
 # Not a target:
 mandatory/utils/ft_strlcpy.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:18:37
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -306,7 +324,7 @@ mandatory/utils/ft_strlcpy.c:
 # Not a target:
 mandatory/utils/get_arg.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:40:58
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -315,16 +333,40 @@ mandatory/utils/get_arg.c:
 # Not a target:
 mandatory/utils/ft_strncmp.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+object_files/utils_3.o: mandatory/utils/utils_3.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `utils_3'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+object_files/ft_itoa.o: mandatory/utils/ft_itoa.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `ft_itoa'
+#  Last modified 2022-06-11 13:00:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
 # Not a target:
 mandatory/utils/utils_2.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:40:41
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -333,7 +375,7 @@ mandatory/utils/utils_2.c:
 # Not a target:
 mandatory/utils/check_pr_utils_1.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -342,92 +384,89 @@ mandatory/utils/check_pr_utils_1.c:
 # Not a target:
 mandatory/utils/ft_isalnum.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/utils_3.o: mandatory/utils/utils_3.c
+object_files/ft_strlen.o: mandatory/utils/ft_strlen.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/utils_3'
-#  Last modified 2022-06-10 20:47:19
+#  Implicit/static pattern stem: `ft_strlen'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
-mandatory/utils/ft_itoa.o: mandatory/utils/ft_itoa.c
+object_files/ft_export_utils_1.o: mandatory/utils/ft_export_utils_1.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_itoa'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `ft_export_utils_1'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
-mandatory/utils/ft_strlen.o: mandatory/utils/ft_strlen.c
+object_files/ft_isdigit.o: mandatory/utils/ft_isdigit.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_strlen'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `ft_isdigit'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
-mandatory/utils/ft_export_utils_1.o: mandatory/utils/ft_export_utils_1.c
+object_files/builtins_utils.o: mandatory/utils/builtins_utils.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_export_utils_1'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `builtins_utils'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/ft_isdigit.o: mandatory/utils/ft_isdigit.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_isdigit'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/ft_strchr.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/builtins_utils.o: mandatory/utils/builtins_utils.c
+object_files/quotations.o: mandatory/utils/quotations.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/builtins_utils'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `quotations'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
+
+# Not a target:
+mandatory/utils/get_command.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-11 12:44:21
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 .SUFFIXES:
@@ -438,219 +477,225 @@ mandatory/utils/builtins_utils.o: mandatory/utils/builtins_utils.c
 # Not a target:
 mandatory/utils/rederections.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:47:06
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+object_files/get_command_utils.o: mandatory/utils/get_command_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `get_command_utils'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 22:24:59
+#  Last modified 2022-06-11 12:38:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-mandatory/utils/quotations.o: mandatory/utils/quotations.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/quotations'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
 
 # Not a target:
 mandatory/utils/rederections_utils_2.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:51:33
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+object_files:
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-11 13:00:13
+#  File has been updated.
+#  Successfully updated.
+#  commands to execute (from `Makefile', line 49):
+	@mkdir object_files 
+	
 
 # Not a target:
 mandatory/utils/utils_4.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:54:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/get_command_utils.o: mandatory/utils/get_command_utils.c
+object_files/ft_strjoin.o: mandatory/utils/ft_strjoin.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/get_command_utils'
-#  Last modified 2022-06-10 20:47:19
+#  Implicit/static pattern stem: `ft_strjoin'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+object_files/ft_split.o: mandatory/utils/ft_split.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `ft_split'
+#  Last modified 2022-06-11 13:00:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/get_next_line.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-mandatory/utils/ft_strjoin.o: mandatory/utils/ft_strjoin.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_strjoin'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/ft_split.o: mandatory/utils/ft_split.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_split'
-#  Last modified 2022-06-10 20:47:18
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
  
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
+
+# Not a target:
+mandatory/utils/builtins_utils_3.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-11 12:47:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
 mandatory/utils/check_pr.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:45:22
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+object_files/vars_utils.o: mandatory/utils/vars_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `vars_utils'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+object_files/ft_export.o: mandatory/utils/ft_export.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `ft_export'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+object_files/exec_utils_1.o: mandatory/utils/exec_utils_1.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `exec_utils_1'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+object_files/ft_export_utils_2.o: mandatory/utils/ft_export_utils_2.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `ft_export_utils_2'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
 
 # Not a target:
 mandatory/utils/rederections_utils_4.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/vars_utils.o: mandatory/utils/vars_utils.c
+object_files/utils_5.o: mandatory/utils/utils_5.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/vars_utils'
-#  Last modified 2022-06-10 20:47:19
+#  Implicit/static pattern stem: `utils_5'
+#  Last modified 2022-06-11 13:00:13
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/ft_atoi.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/ft_export.o: mandatory/utils/ft_export.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_export'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/exec_utils_1.o: mandatory/utils/exec_utils_1.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/exec_utils_1'
-#  Last modified 2022-06-10 20:47:19
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/ft_export_utils_2.o: mandatory/utils/ft_export_utils_2.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_export_utils_2'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-minishell: mandatory/minishell.o mandatory/utils/ft_split.o mandatory/utils/ft_strncmp.o mandatory/utils/get_next_line_utils.o mandatory/utils/get_next_line.o mandatory/utils/ft_strlen.o mandatory/utils/ft_strjoin.o mandatory/utils/utils_1.o mandatory/utils/ft_strlcpy.o mandatory/utils/ft_isdigit.o mandatory/utils/ft_isalnum.o mandatory/utils/ft_itoa.o mandatory/utils/handler.o mandatory/utils/utils_2.o mandatory/utils/quotations.o mandatory/utils/get_arg.o mandatory/utils/vars.o mandatory/utils/separation.o mandatory/utils/ft_export.o mandatory/utils/builtins.o mandatory/utils/builtins_utils.o mandatory/utils/ft_export_utils_1.o mandatory/utils/ft_export_utils_2.o mandatory/utils/builtins_utils_2.o mandatory/utils/vars_utils.o mandatory/utils/get_command.o mandatory/utils/get_command_utils.o mandatory/utils/check_pr.o mandatory/utils/ft_atoi.o mandatory/utils/ft_strchr.o mandatory/utils/rederections.o mandatory/utils/builtins_utils_3.o mandatory/utils/rederections_utils_2.o mandatory/utils/rederections_utils_1.o mandatory/utils/exec.o mandatory/utils/builtins_utils_4.o mandatory/utils/rederections_utils_4.o mandatory/utils/exec_utils_1.o mandatory/utils/utils_3.o mandatory/utils/utils_4.o mandatory/utils/check_pr_utils_1.o mandatory/utils/utils_5.o mandatory/minishell.h
+minishell: object_files/minishell.o object_files/ft_split.o object_files/ft_strncmp.o object_files/get_next_line_utils.o object_files/get_next_line.o object_files/ft_strlen.o object_files/ft_strjoin.o object_files/utils_1.o object_files/ft_strlcpy.o object_files/ft_isdigit.o object_files/ft_isalnum.o object_files/ft_itoa.o object_files/handler.o object_files/utils_2.o object_files/quotations.o object_files/get_arg.o object_files/vars.o object_files/separation.o object_files/ft_export.o object_files/builtins.o object_files/builtins_utils.o object_files/ft_export_utils_1.o object_files/ft_export_utils_2.o object_files/builtins_utils_2.o object_files/vars_utils.o object_files/get_command.o object_files/get_command_utils.o object_files/check_pr.o object_files/ft_atoi.o object_files/ft_strchr.o object_files/rederections.o object_files/builtins_utils_3.o object_files/rederections_utils_2.o object_files/rederections_utils_1.o object_files/exec.o object_files/builtins_utils_4.o object_files/rederections_utils_4.o object_files/exec_utils_1.o object_files/utils_3.o object_files/utils_4.o object_files/check_pr_utils_1.o object_files/utils_5.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-10 22:22:29
+#  Last modified 2022-06-11 13:00:13
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 39):
-	$(CC) $(FILE1) $(FLAGS) -o $@  -lreadline -L/Users/$(USER)/.brew/opt/readline/lib
-	
-
-mandatory/utils/utils_5.o: mandatory/utils/utils_5.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/utils_5'
-#  Last modified 2022-06-10 20:47:19
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 40):
+	$(CC) $(OBJECTS) $(FLAGS) $(LFLAGS) -o $@  -lreadline -L/goinfre/$(USER)/.brew/opt/readline/lib
 	
 
 fclean: clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 48):
+#  commands to execute (from `Makefile', line 55):
 	rm -f $(NAME) $(NAME_BONUS)
 	
 
-mandatory/minishell.o: mandatory/minishell.c
+object_files/exec.o: mandatory/utils/exec.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/minishell'
-#  Last modified 2022-06-10 22:21:33
+#  Implicit/static pattern stem: `exec'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/utils_3.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:53:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -659,7 +704,7 @@ mandatory/utils/utils_3.c:
 # Not a target:
 mandatory/utils/ft_itoa.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -668,7 +713,7 @@ mandatory/utils/ft_itoa.c:
 # Not a target:
 mandatory/utils/ft_strlen.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -677,28 +722,28 @@ mandatory/utils/ft_strlen.c:
 # Not a target:
 mandatory/utils/ft_export_utils_1.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/exec.o: mandatory/utils/exec.c
+object_files/builtins.o: mandatory/utils/builtins.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/exec'
-#  Last modified 2022-06-10 20:47:19
+#  Implicit/static pattern stem: `builtins'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/ft_isdigit.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -710,77 +755,89 @@ mandatory/utils/ft_isdigit.c:
 #  Modification time never checked.
 #  File has not been updated.
 
+object_files/builtins_utils_2.o: mandatory/utils/builtins_utils_2.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `builtins_utils_2'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+object_files/get_next_line_utils.o: mandatory/utils/get_next_line_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `get_next_line_utils'
+#  Last modified 2022-06-11 13:00:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
 # Not a target:
 mandatory/utils/builtins_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:42:48
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/builtins.o: mandatory/utils/builtins.c
+object_files/minishell.o: mandatory/minishell.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/builtins'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `minishell'
+ 
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 43):
+	$(CC) $(LFLAGS) $(LFLAGS) -o $@  -c $^
 	
 
-mandatory/utils/builtins_utils_2.o: mandatory/utils/builtins_utils_2.c
+object_files/utils_1.o: mandatory/utils/utils_1.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/builtins_utils_2'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `utils_1'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
- 
 mandatory/utils/quotations.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/get_next_line_utils.o: mandatory/utils/get_next_line_utils.c
+object_files/get_command.o: mandatory/utils/get_command.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/get_next_line_utils'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `get_command'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/utils_1.o: mandatory/utils/utils_1.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/utils_1'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/get_command_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:44:54
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -791,30 +848,30 @@ re: fclean all
 #  Modification time never checked.
 #  File has not been updated.
 
-mandatory/utils/get_command.o: mandatory/utils/get_command.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/get_command'
-#  Last modified 2022-06-10 20:47:19
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 45):
-	rm -f $(FILE1) $(FILE1_BONUS)
+#  commands to execute (from `Makefile', line 52):
+	rm -f $(OBJECTS) $(FILE1_BONUS)
+	
+
+object_files/separation.o: mandatory/utils/separation.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `separation'
+#  Last modified 2022-06-11 13:00:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/ft_strjoin.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -823,308 +880,302 @@ mandatory/utils/ft_strjoin.c:
 # Not a target:
 mandatory/utils/ft_split.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/separation.o: mandatory/utils/separation.c
+object_files/builtins_utils_4.o: mandatory/utils/builtins_utils_4.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/separation'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `builtins_utils_4'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
-mandatory/utils/builtins_utils_4.o: mandatory/utils/builtins_utils_4.c
+object_files/rederections_utils_1.o: mandatory/utils/rederections_utils_1.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/builtins_utils_4'
-#  Last modified 2022-06-10 20:47:19
+#  Implicit/static pattern stem: `rederections_utils_1'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+object_files/vars.o: mandatory/utils/vars.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `vars'
+#  Last modified 2022-06-11 13:00:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+object_files/handler.o: mandatory/utils/handler.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `handler'
+#  Last modified 2022-06-11 13:00:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/vars_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:43:53
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-mandatory/utils/rederections_utils_1.o: mandatory/utils/rederections_utils_1.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/rederections_utils_1'
-#  Last modified 2022-06-10 20:47:19
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
 
 # Not a target:
 mandatory/utils/ft_export.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:44:22
+#  Last modified 2022-06-11 11:30:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+object_files/ft_strlcpy.o: mandatory/utils/ft_strlcpy.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `ft_strlcpy'
+#  Last modified 2022-06-11 13:00:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+# Not a target:
+mandatory/utils/exec_utils_1.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-11 12:52:46
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # Not a target:
-mandatory/utils/exec_utils_1.c:
+mandatory/utils/ft_export_utils_2.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:43:25
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/vars.o: mandatory/utils/vars.c
+object_files/get_arg.o: mandatory/utils/get_arg.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/vars'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `get_arg'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
-mandatory/utils/handler.o: mandatory/utils/handler.c
+object_files/ft_strncmp.o: mandatory/utils/ft_strncmp.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/handler'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `ft_strncmp'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/utils_5.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:54:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/ft_strlcpy.o: mandatory/utils/ft_strlcpy.c
+object_files/utils_2.o: mandatory/utils/utils_2.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_strlcpy'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `utils_2'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
-mandatory/utils/get_arg.o: mandatory/utils/get_arg.c
+object_files/check_pr_utils_1.o: mandatory/utils/check_pr_utils_1.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/get_arg'
-#  Last modified 2022-06-10 20:47:18
+#  Implicit/static pattern stem: `check_pr_utils_1'
+#  Last modified 2022-06-11 13:00:13
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
-# Not a target:
-mandatory/utils/builtins_utils_3.c:
+object_files/ft_isalnum.o: mandatory/utils/ft_isalnum.c
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 22:22:26
+#  Implicit/static pattern stem: `ft_isalnum'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-mandatory/utils/ft_strncmp.o: mandatory/utils/ft_strncmp.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_strncmp'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/utils_2.o: mandatory/utils/utils_2.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/utils_2'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/check_pr_utils_1.o: mandatory/utils/check_pr_utils_1.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/check_pr_utils_1'
-#  Last modified 2022-06-10 20:47:19
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/ft_isalnum.o: mandatory/utils/ft_isalnum.c
- 
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_isalnum'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/minishell.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 22:21:17
+#  Last modified 2022-06-11 12:37:48
+ 
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/ft_strchr.o: mandatory/utils/ft_strchr.c
+object_files/ft_strchr.o: mandatory/utils/ft_strchr.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/ft_strchr'
-#  Last modified 2022-06-10 20:47:19
+#  Implicit/static pattern stem: `ft_strchr'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
-# Not a target:
-mandatory/utils/ft_export_utils_2.c:
+object_files/rederections.o: mandatory/utils/rederections.c
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Implicit/static pattern stem: `rederections'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
 
-mandatory/utils/rederections.o: mandatory/utils/rederections.c
+object_files/rederections_utils_2.o: mandatory/utils/rederections_utils_2.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/rederections'
-#  Last modified 2022-06-10 20:47:19
+#  Implicit/static pattern stem: `rederections_utils_2'
+#  Last modified 2022-06-11 13:00:12
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
+
+object_files/utils_4.o: mandatory/utils/utils_4.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `utils_4'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/exec.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:56:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-mandatory/utils/rederections_utils_2.o: mandatory/utils/rederections_utils_2.c
+object_files/get_next_line.o: mandatory/utils/get_next_line.c
 #  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/rederections_utils_2'
-#  Last modified 2022-06-10 20:47:19
+#  Implicit/static pattern stem: `get_next_line'
+#  Last modified 2022-06-11 13:00:11
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-mandatory/utils/utils_4.o: mandatory/utils/utils_4.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/utils_4'
-#  Last modified 2022-06-10 20:47:19
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
 	
 
 # Not a target:
 mandatory/utils/builtins.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:42:19
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+object_files/builtins_utils_3.o: mandatory/utils/builtins_utils_3.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `builtins_utils_3'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
 
 # Not a target:
 mandatory/utils/builtins_utils_2.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+object_files/check_pr.o: mandatory/utils/check_pr.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `check_pr'
+#  Last modified 2022-06-11 13:00:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 46):
+	$(CC) $(LFLAGS) $(FLAGS) -o $@  -c $^
+	
 
 # Not a target:
 mandatory/utils/get_next_line_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-mandatory/utils/get_next_line.o: mandatory/utils/get_next_line.c
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: `mandatory/utils/get_next_line'
-#  Last modified 2022-06-10 20:47:18
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-#  commands to execute (from `Makefile', line 42):
-	$(CC) $(LFLAGS) -I $(LFLAGS) -o $@  -c $^
-	
-
-# Not a target:
-mandatory/minishell.h:
-#  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 11:30:50
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1133,14 +1184,14 @@ mandatory/minishell.h:
 # Not a target:
 mandatory/utils/utils_1.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-10 20:38:30
+#  Last modified 2022-06-11 12:18:00
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 # files hash-table stats:
-# Load=93/1024=9%, Rehash=0, Collisions=6/279=2%
+# Load=93/1024=9%, Rehash=0, Collisions=4/320=1%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -1152,6 +1203,6 @@ mandatory/utils/utils_1.c:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Jun 10 22:25:13 2022
+# Finished Make data base on Sat Jun 11 13:00:32 2022
 
  
