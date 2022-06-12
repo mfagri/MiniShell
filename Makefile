@@ -35,7 +35,7 @@ LIB = ./mandatory/minishell.h
 OBJECTS = $(addprefix $(OBJECT_PATH), $(FILE:.c=.o))
 all: object_files $(NAME) 
 
-$(NAME): $(OBJECTS)
+$(NAME): $(OBJECTS) $(LIB)
 	$(CC) $(OBJECTS) $(FLAGS) $(LFLAGS) -o $@  -lreadline -L/Users/$(USER)/.brew/opt/readline/lib
 
 $(OBJECT_PATH)%.o  : ./mandatory/%.c
