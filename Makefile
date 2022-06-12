@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+         #
+#    By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 19:42:03 by aaitoual          #+#    #+#              #
-#    Updated: 2022/06/11 12:38:17 by aaitoual         ###   ########.fr        #
+#    Updated: 2022/06/12 12:06:47 by mfagri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc 
 FLAGS = -Wall -Wextra -Werror 
-LFLAGS	= -I/goinfre/$(USER)/.brew/opt/readline/include
+LFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 AR = ar rcs
 OBJECT_PATH = ./object_files/
 
@@ -33,11 +33,10 @@ FILE =  minishell.c ft_split.c ft_strncmp.c get_next_line_utils.c \
 LIB = ./mandatory/minishell.h
 
 OBJECTS = $(addprefix $(OBJECT_PATH), $(FILE:.c=.o))
-
 all: object_files $(NAME) 
 
 $(NAME): $(OBJECTS)
-	$(CC) $(OBJECTS) $(FLAGS) $(LFLAGS) -o $@  -lreadline -L/goinfre/$(USER)/.brew/opt/readline/lib
+	$(CC) $(OBJECTS) $(FLAGS) $(LFLAGS) -o $@  -lreadline -L/Users/$(USER)/.brew/opt/readline/lib
 
 $(OBJECT_PATH)%.o  : ./mandatory/%.c
 	$(CC) $(LFLAGS) $(LFLAGS) -o $@  -c $^
