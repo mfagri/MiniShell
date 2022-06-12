@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_5.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaitoual <aaitoual@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 09:29:17 by aaitoual          #+#    #+#             */
-/*   Updated: 2022/06/11 12:54:31 by aaitoual         ###   ########.fr       */
+/*   Updated: 2022/06/12 12:19:22 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	shlvl_increment(char **env, int i)
 	tmp = cpy (NULL, "SHLVL=");
 	t = ft_strrchr(env[i], '=');
 	k = ft_atoi(++t) + 1;
+	if(k < 0)
+		k = 0;
 	s = ft_itoa(k);
 	tmp = ft_strjoin(tmp, s);
 	free (s);
