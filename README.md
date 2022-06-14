@@ -12,6 +12,7 @@
 # **************************************************************************** #
 
 
+
 int	get_glo(int i)
 {
 	static int	j;
@@ -24,6 +25,7 @@ int	get_glo(int i)
 		return (j);
 	return (j);
 }
+
 
 void	ft_sig(int signum)
 {
@@ -288,7 +290,8 @@ When you change the directory you should update your pwd and oldpwd in the envir
 
 Exit:
 
-https://linuxize.com/post/bash-exit/
+https://linuxize.com/post/bash-exit
+	
 https://codefather.tech/blog/exit-bash-script/
 
 And try to compare your exit function  with the bash :).
