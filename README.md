@@ -1,32 +1,6 @@
 # MiniShell
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    readme.txt                                         :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/14 18:36:10 by mfagri            #+#    #+#              #
-#    Updated: 2022/06/14 18:40:51 by mfagri           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
-
-
-int	get_glo(int i)
-{
-	static int	j;
-
-	if (i == 0)
-		j = 0;
-	else if (i == 1)
-		j = 1;
-	else
-		return (j);
-	return (j);
-}
-
-
+```
 void	ft_sig(int signum)
 {
 	if (signum == SIGINT && !get_glo(2))
@@ -41,21 +15,46 @@ void	ft_sig(int signum)
 	else
 		write(1, "\n", 1);
 }
+```
+# CTL_C && CTL_D && CTL_\
 
 
-Ctl_c:	rl_on_new_lin();          	//Tell the update functions that we have moved onto a new (empty) line
-   		rl_replace_line("",0);      // Clears the current prompt
-   		rl_redisplay();             // Redisplays the prompt
+Ctl_c:
+       
+       rl_on_new_lin();          Tell the update functions that we have moved onto a new (empty) line.
+       
+       rl_replace_line("",0);      Clears the current prompt.
+       
+       rl_redisplay();            Redisplays the prompt.
+      
 
-Ctl_d:   just write(1,”\033[1A\033[11Cexite”,14);
-		 Results => (<prompt> exit) in the same line.
-	  	 \033: control the cursor.
-		 \033[{N}A: Move your cursor up N lines.
-		 \033[{N}C: Move the cursor forward N columns
+Ctl_d:
 
-Ctl_\:	just return ;
+	just write(1,”\033[1A\033[11Cexite”,14);.
+        Results => (<prompt> exit) in the same line.
+	    \033: control the cursor.
+        \033[{N}A: Move your cursor up N lines.
+        \033[{N}C: Move the cursor forward N columns
 
+Ctl_\:
 
+	just return ;
+
+```
+int	get_glo(int i)
+{
+	static int	j;
+
+	if (i == 0)
+		j = 0;
+	else if (i == 1)
+		j = 1;
+	else
+		return (j);
+	return (j);
+}
+
+```
 The function “get_glo” is a function to simulate a global variable :
 If i == 0 j be 0 else i == 1 j be 1 else the function returns the value stored in the static variable.
 Why we need this function:
@@ -66,7 +65,7 @@ And if we aren't in the child process we give the function 0 to get into the con
 ^C: To solution this case you need “rl_catch_signals”.
 
 In main program:
-
+```
 int	main(int ac, char **av, char **env)
 {
 	int		fd;
@@ -82,17 +81,17 @@ int	main(int ac, char **av, char **env)
 		exec(fd, env);
 	}
 }
-
-
+```
+	
 Rl_catch_signals: If non-zero, readline will install a signal handler for SIGWINCH
   				  that also attempts to call any calling application's SIGWINCH signal
   				  handler.  Note that the terminal is not cleaned up before the
   				  application's signal handler is called; use rl_cleanup_after_signal()
   				  to do that.
-#######################################################################################################
+	
+# Echo:
 
-Echo:
-
+```
 int	ft_check_n(const char *s1, const char *s2)
 {
 	size_t	i;
@@ -113,9 +112,10 @@ int	ft_check_n(const char *s1, const char *s2)
 	}
 	return (1);
 }
-
+```
 ft_check_n : functoin to skip the 'n' if int pr[1] n the fonction return one
 
+```
 void	ft_echo(char **pr)
 {
 	int		i;
@@ -142,15 +142,14 @@ void	ft_echo(char **pr)
 		write(1, "\n", 1);
 }
 
-
+```
 
 For echo : if no argements flowed the echo just write new line if "echo -n" t
 he program just print nothing whitout new line and ,
 if "echo -n arguments" print argements whitout new line.
-#######################################################################################################
 
-Pwd:
-
+# Pwd:
+```
 void	ft_pwd(char **arg)
 {
 	char	s[1024];
@@ -160,13 +159,12 @@ void	ft_pwd(char **arg)
 		return (ft_putstr_fd("pwd: not fond\n", 2));
 	printf("%s\n", s);
 }
-
+```
 The fonction "getcwd()" function shall place an absolute pathname of the current working directory in the array pointed to by buf, and return buf.
 The pathname copied to the array shall contain no components that are symbolic links. The size argument is the size in bytes of the character array pointed to by the buf argument.
 If buf is a null pointer, the behavior of getcwd() is unspecified.
-#######################################################################################################
 
-Env:
+# Env:
 
 Environment variables hold information about our login session. 
 They’re stored for the system shell used when we execute commands.
@@ -176,8 +174,8 @@ if we go from bash to auther bash variable SHLVL must change bash 00 : shlvl=1 b
 if no shlvl in the environment and you run minishell in minishell you should update your shlvl to shlvl=1 ,
 if you export a negative value to shlvl like shlvl=-99 your shlvl must be shlvl=0.
 
-#######################################################################################################
-Export:
+
+# Export:
 
 export- command is one of the bash shell BUILTINS commands,
 which means it is part of your shell. The export command is fairly simple
@@ -187,8 +185,8 @@ child processes and thus it allows a child process to inherit all marked variabl
 
 Some tests you should try in your export:
 
-TESTS:
-#######################################################################################################
+# TESTS:
+```
 minishell=>export
 declare -x ANDROID_SDK_ROOT="/Users/mfagri/goinfre/devtools/Android/sdk"
 declare -x APPS="/Users/mfagri/goinfre/apps"
@@ -217,7 +215,8 @@ declare -x XPC_FLAGS="0x0"
 declare -x XPC_SERVICE_NAME="0"
 declare -x ZSH="/Users/mfagri/.oh-my-zsh"
 declare -x _="/bin/bash"
-########################################################################################################
+```
+```
 minishell=>export a
 minishell=>export | grep a
 declare -x a
@@ -236,8 +235,9 @@ minishell=>export +=a || <!@#$%^&*()>
 minishell : export: `+=a': not a valid identifier
 minishell=>export b==============n;
 result : b="=========n"
-########################################################################################################
-Unset:
+```
+	
+# Unset:
 
 unset command to delete the variables during program execution.
 It can remove both functions and shell variables.
@@ -245,11 +245,13 @@ It can remove both functions and shell variables.
 try export a && export aa && export aaa && export aaaa.
 try to unset aa:
 result :
+```
 declare -x a
 declare -x aaa
 declare -x aaaa
-#######################################################################################################
-cd:
+```
+	
+# cd:
 
 The chdir command is a system function (system call) which is used to change the current working directory.
 On some systems, this command is used as an alias for the shell command cd.
@@ -259,8 +261,9 @@ For cd you should use the 'chdir()' function .
  
 int chdir(const char *path);
 
-Exemple:
+# Exemple:
 
+```
 #include<stdio.h>
 
 // chdir function is declared
@@ -283,12 +286,12 @@ int main()
 	return 0;
 }
 
+```
 
 When you change the directory you should update your pwd and oldpwd in the environment.
 
-#######################################################################################################
 
-Exit:
+# Exit:
 
 https://linuxize.com/post/bash-exit
 	
@@ -296,4 +299,3 @@ https://codefather.tech/blog/exit-bash-script/
 
 And try to compare your exit function  with the bash :).
 
-#######################################################################################################
