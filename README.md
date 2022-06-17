@@ -303,4 +303,4 @@ And try to compare your exit function  with the bash :).
  <a href="https://github.com/mfagri/MiniShell" target="_blank"><img src="https://img.shields.io/badge/github-000000?style=flat-square&logo=Github&logoColor=white"/></a>
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:marouane.fagri1@gmail.com)](mailto:marouane.fagri1@gmail.com)
 [![Twitter Badge](https://img.shields.io/badge/-Twitter-1c89f0?style=flat-square&logo=twitter&logoColor=white&link=https://twitter.com/FagriMarouane/)](https://twitter.com/FagriMarouane/) 
-[![Twitter Badge](https://img.shields.io/badge/-Facebook-1c89f0?style=flat-square&logo=facebook&logoColor=white&link=https://www.facebook.com/marwan.fagri.7/)](https://www.facebook.com/profile.php?marwan.fagri.7/) 
+[![Twitter Badge](https://img.shields.io/badge/-Facebook-1c89f0?style=flat-square&logo=facebook&logoColor=white&link=https://www.facebook.com/marwan.fagri.7/)](https://www.facebook.com/marwan.fagri.7/)
